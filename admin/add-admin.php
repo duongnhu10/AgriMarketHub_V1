@@ -19,7 +19,7 @@
                 <tr>
                     <td>Username: </td>
                     <td>
-                        <input type="text" name="user_name" placeholder="Your username">
+                        <input type="text" name="username" placeholder="Your username">
                     <td>
                 </tr>
 
@@ -51,7 +51,19 @@ if (isset($_POST['submit'])) {
     // Button Clicked
     // echo "Button Clicked";
 
-    //Get the data from form
+    //1. Get the data from form
+    $full_name = $_POST['full_name'];
+    $username = $_POST['username'];
+    $password = md5($_POST['password']); //Password Encryption with MD5
+
+    //2. SQL Query tp Save the data into database
+    $sql = "INSERT INTO tbl_admin SET 
+            full_name = '$full_name';
+            username = '$username',
+            password = '$password'
+    ";
+
+    // $res = mysqli_query($conn, $sql) or die(mysqli_error());
 
 }
 ?>
