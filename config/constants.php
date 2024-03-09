@@ -1,6 +1,9 @@
 <?php
-//3. Execute Query and Save Data in Database
+//Start Session
+session_start();
+
 //Create Constants to Store Non Repeting values
+define('SITEURL', 'http://localhost:3000/');
 define('LOCALHOST', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
