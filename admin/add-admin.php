@@ -58,7 +58,7 @@ if (isset($_POST['submit'])) {
     // Button Clicked
     // echo "Button Clicked";
 
-    //1. Get the data from form
+    //1. Get the data from Form
     $full_name = $_POST['full_name'];
     $username = $_POST['username'];
     $password = md5($_POST['password']); //Password Encryption with MD5
