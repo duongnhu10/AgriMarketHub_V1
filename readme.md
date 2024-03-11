@@ -5,8 +5,6 @@
 
 # EVERYDAY
 
-[🐢] 06/03/2024
-
 ✅ Create/Start Project
 <br>
 ✅ Import Design Files
@@ -16,20 +14,11 @@
 ✅ Design Admin Panel
 <br>
 ✅ Create Partials/Repeating Parts (Menu and Footer)
-
-[🐢] 07/03/2024
-
+<br>
 ✅ Manage Admin Page Design
 <br>
 ✅ Add Admin to Database
 <br>
-
-[🐢] 08/03/2024
-<br>
-☠
-
-[🐢] 09/03/2024
-
 ✅ 'constants.php' Configuration File
 <br>
 ✅ Displaying Admins from Database
