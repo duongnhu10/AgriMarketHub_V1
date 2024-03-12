@@ -12,6 +12,7 @@ $sql = "DELETE FROM tbl_admin WHERE id=$id";
 //Execute the query
 $res = mysqli_query($conn, $sql);
 
+//3. Redirect to Mange Admin page with message (success/error)
 //Check whether the query executed successfully or not
 if ($res == true) {
     //Query Executed Successfully and Admin Deleted
@@ -28,5 +29,3 @@ if ($res == true) {
     //Redirect Page to Manager Admin
     header("location:" . SITEURL . "admin/manager-admin.php");
 }
-
-//3. Redirect to Mange Admin page with message (success/error)
