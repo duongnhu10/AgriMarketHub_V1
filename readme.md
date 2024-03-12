@@ -21,11 +21,14 @@
 <br>
 ✅ 'constants.php' Configuration File
 <br>
-✅ Displaying Admins from Database
+✅ Admin Module
 <br>
-✅ Delete Admin from Database
+✅ Delete Admin
 <br>
-Update Admin in Database
+✅ Adding Message Color
 <br>
-Change Admin Password
-<br>
+✅ Update Admin
+
+<!-- <br>
+✅ Change Password
+<br> -->
