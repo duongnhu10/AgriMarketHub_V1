@@ -22,3 +22,10 @@
 ✅ 'constants.php' Configuration File
 <br>
 ✅ Displaying Admins from Database
+<br>
+✅ Delete Admin from Database
+<br>
+Update Admin in Database
+<br>
+Change Admin Password
+<br>
