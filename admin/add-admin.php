@@ -2,7 +2,7 @@
 
 <div class="main-content">
     <div class="wrapper">
-        <h1>ADD ADMIN</h1>
+        <h1>THÊM QUẢN TRỊ VIÊN</h1>
         <br><br>
 
         <?php
@@ -17,29 +17,29 @@
             <table class="tbl-30">
 
                 <tr>
-                    <td>Full name: </td>
+                    <td>Họ và tên: </td>
                     <td>
-                        <input type="text" name="full_name" placeholder="Enter your name">
-                    <td>
-                </tr>
-
-                <tr>
-                    <td>Username: </td>
-                    <td>
-                        <input type="text" name="username" placeholder="Your username">
+                        <input type="text" name="ho_va_ten" placeholder="Nhập vào họ và tên của bạn.">
                     <td>
                 </tr>
 
                 <tr>
-                    <td>Password: </td>
+                    <td>Tên người dùng: </td>
                     <td>
-                        <input type="password" name="password" placeholder="Your password">
+                        <input type="text" name="ten_nguoi_dung" placeholder="Nhập vào tên người dùng của bạn.">
+                    <td>
+                </tr>
+
+                <tr>
+                    <td>Mật khẩu: </td>
+                    <td>
+                        <input type="password" name="mat_khau" placeholder="Mật khẩu của bạn.">
                     <td>
                 </tr>
 
                 <tr>
                     <td colspan="2">
-                        <input type="submit" name="submit" class="btn-secondary" value="Add admin">
+                        <input type="submit" name="submit" class="btn-secondary" value="Thêm">
                     </td>
                 </tr>
 
@@ -59,15 +59,15 @@ if (isset($_POST['submit'])) {
     // echo "Button Clicked";
 
     //1. Get the data from Form
-    $full_name = $_POST['full_name'];
-    $username = $_POST['username'];
-    $password = md5($_POST['password']); //Password Encryption with MD5
+    $ho_va_ten = $_POST['ho_va_ten'];
+    $ten_nguoi_dung = $_POST['ten_nguoi_dung'];
+    $mat_khau = md5($_POST['mat_khau']); //Password Encryption with MD5
 
     //2. SQL Query to Save the data into database
-    $sql = "INSERT INTO tbl_admin SET 
-            full_name = '$full_name',
-            username = '$username',
-            password = '$password'
+    $sql = "INSERT INTO admin SET 
+            ho_va_ten = '$ho_va_ten',
+            ten_nguoi_dung = '$ten_nguoi_dung',
+            mat_khau = '$mat_khau'
     ";
 
     //3. Executting Query and Save Data in Database
@@ -78,14 +78,14 @@ if (isset($_POST['submit'])) {
         //Data Inserted
         //echo "Data Inserted";
         //Create a Session Variable to Display Message
-        $_SESSION['add'] = "<div class='success'>Admin Added Successfully</div>";
+        $_SESSION['add'] = "<div class='success'>Thêm quản trị viên thành công.</div>";
         //Redirect Page to Manager Admin
         header("location:" . SITEURL . "admin/manager-admin.php");
     } else {
         //Failed to Insert
         // echo "Faile to Insert Data";
         //Create a Session Variable to Display Message
-        $_SESSION['add'] = "<div class='error'>Failed to Add Admin</div>";
+        $_SESSION['add'] = "<div class='error'>Thêm quản trị viên thất bại.</div>";
         //Redirect Page to Add Admin
         header("location:" . SITEURL . "admin/add-admin.php");
     }

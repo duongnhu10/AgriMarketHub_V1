@@ -2,31 +2,41 @@
 <html>
 
 <head>
-    <title>Login Agricultural - System</title>
+    <title>Đăng nhập</title>
     <link rel="stylesheet" href="../css/admin.css">
 </head>
 
 <body>
     <div class="login">
-        <h1 class="text-center">LOGIN</h1>
+        <h1 class="text-center">ĐĂNG NHẬP</h1>
         <br><br>
+
+        <?php
+        if (isset($_SESSION['Login'])) {
+            echo $_SESSION['Login'];
+            unset($_SESSION['Login']);
+        }
+        ?>
+
+        <br><br>
+
         <!-- Login form starts here -->
         <form action="" method="POST" class="text-center">
-            <div class="text-login">USERNAME</div>
+            <div class="text-login">TÊN NGƯỜI DÙNG</div>
             <br>
-            <input type="text" name="username" placeholder="Enter your username.">
+            <input class="text" type="text" name="username" placeholder="Nhập tên người dùng của bạn.">
             <br><br>
-            <div class="text-login">PASSWORD</div>
+            <div class="text-login">MẬT KHẨU</div>
             <br>
-            <input type="password" name="password" placeholder="Enter your password.">
+            <input class="password" type="password" name="password" placeholder="Nhập mật khẩu của bạn.">
             <br><br>
 
-            <input type="submit" name="submit" value="Login" class="btn-primary">
+            <input type="submit" name="submit" value="Đăng nhập" class="btn-primary submit">
             <br><br>
         </form>
         <!-- Login form ends here -->
 
-        <p class="text-center create-by">Create By Nhu</p>
+        <p class="text-center create-by">Tạo bởi CT299-06</p>
     </div>
 </body>
 
@@ -37,11 +47,11 @@
 if (isset($_POST["submit"])) {
     //Process for Login
     //1. Get the Data form Login form
-    $username = $_POST["username"];
-    $password = $_POST["password"];
+    $ten_nguoi_dung = $_POST["ten_nguoi_dung"];
+    $mat_khau = md5($_POST["mat_khau"]);
 
     //2. SQL to check whether the user with username and password exists or not
-    $sql = "SELECT * FROM tbl_admin WHERE username='$username' AND password='$password'";
+    $sql = "SELECT * FROM admin WHERE ten_nguoi_dung='$ten_nguoi_dung' AND mat_khau='$mat_khau'";
 
     //3.Execute the query
     $res = mysqli_query($conn, $sql);
@@ -51,12 +61,15 @@ if (isset($_POST["submit"])) {
 
     if ($count == 1) {
         //User available and login successfully
-        $_SESSION['Login'] = "<div class='success'>Login Successfully.<div/>";
-        //Redirest to home page
-        header('location' . SITEURL . 'admin/index.php');
+        $_SESSION['Login'] = "<div class='success'>Đăng nhập thành công.<div/>";
+        //Redirect to home page
+
+        header('location: ' . SITEURL . 'admin/');
+
+        exit;
     } else {
         //User not available and login fail
-        $_SESSION['Login']  =  "<div class='error'>User or password did not match.<div/>";
+        $_SESSION['Login']  =  "<div class='error text-center'>Tên người dùng hoặc mật khẩu không đúng.<div/>";
         header('location' . SITEURL . 'admin/login.php');
     }
 }

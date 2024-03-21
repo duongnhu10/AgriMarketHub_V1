@@ -7,7 +7,7 @@ define('SITEURL', 'http://localhost:3000/');
 define('LOCALHOST', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
-define('DB_NAME', 'agrimarkethub');
+define('DB_NAME', 'ns_v2');
 
 $conn = mysqli_connect(LOCALHOST, DB_USERNAME, DB_PASSWORD); //Database Connection
 

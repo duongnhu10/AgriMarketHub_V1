@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>Agricultural - Page Home</title>
+    <title>Nông sản - Trang chủ</title>
     <link rel="stylesheet" href="/css/admin.css">
 </head>
 
@@ -12,11 +12,11 @@
     <div class="menu">
         <div class="wrapper">
             <ul class="text-center">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="manager-admin.php">Admin</a></li>
-                <li><a href="manager-category.php">Category</a></li>
-                <li><a href="manager-agricultural.php">Agricultural</a></li>
-                <li><a href="manager-order.php">Order</a></li>
+                <li><a href="index.php">TRANG CHỦ</a></li>
+                <li><a href="manager-admin.php">QUẢN TRỊ VIÊN</a></li>
+                <li><a href="manager-category.php">LOẠI SẢN PHẨM</a></li>
+                <li><a href="manager-agricultural.php">NÔNG SẢN</a></li>
+                <li><a href="manager-order.php">ĐẶT HÀNG</a></li>
             </ul>
         </div>
     </div>

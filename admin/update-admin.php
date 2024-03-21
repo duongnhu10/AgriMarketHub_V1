@@ -11,7 +11,7 @@
         $id = $_GET['id'];
 
         //2. Create SQL Query to Get the Details
-        $sql = "SELECT * FROM tbl_admin WHERE id=$id";
+        $sql = "SELECT * FROM admin WHERE id=$id";
 
         //Execute the Query
         $res = mysqli_query($conn, $sql);
@@ -26,11 +26,11 @@
                 //echo "Admin Available";
                 $row = mysqli_fetch_assoc($res);
 
-                $full_name = $row['full_name'];
-                $username = $row['username'];
+                $ho_va_ten = $row['ho_va_ten'];
+                $ten_nguoi_dung = $row['ten_nguoi_dung'];
             } else {
                 //Redirect to Manager Admin Page
-                header('location:' . SITEURL . 'amin/manager-admin');
+                header('location:' . SITEURL . 'admin/manager-admin');
             }
         }
 
@@ -40,23 +40,23 @@
 
             <table class="tbl-30">
                 <tr>
-                    <td>Full Name: </td>
+                    <td>Họ và tên: </td>
                     <td>
-                        <input type="text" name="full_name" placeholder="Enter your fullname." value='<?php echo $full_name ?>'>
+                        <input type="text" name="ho_va_ten" placeholder="Nhập họ và tên của bạn." value='<?php echo $ho_va_ten ?>'>
                     </td>
                 </tr>
 
                 <tr>
-                    <td>Username: </td>
+                    <td>Tên người dùng: </td>
                     <td>
-                        <input type="text" name='username' placeholder="Enter your username." value='<?php echo $username ?>'>
+                        <input type="text" name='ten_nguoi_dung' placeholder="Nhập tên người dùng của bạn." value='<?php echo $ten_nguoi_dung ?>'>
                     </td>
                 </tr>
 
                 <tr>
                     <td colspan="2">
                         <input type="hidden" name="id" value="<?php echo $id ?>">
-                        <input type="submit" name="submit" value="Update Admin" class="btn-secondary">
+                        <input type="submit" name="submit" value="Cập nhật" class="btn-secondary">
                     </td>
                 </tr>
 
@@ -73,12 +73,12 @@ if (isset($_POST['submit'])) {
     //echo "Button clicked.";
     //Get all values from Form Update
     $id = $_POST['id'];
-    $full_name = $_POST['full_name'];
-    $username = $_POST['username'];
+    $ho_va_ten = $_POST['ho_va_ten'];
+    $ten_nguoi_dung = $_POST['ten_nguoi_dung'];
 
     //Create a SQL query to Update Admin
-    $sql = "UPDATE tbl_admin SET 
-    username = '$username', full_name = '$full_name' 
+    $sql = "UPDATE admin SET 
+    ho_va_ten = '$ho_va_ten', ten_nguoi_dung = '$ten_nguoi_dung' 
     WHERE id = '$id'";
 
     //Execute the Query
@@ -87,12 +87,12 @@ if (isset($_POST['submit'])) {
     //Check whether the Query executed successfully or not
     if ($res == true) {
         //Query Executed and Admin Updated
-        $_SESSION['update'] = '<div class="success">Admin Updated successfully<div>';
+        $_SESSION['update'] = '<div class="success">Cập nhật thành công.<div>';
         //Redirect to Manager Admin Page
         header('location:' . SITEURL . 'admin/manager-admin.php');
     } else {
         //Failed to Update Admin
-        $_SESSION['update'] = '<div class="error">Failed to Update Admin<div>';
+        $_SESSION['update'] = '<div class="error">Cập nhật thất bại.<div>';
 
         header('location:' . SITEURL . 'admin/manager-admin.php');
     }

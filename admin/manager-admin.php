@@ -5,7 +5,7 @@
 
     <div class="wrapper">
 
-        <h1>MANAGER ADMIN</h1>
+        <h1>QUẢN LÝ QUẢN TRỊ VIÊN</h1>
         <br><br>
 
         <?php
@@ -50,21 +50,21 @@
         <br><br>
 
         <!-- Button to Add Admin -->
-        <a href="add-admin.php" class="btn-primary">Add admin</a>
+        <a href="add-admin.php" class="btn-primary">Thêm quản trị viên</a>
 
         <br><br><br>
 
         <table class="tbl-full">
             <tr>
                 <th>ID</th>
-                <th>Full name</th>
-                <th>Username</th>
-                <th>Action</th>
+                <th>Họ và tên</th>
+                <th>Tên người dùng</th>
+                <th>Trạng thái</th>
             </tr>
 
             <?php
             //Query to Get all Admin
-            $sql = "SELECT * FROM tbl_admin";
+            $sql = "SELECT * FROM admin";
             //Execute the Query
             $res = mysqli_query($conn, $sql);
 
@@ -84,20 +84,20 @@
 
                         //Get individual Data
                         $id = $rows['id'];
-                        $full_name = $rows['full_name'];
-                        $username = $rows['username'];
+                        $ho_va_ten = $rows['ho_va_ten'];
+                        $ten_nguoi_dung = $rows['ten_nguoi_dung'];
                         // $password = $rows['password'];
 
                         //Display the values in our Table
             ?>
                         <tr>
                             <td><?php echo  $sn++; ?></td>
-                            <td><?php echo  $full_name; ?></td>
-                            <td><?php echo  $username; ?></td>
+                            <td><?php echo  $ho_va_ten; ?></td>
+                            <td><?php echo  $ten_nguoi_dung; ?></td>
                             <td>
-                                <a href="<?php echo SITEURL; ?>admin/update-password.php?id=<?php echo $id; ?>" class="btn-primary">Change Password</a>
-                                <a href="<?php echo SITEURL; ?>admin/update-admin.php?id=<?php echo $id; ?>" class="btn-secondary">Update admin</a>
-                                <a href="<?php echo SITEURL; ?>admin/delete-admin.php?id=<?php echo $id; ?>" class="btn-danger">Delete admin</a>
+                                <a href="<?php echo SITEURL; ?>admin/update-password.php?id=<?php echo $id; ?>" class="btn-primary">Đổi mật khẩu</a>
+                                <a href="<?php echo SITEURL; ?>admin/update-admin.php?id=<?php echo $id; ?>" class="btn-secondary">Cập nhật</a>
+                                <a href="<?php echo SITEURL; ?>admin/delete-admin.php?id=<?php echo $id; ?>" class="btn-danger">Xóa</a>
                             </td>
                         </tr>
             <?php

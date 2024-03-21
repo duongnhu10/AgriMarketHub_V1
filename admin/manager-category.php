@@ -5,11 +5,11 @@
 
     <div class="wrapper">
 
-        <h1>MANAGER CATEGORY</h1>
+        <h1>QUẢN LÝ LOẠI SẢN PHẨM</h1>
         <br><br><br>
 
         <!-- Button to Add Admin -->
-        <a href="#" class="btn-primary">Add category</a>
+        <a href="#" class="btn-primary">Thêm loại sản phẩm</a>
 
         <br><br><br>
 

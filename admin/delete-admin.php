@@ -7,7 +7,7 @@ include('../config/constants.php'); //Out of admin
 $id = $_GET['id'];
 
 //2. Create SQL Query to Delete Admin 
-$sql = "DELETE FROM tbl_admin WHERE id=$id";
+$sql = "DELETE FROM admin WHERE id=$id";
 
 //Execute the query
 $res = mysqli_query($conn, $sql);
@@ -18,14 +18,14 @@ if ($res == true) {
     //Query Executed Successfully and Admin Deleted
     // echo "Admin Deleted";
     //Create a Session Variable to Display Message
-    $_SESSION['delete'] = "<div class='success'>Admin Deleted Successfully</div>";
+    $_SESSION['delete'] = "<div class='success'>Xóa quản trị viên thành công.</div>";
     //Redirect Page to Manager Admin
     header("location:" . SITEURL . "admin/manager-admin.php");
 } else {
     //Failed to Delete Admin
     // echo "Failed to Delete Admin";
     //Create a Session Variable to Display Message
-    $_SESSION['delete'] = "<div class='error'>Failed to Delete Admin. Try again Later.</div>";
+    $_SESSION['delete'] = "<div class='error'>Xóa quản trị viên thất bại. Vui lòng thử lại sao.</div>";
     //Redirect Page to Manager Admin
     header("location:" . SITEURL . "admin/manager-admin.php");
 }

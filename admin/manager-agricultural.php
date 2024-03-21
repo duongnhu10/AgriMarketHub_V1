@@ -5,11 +5,11 @@
 
     <div class="wrapper">
 
-        <h1>MANAGER AGRICULTURAL</h1>
+        <h1>QUẢN LÝ NÔNG SẢN</h1>
         <br><br><br>
 
         <!-- Button to Add Admin -->
-        <a href="#" class="btn-primary">Add agricultural</a>
+        <a href="#" class="btn-primary">Thêm sản phẩm</a>
 
         <br><br><br>
 

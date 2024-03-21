@@ -145,8 +145,8 @@ table tr td {
 }
 
 /* Style for input fields */
-input[type="text"],
-input[type="password"] {
+.text,
+.password {
   width: 100%;
   padding: 12px;
   margin-bottom: 20px;
@@ -156,7 +156,7 @@ input[type="password"] {
 }
 
 /* Style for the login button */
-input[type="submit"] {
+.submit {
   width: 100%;
   padding: 12px;
   background-color: #4caf50;
@@ -169,7 +169,7 @@ input[type="submit"] {
 }
 
 /* Style for the login button when hovered */
-input[type="submit"]:hover {
+.submit:hover {
   background-color: #45a049;
 }
 

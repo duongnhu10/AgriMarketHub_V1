@@ -5,7 +5,7 @@
 
     <div class="wrapper">
 
-        <h1>MANAGER ORDER</h1>
+        <h1>QUẢN LÝ ĐẶT HÀNG</h1>
         <br><br><br>
 
         <table class="tbl-full">
