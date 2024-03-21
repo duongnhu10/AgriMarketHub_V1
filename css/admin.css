@@ -132,3 +132,58 @@ table tr td {
   background-color: #ff4757;
   color: white;
 }
+
+/* CSS for login */
+/* Style for the login container */
+.login {
+  width: 300px;
+  margin: 100px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for input fields */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+}
+
+/* Style for the login button */
+input[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+/* Style for the login button when hovered */
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* Style for the "Create By" text */
+.create-by {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+}
+
+/* Style for the text "USERNAME" and "PASSWORD" */
+.text-login {
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  text-align: left;
+}
