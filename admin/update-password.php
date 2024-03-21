@@ -76,7 +76,6 @@ if (isset($_POST['submit'])) {
             //User exist and password can change
             //echo "User found";
 
-            // $sql = "INSERT INTO tbl_admin('password') VALUES ($new_password)";
             //Check whether the new password and confirm match ot not
             if ($new_password == $confirm_password) {
                 //Update the password

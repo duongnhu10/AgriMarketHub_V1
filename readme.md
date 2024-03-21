@@ -31,3 +31,12 @@
 <br>
 ✅ Change Password
 <br>
+
+<!-- ✅ Login Page Design
+<br>
+✅ Authentication (Login functionality with PHP and MySQL)
+<br>
+✅ Logout
+<br>
+✅ Authorization (User Access Control)
+<br> -->
