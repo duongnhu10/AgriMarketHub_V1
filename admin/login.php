@@ -66,14 +66,14 @@ if (isset($_POST["submit"])) {
 
     if ($count == 1) {
         //User available and login successfully
-        $_SESSION['Login'] = "<div class='success'>Đăng nhập thành công.<div/>";
+        $_SESSION['Login'] = "<div class='success'>Đăng nhập thành công.</div>";
         $_SESSION['user'] = $ten_nguoi_dung; //To check whether the user is logged or not and logout will unset it
 
         //Redirect to home page
         header('location: ' . SITEURL . 'admin/');
     } else {
         //User not available and login fail
-        $_SESSION['Login']  =  "<div class='error text-center'>Tên người dùng hoặc mật khẩu không đúng.<div/>";
+        $_SESSION['Login']  =  "<div class='error text-center'>Tên người dùng hoặc mật khẩu không đúng.</div>";
         header('location:' . SITEURL . 'admin/login.php');
     }
 }
