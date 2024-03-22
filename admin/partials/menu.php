@@ -1,4 +1,7 @@
-<?php include('../config/constants.php') ?>
+<?php
+include('../config/constants.php');
+include('login-check.php')
+?>
 
 <html>
 
@@ -17,6 +20,7 @@
                 <li><a href="manager-category.php">LOẠI SẢN PHẨM</a></li>
                 <li><a href="manager-agricultural.php">NÔNG SẢN</a></li>
                 <li><a href="manager-order.php">ĐẶT HÀNG</a></li>
+                <li><a href="logout.php">ĐĂNG XUẤT</a></li>
             </ul>
         </div>
     </div>

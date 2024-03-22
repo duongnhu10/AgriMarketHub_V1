@@ -16,6 +16,11 @@
             echo $_SESSION['Login'];
             unset($_SESSION['Login']);
         }
+
+        if (isset($_SESSION['no-login-message'])) {
+            echo $_SESSION['no-login-message'];
+            unset($_SESSION['no-login-message']);
+        }
         ?>
 
         <br><br>
@@ -24,11 +29,11 @@
         <form action="" method="POST" class="text-center">
             <div class="text-login">TÊN NGƯỜI DÙNG</div>
             <br>
-            <input class="text" type="text" name="username" placeholder="Nhập tên người dùng của bạn.">
+            <input class="text" type="text" name="ten_nguoi_dung" placeholder="Nhập tên người dùng của bạn.">
             <br><br>
             <div class="text-login">MẬT KHẨU</div>
             <br>
-            <input class="password" type="password" name="password" placeholder="Nhập mật khẩu của bạn.">
+            <input class="password" type="password" name="mat_khau" placeholder="Nhập mật khẩu của bạn.">
             <br><br>
 
             <input type="submit" name="submit" value="Đăng nhập" class="btn-primary submit">
@@ -47,8 +52,8 @@
 if (isset($_POST["submit"])) {
     //Process for Login
     //1. Get the Data form Login form
-    $ten_nguoi_dung = $_POST["ten_nguoi_dung"];
-    $mat_khau = md5($_POST["mat_khau"]);
+    $ten_nguoi_dung = $_POST['ten_nguoi_dung'];
+    $mat_khau = md5($_POST['mat_khau']);
 
     //2. SQL to check whether the user with username and password exists or not
     $sql = "SELECT * FROM admin WHERE ten_nguoi_dung='$ten_nguoi_dung' AND mat_khau='$mat_khau'";
@@ -62,15 +67,14 @@ if (isset($_POST["submit"])) {
     if ($count == 1) {
         //User available and login successfully
         $_SESSION['Login'] = "<div class='success'>Đăng nhập thành công.<div/>";
+        $_SESSION['user'] = $ten_nguoi_dung; //To check whether the user is logged or not and logout will unset it
+
         //Redirect to home page
-
         header('location: ' . SITEURL . 'admin/');
-
-        exit;
     } else {
         //User not available and login fail
         $_SESSION['Login']  =  "<div class='error text-center'>Tên người dùng hoặc mật khẩu không đúng.<div/>";
-        header('location' . SITEURL . 'admin/login.php');
+        header('location:' . SITEURL . 'admin/login.php');
     }
 }
 

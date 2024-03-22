@@ -42,7 +42,7 @@
                 <tr>
                     <td>Họ và tên: </td>
                     <td>
-                        <input type="text" name="ho_va_ten" placeholder="Nhập họ và tên của bạn." value='<?php echo $ho_va_ten ?>'>
+                        <input type="text" name='ho_va_ten' placeholder="Nhập họ và tên của bạn." value='<?php echo $ho_va_ten ?>'>
                     </td>
                 </tr>
 
