@@ -59,7 +59,7 @@
                 <th>ID</th>
                 <th>Họ và tên</th>
                 <th>Tên người dùng</th>
-                <th>Trạng thái</th>
+                <th>Hành động</th>
             </tr>
 
             <?php
