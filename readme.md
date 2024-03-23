@@ -39,3 +39,15 @@
 <br>
 ✅ Authorization (User Access Control)
 <br>
+✅ Login to Admin Panel
+<br>
+✅ Design Add Category Page
+<br>
+✅ Adding Category Details to Database
+<br>
+✅ Uploading Category Image
+<br>
+✅ Renaming Image
+<br>
+✅ Displaying Categories from Database
+<br>

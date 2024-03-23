@@ -56,7 +56,7 @@
 
         <table class="tbl-full">
             <tr>
-                <th>ID</th>
+                <th>STT</th>
                 <th>Họ và tên</th>
                 <th>Tên người dùng</th>
                 <th>Hành động</th>
