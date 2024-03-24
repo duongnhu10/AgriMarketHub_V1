@@ -51,3 +51,12 @@
 <br>
 ✅ Displaying Categories from Database
 <br>
+✅ Delete Image File with PHP
+<br>
+✅ Delete Category from Database
+<br>
+
+<!-- ✅ Update Category in Database
+<br>
+✅ Update Image with PHP
+<br> -->

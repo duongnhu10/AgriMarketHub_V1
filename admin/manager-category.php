@@ -13,6 +13,16 @@
             echo $_SESSION['add'];
             unset($_SESSION['add']);
         }
+
+        if (isset($_SESSION['remove'])) {
+            echo $_SESSION['remove'];
+            unset($_SESSION['remove']);
+        }
+
+        if (isset($_SESSION['delete'])) {
+            echo $_SESSION['delete'];
+            unset($_SESSION['delete']);
+        }
         ?>
 
         <br><br>
@@ -80,8 +90,8 @@
 
                         <td><?php echo $trang_thai; ?></td>
                         <td>
-                            <a href="#" class="btn-secondary">Cập nhật loại sản phẩm</a>
-                            <a href="#" class="btn-danger">Xóa loại sản phẩm</a>
+                            <a href="<?php echo SITEURL; ?>admin/update-category.php" class="btn-secondary">Cập nhật loại sản phẩm</a>
+                            <a href="<?php echo SITEURL; ?>admin/delete-category.php?id=<?php echo $id; ?>&anh=<?php echo $anh ?>" class="btn-danger">Xóa loại sản phẩm</a>
                         </td>
                     </tr>
 
