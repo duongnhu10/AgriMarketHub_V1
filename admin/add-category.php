@@ -32,7 +32,7 @@
                 </tr>
 
                 <tr>
-                    <td>Tải hình ảnh:</td>
+                    <td>Hình ảnh:</td>
                     <td>
                         <input type="file" name="anh">
                     </td>
