@@ -83,29 +83,32 @@
                 //To upload image we need image image name, source path and destination path
                 $anh = $_FILES['anh']['name'];
 
-                //Auto rename our image
-                //Get the Extension of our image (png, jpg) EX: haisamabc678.jpg
-                $ext = end(explode('.', $anh));
+                //Upload the image only if image is selected
+                if ($anh != "") {
+                    //Auto rename our image
+                    //Get the Extension of our image (png, jpg) EX: haisamabc678.jpg
+                    $ext = end(explode('.', $anh));
 
-                //Rename the image Ex: Loai_NongSan_192.jpg
-                $anh = "Loai_NongSan_" . rand(000, 999) . '.' . $ext;
+                    //Rename the image Ex: Loai_NongSan_192.jpg
+                    $anh = "Loai_NongSan_" . rand(000, 999) . '.' . $ext;
 
-                $source_path = $_FILES['anh']['tmp_name'];
+                    $source_path = $_FILES['anh']['tmp_name'];
 
-                $destination_path = "../images/category/" . $anh;
+                    $destination_path = "../images/category/" . $anh;
 
-                //Finally upload the image
-                $upload = move_uploaded_file($source_path, $destination_path);
+                    //Finally upload the image
+                    $upload = move_uploaded_file($source_path, $destination_path);
 
-                //Check whether the image is uploaded or not
-                //And if the image is not upload then we will stop the process and redirect with error message
-                if ($upload == false) {
-                    //Set message
-                    $_SESSION['upload'] = "<div class='error'>Tải hình ảnh thất bại.</div>";
-                    //Redirect to Add category page
-                    header('location:' . SITEURL . 'admin/add-category.php');
-                    //Stop the Process
-                    die();
+                    //Check whether the image is uploaded or not
+                    //And if the image is not upload then we will stop the process and redirect with error message
+                    if ($upload == false) {
+                        //Set message
+                        $_SESSION['upload'] = "<div class='error'>Tải hình ảnh thất bại.</div>";
+                        //Redirect to Add category page
+                        header('location:' . SITEURL . 'admin/add-category.php');
+                        //Stop the Process
+                        die();
+                    }
                 }
             } else {
                 //Don't upload image and set the image_name value as blank

@@ -56,7 +56,7 @@
 ✅ Delete Category from Database
 <br>
 
-<!-- ✅ Update Category in Database
+✅ Update Category in Database
 <br>
 ✅ Update Image with PHP
-<br> -->
+<br>
