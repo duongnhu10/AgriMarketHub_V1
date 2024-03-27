@@ -19,7 +19,7 @@ if (isset($_GET['id']) and isset($_GET['anh'])) {
         //if failed to remove image then add an error message and stop the process
         if ($remove == false) {
             //Set the Session Message
-            $_SESSION['remove'] = '<div class="error">Xóa hình ảnh loại sản phẩm thất bại</div>';
+            $_SESSION['remove'] = "<div class='error'>Xóa hình ảnh loại sản phẩm thất bại</div>";
 
             //Redirect to Manage Category page
             header('location:' . SITEURL . 'admin/manager-category.php');

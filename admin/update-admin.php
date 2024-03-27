@@ -87,12 +87,12 @@ if (isset($_POST['submit'])) {
     //Check whether the Query executed successfully or not
     if ($res == true) {
         //Query Executed and Admin Updated
-        $_SESSION['update'] = '<div class="success">Cập nhật thành công.<div>';
+        $_SESSION['update'] = "<div class='success'>Cập nhật thành công.<div>";
         //Redirect to Manager Admin Page
         header('location:' . SITEURL . 'admin/manager-admin.php');
     } else {
         //Failed to Update Admin
-        $_SESSION['update'] = '<div class="error">Cập nhật thất bại.<div>';
+        $_SESSION['update'] = "<div class='error'>Cập nhật thất bại.<div>";
 
         header('location:' . SITEURL . 'admin/manager-admin.php');
     }
