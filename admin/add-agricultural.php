@@ -115,6 +115,14 @@
 
         </form>
 
+        <?php
+        //Check whether the button is clicked or not
+        if (isset($_POST['submit'])) {
+            //Add products
+            echo "Clicked";
+        }
+        ?>
+
     </div>
 </div>
 
