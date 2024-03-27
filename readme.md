@@ -17,6 +17,7 @@
 <br>
 ✅ Manage Admin Page Design
 <br>
+
 ✅ Add Admin to Database
 <br>
 ✅ 'constants.php' Configuration File
@@ -27,6 +28,7 @@
 <br>
 ✅ Adding Message Color
 <br>
+
 ✅ Update Admin
 <br>
 ✅ Change Password
@@ -41,6 +43,7 @@
 <br>
 ✅ Login to Admin Panel
 <br>
+
 ✅ Design Add Category Page
 <br>
 ✅ Adding Category Details to Database
@@ -51,12 +54,28 @@
 <br>
 ✅ Displaying Categories from Database
 <br>
+
 ✅ Delete Image File with PHP
 <br>
 ✅ Delete Category from Database
 <br>
-
 ✅ Update Category in Database
 <br>
 ✅ Update Image with PHP
 <br>
+
+✅ Login to Admin Panel
+<br>
+✅ Food Module Start
+<br>
+✅ Create Add Food Page
+<br>
+✅ Displaying Categories on DropDown box
+<br>
+
+<!-- ✅ Adding Food in Database
+<br>
+✅ Uploading Image
+<br>
+✅ Displaying Foods in Manage Food Page
+<br> -->
