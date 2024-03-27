@@ -9,7 +9,7 @@
         <br><br><br>
 
         <!-- Button to Add Admin -->
-        <a href="#" class="btn-primary">Thêm sản phẩm</a>
+        <a href="<?php echo SITEURL; ?>admin/add-agricultural.php" class="btn-primary">Thêm sản phẩm</a>
 
         <br><br><br>
 

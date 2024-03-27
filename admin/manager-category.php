@@ -77,7 +77,7 @@
             //Create Serial Number Variable and assign value as 1
             $sn = 1;
 
-            //Chcek whether we have data in databaase or not
+            //Check whether we have data in databaase or not
             if ($count > 0) {
                 //We have data in database
                 //Get the data and display
