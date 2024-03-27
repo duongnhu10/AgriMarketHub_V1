@@ -119,7 +119,19 @@
         //Check whether the button is clicked or not
         if (isset($_POST['submit'])) {
             //Add products
-            echo "Clicked";
+            // echo "Clicked";
+
+            //1. Get the Data from Form
+            $ten_san_pham = $_POST['$ten_san_pham'];
+            $mo_ta = $_POST['mo_ta'];
+            $gia = $_POST['gia'];
+
+            //2. Upload the Image if selected
+
+            //3. Insert Into Database
+
+            //4. Redirect with Message to Manager Agricultural Page
+
         }
         ?>
 
