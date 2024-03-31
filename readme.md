@@ -73,9 +73,9 @@
 ✅ Displaying Categories on DropDown box
 <br>
 
-<!-- ✅ Adding Food in Database
+✅ Adding Food in Database
 <br>
 ✅ Uploading Image
 <br>
 ✅ Displaying Foods in Manage Food Page
-<br> -->
+<br>

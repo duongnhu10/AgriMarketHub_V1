@@ -6,6 +6,13 @@
 
         <br><br><br>
 
+        <?php
+        if (isset($_SESSION['upload'])) {
+            echo $_SESSION['upload'];
+            unset($_SESSION['upload']);
+        }
+        ?>
+
         <form action="" method="POST" enctype="multipart/form-data">
 
             <table class="tbl-30">
@@ -122,16 +129,91 @@
             // echo "Clicked";
 
             //1. Get the Data from Form
-            $ten_san_pham = $_POST['$ten_san_pham'];
+            $ten_san_pham = $_POST['ten_san_pham'];
             $mo_ta = $_POST['mo_ta'];
-            $gia = $_POST['gia'];
+            $gia_goc = $_POST['gia_goc']; //Giá nhập
+            $gia = $_POST['gia']; //Giá hiện tại
+            $gia_khuyen_mai = $_POST['gia_khuyen_mai']; //Phần trăm khuyến mãi
+            $loai_san_pham = $_POST['loai_san_pham'];
+
+            //Check whether radio button for active is checked or not
+            if (isset($_POST['trang_thai'])) {
+                $trang_thai = $_POST['trang_thai'];
+            } else {
+                $trang_thai = "Hết hàng"; //Setting the default value
+            }
 
             //2. Upload the Image if selected
+            //Check whether the select image is clicked or not
+            if (isset($_FILES['anh']['name'])) {
+                //Get the details of the selected image 
+                $ten_anh = $_FILES['anh']['name'];
+
+                //Check whether the Image is Selected or not and upload the Image only if selected 
+                if ($ten_anh != "") {
+                    //Image is selected 
+                    //A. Rename the Image
+                    //Get the extension of selected image (jpn, png...)
+                    $ext = end(explode('.', $ten_anh));
+
+                    //Create New Image for Image
+                    $ten_anh = "Nong_San_" . rand(0000, 9999) . "." . $ext;
+
+                    //B. Upload the Image
+                    //Get the src path and destination path
+
+                    //Sourse path is the current location of the image
+                    $src = $_FILES['anh']['tmp_name'];
+
+                    //Destination path for the image to be uploaded
+                    $dst = "../images/agricultural/" . $ten_anh;
+
+                    //Finally upload the food image
+                    $upload = move_uploaded_file($src, $dst);
+
+                    //Check whether image uplaoded or not
+                    if ($upload == false) {
+                        //Failed to upload the image
+                        //Redirect to Add Food Page with Error Message
+                        $_SESSION['upload'] = "<div class='error'>Tải hình ảnh thất bại.</div>";
+                        header('location:' . SITEURL . 'admin/add-agricultural.php');
+                        //Stop the process
+                        die();
+                    }
+                }
+            } else {
+                $ten_anh = ""; //Setting default value as blank 
+            }
 
             //3. Insert Into Database
 
-            //4. Redirect with Message to Manager Agricultural Page
+            //Create a SQL Query to Save or Add food
+            //For Numberrical we do not need to pass value inside quotes ''. String value add ''
+            $sql2 = "INSERT INTO san_pham SET
+                ten_san_pham = '$ten_san_pham',
+                mo_ta = '$mo_ta',
+                gia_goc = $gia_goc,
+                gia = $gia,
+                gia_khuyen_mai = $gia_khuyen_mai,
+                anh = '$ten_anh',
+                loai_id = $loai_san_pham,
+                trang_thai = '$trang_thai'
+            ";
 
+            //Execute the Query 
+            $res2 = mysqli_query($conn, $sql2);
+
+            //Check whether add inserted or not 
+            //4. Redirect with Message to Manager Food page
+            if ($res2 == true) {
+                //Query inserted Successfully
+                $_SESSION['add'] = "<div class='success'>Thêm sản phẩm thành công.</div>";
+                header('location: ' . SITEURL . 'admin/manager-agricultural.php');
+            } else {
+                //Fail to Add agricultural
+                $_SESSION['add'] = "<div class='error'>Thêm sản phẩm thất bại.</div>";
+                header('location: ' . SITEURL . 'admin/add-agricultural.php');
+            }
         }
         ?>
 

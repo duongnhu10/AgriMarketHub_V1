@@ -6,7 +6,7 @@ include('login-check.php')
 <html>
 
 <head>
-    <title>Nông sản - Trang chủ</title>
+    <title>Nông sản</title>
     <link rel="stylesheet" href="/css/admin.css">
     <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
 </head>
