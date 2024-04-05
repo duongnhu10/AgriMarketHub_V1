@@ -79,3 +79,13 @@
 <br>
 ✅ Displaying Foods in Manage Food Page
 <br>
+
+✅ Delete Image File with PHP
+<br>
+✅ Delete Food from Database
+<br>
+
+<!-- ✅ Update Food in Database
+<br>
+✅ Update Image with PHP
+<br> -->
