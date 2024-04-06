@@ -25,7 +25,7 @@ if (isset($_GET['id'])) {
     $loai_san_pham = $row2['loai_id'];
     $trang_thai = $row2['trang_thai'];
 } else {
-    //Redirect to Mnage Food
+    //Redirect to Manage Food
     header('location:' . SITEURL . 'admin/manager-agricultural.php');
 }
 
@@ -120,15 +120,15 @@ if (isset($_GET['id'])) {
                                 //We have categories
                                 while ($row = mysqli_fetch_assoc($res)) {
                                     //Get the details of categories
-                                    $id = $row['id'];
+                                    $id1 = $row['id'];
                                     $ten_loai = $row['ten_loai'];
 
                             ?>
 
-                                    <option <?php if ($loai_san_pham == $id) {
+                                    <option <?php if ($loai_san_pham == $id1) {
                                                 echo "selected";
-                                            } ?> value="<?php echo $id ?>"><?php echo $ten_loai ?></option>
-                                    <!-- echo "<option value='$id'>$ten_loai</option>; -->
+                                            } ?> value="<?php echo $id1 ?>"><?php echo $ten_loai ?></option>
+                                    <!-- echo "<option value='$id1'>$ten_loai</option>; -->
 
                                 <?php
                                 }
@@ -249,6 +249,8 @@ if (isset($_GET['id'])) {
                             die();
                         }
                     }
+                } else {
+                    $ten_anh = $current_image;
                 }
             } else {
                 $ten_anh = $current_image;
@@ -262,7 +264,7 @@ if (isset($_GET['id'])) {
             gia = $gia,
             gia_khuyen_mai = $gia_khuyen_mai,
             anh = '$ten_anh',
-            loai_id = $loai_san_pham,
+            loai_id = '$loai_san_pham',
             trang_thai = '$trang_thai'
             WHERE id=$id
         ";
