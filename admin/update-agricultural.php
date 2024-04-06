@@ -1,4 +1,5 @@
-<?php include('partials/menu.php'); ?>
+<?php include('partials/menu.php');
+ob_start(); ?>
 
 <?php
 //Check whether id is set or not
@@ -86,6 +87,7 @@ if (isset($_GET['id'])) {
                         ?>
                             <img width="150px" src="<?php echo SITEURL; ?>images/agricultural/<?php echo $current_image; ?>">
                         <?php
+
                         }
                         ?>
                     </td>
@@ -94,7 +96,7 @@ if (isset($_GET['id'])) {
                 <tr>
                     <td>Hình ảnh mới:</td>
                     <td>
-                        <input type="file" name="anh">;
+                        <input type="file" name="anh">
                     </td>
                 </tr>
 
@@ -159,7 +161,10 @@ if (isset($_GET['id'])) {
                 </tr>
 
                 <tr>
-                    <td colspan="2">
+                    <td>
+                        <input type="hidden" name="id" value="<?php echo $id; ?>">
+                        <input type="hidden" name="current_image" value="<?php echo $current_image; ?>">
+
                         <input class="btn-secondary" type="submit" name="submit" value="Cập nhật sản phẩm">
                     </td>
                 </tr>
@@ -167,7 +172,119 @@ if (isset($_GET['id'])) {
             </table>
 
         </form>
+
+        <?php
+
+        if (isset($_POST['submit'])) {
+            // echo "Clicked";
+
+            //1. Get the Data from Form
+            $id = $_POST['id'];
+            $ten_san_pham = $_POST['ten_san_pham'];
+            $mo_ta = $_POST['mo_ta'];
+            $gia_goc = $_POST['gia_goc']; //Giá nhập
+            $gia = $_POST['gia']; //Giá hiện tại
+            $gia_khuyen_mai = $_POST['gia_khuyen_mai']; //Phần trăm khuyến mãi
+            $current_image = $_POST['current_image'];
+            $loai_san_pham = $_POST['loai_san_pham'];
+
+            $trang_thai = $_POST['trang_thai'];
+
+            //2. Upload the Image if selected
+            //Check whether the select image is clicked or not
+            if (isset($_FILES['anh']['name'])) {
+                //Get the details of the selected image 
+                $ten_anh = $_FILES['anh']['name'];
+
+                //Check whether the Image is Selected or not and upload the Image only if selected 
+                if ($ten_anh != "") {
+                    //Image is Available
+                    //A. Upload new image
+                    //Get the extension of selected image (jpn, png...)
+                    // $ext = end(explode('.', $ten_anh));
+                    $ten_anh_parts = explode('.', $ten_anh);
+                    $ext = end($ten_anh_parts);
+
+
+                    //Create New Image for Image
+                    $ten_anh = "Nong_San_" . rand(0000, 9999) . "." . $ext;
+
+                    //Get the src path and destination path
+
+                    //Sourse path is the current location of the image
+                    $src_path = $_FILES['anh']['tmp_name']; //Source Path
+
+                    //Destination path for the image to be uploaded
+                    $dest_path = "../images/agricultural/" . $ten_anh;
+
+                    //Finally upload the food image
+                    $upload = move_uploaded_file($src_path, $dest_path);
+
+                    //Check whether image uplaoded or not
+                    if ($upload == false) {
+                        //Failed to upload the image
+                        //Redirect to Add Food Page with Error Message
+                        $_SESSION['upload'] = "<div class='error'>Tải hình ảnh thất bại.</div>";
+                        header('location:' . SITEURL . 'admin/manager-agricultural.php');
+                        //Stop the process
+                        die();
+                    }
+
+                    //3. Remove the image if new image is uploaded and current image exists
+                    //B. Remove current Image if Available
+                    if ($current_image != "") {
+                        //Current Image is Available
+                        //REmove the image
+                        $remove_path = "../images/agricultural/" . $current_image;
+
+                        $remove = unlink($remove_path);
+
+                        //Check whether the image is removed or not
+                        if ($remove == false) {
+                            //Failed to remove current image
+                            $_SESSION['remove-failed'] = "<div class='error'>Xóa hình ảnh hiện tại thất bại.</div>";
+                            //Redirect to Manager food
+                            header('location:' . SITEURL . 'admin/manager-agricultural.php');
+                            //Stop the Process
+                            die();
+                        }
+                    }
+                }
+            } else {
+                $ten_anh = $current_image;
+            }
+
+            //4. Update the Food in Database
+            $sql3 = "UPDATE san_pham SET
+            ten_san_pham = '$ten_san_pham',
+            mo_ta = '$mo_ta',
+            gia_goc = $gia_goc,
+            gia = $gia,
+            gia_khuyen_mai = $gia_khuyen_mai,
+            anh = '$ten_anh',
+            loai_id = $loai_san_pham,
+            trang_thai = '$trang_thai'
+            WHERE id=$id
+        ";
+
+            //Execute the SQL Query
+            $res3 = mysqli_query($conn, $sql3);
+
+            //Check whether the query is executed or not
+            if ($res3 == true) {
+                //Query Executed and Food updated
+                $_SESSION['update'] = "<div class='success'>Cập nhật sản phẩm thành công.</div>";
+                header('location:' . SITEURL . 'admin/manager-agricultural.php');
+            } else {
+                //Failed to Upadte Food
+                $_SESSION['update'] = "<div class='error'>Cập nhật sản phẩm thất bại.</div>";
+                header('location:' . SITEURL . 'admin/manager-agricultural.php');
+            }
+        }
+        ?>
+
     </div>
 </div>
 
-<?php include('partials/footer.php'); ?>
+<?php include('partials/footer.php');
+ob_end_flush(); ?>

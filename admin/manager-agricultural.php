@@ -29,6 +29,12 @@
             echo $_SESSION['unauthorize'];
             unset($_SESSION['unauthorize']);
         }
+
+
+        if (isset($_SESSION['update'])) {
+            echo $_SESSION['update'];
+            unset($_SESSION['update']);
+        }
         ?>
         <br><br><br>
 
@@ -106,7 +112,7 @@
                 }
             } else {
                 //Product not Added in Database
-                echo "<tr><td colspan='7' class='error'>Thêm sản phẩm thất bại.</td></tr>";
+                echo "<tr><td colspan='7' class='error'>Sản phẩm trống.</td></tr>";
             }
 
             ?>

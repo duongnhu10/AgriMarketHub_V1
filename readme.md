@@ -84,8 +84,7 @@
 <br>
 ✅ Delete Food from Database
 <br>
-
-<!-- ✅ Update Food in Database
+✅ Update Food in Database
 <br>
 ✅ Update Image with PHP
-<br> -->
+<br>
