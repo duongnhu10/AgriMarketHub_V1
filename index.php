@@ -138,7 +138,7 @@
     </div>
 
     <p class="text-center">
-        <a href="#">See All Foods</a>
+        <a href="#">Xem thêm sản phẩm.</a>
     </p>
 </section>
 <!-- fOOD Menu Section Ends Here -->
