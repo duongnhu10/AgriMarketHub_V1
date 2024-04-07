@@ -26,6 +26,7 @@
                 $id = $row['id'];
                 $ten_san_pham = $row['ten_san_pham'];
                 $gia = $row['gia'];
+                $gia_khuyen_mai = $row['gia_khuyen_mai'];
                 $mo_ta = $row['mo_ta'];
                 $anh = $row['anh'];
         ?>
@@ -49,7 +50,16 @@
 
                     <div class="food-menu-desc">
                         <h4><?php echo $ten_san_pham; ?></h4>
-                        <p class="food-price"><?php echo $gia; ?>VND</p>
+                        <p class="food-price">
+                            <?php
+                            if ($gia_khuyen_mai != 0) {
+                                echo "<span class='error'>Khuyến mãi: </span>";
+                                echo ($gia - $gia_khuyen_mai * 0.01 * $gia);
+                            } else {
+                                echo $gia;
+                            }
+                            ?>VND
+                        </p>
                         <p class="food-detail">
                             <?php echo $mo_ta; ?>
                         </p>

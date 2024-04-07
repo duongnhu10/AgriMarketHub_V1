@@ -40,6 +40,10 @@
   float: none;
 }
 
+.error {
+  color: #ff4757;
+}
+
 a {
   color: #ff6b81;
   text-decoration: none;
