@@ -89,11 +89,24 @@
 ✅ Update Image with PHP
 <br>
 
-02:15 - Converting HTML to PHP
-04:00 - Creating Partials
-13:25 - Adding Constants on 'menu.php'
-18:55 - Displaying Categories on Home Page
-38:07 - Displaying Active Categories on 'categories.php'
-47:25 - Displaying Active and Featured Foods on Home Page
-59:15 - Fixing Bug on 'update-food.php'
-01:06:44 - Displaying Foods on 'foods.php'
+✅ Converting HTML to PHP
+<br>
+✅ Creating Partials
+<br>
+✅ Adding Constants on 'menu.php'
+<br>
+✅ Displaying Categories on Home Page
+<br>
+✅ Displaying Active Categories on 'categories.php'
+<br>
+✅ Displaying Active and Featured Foods on Home Page
+<br>
+✅ Fixing Bug on 'update-food.php'
+<br>
+✅ Displaying Foods on 'foods.php'
+<br>
+
+✅ Display Foods by Search Keywords
+<br>
+✅ Display Foods by Category Selected
+<br>
