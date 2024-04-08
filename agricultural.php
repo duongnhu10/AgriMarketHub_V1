@@ -1,5 +1,20 @@
 <?php include('partials-font/menu.php'); ?>
 
+<!-- fOOD sEARCH Section Starts Here -->
+<section class="food-search text-center">
+    <div class="container">
+
+        <form action="<?php echo SITEURL ?>agricultural-search.php" method="POST">
+            <input type="search" name="search" placeholder="Tìm kiếm sản phẩm.." required>
+            <input type="submit" name="submit" value="Tìm kiếm" class="btn btn-primary">
+        </form>
+
+    </div>
+</section>
+<!-- fOOD sEARCH Section Ends Here -->
+
+
+
 <!-- fOOD MEnu Section Starts Here -->
 <section class="food-menu">
     <div class="container">

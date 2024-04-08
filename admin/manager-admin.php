@@ -5,7 +5,7 @@
 
     <div class="wrapper">
 
-        <h1>QUẢN LÝ QUẢN TRỊ VIÊN</h1>
+        <h1>DANH MỤC QUẢN TRỊ VIÊN</h1>
         <br><br>
 
         <?php

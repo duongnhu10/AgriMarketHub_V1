@@ -1,10 +1,32 @@
 <?php include('partials-font/menu.php'); ?>
 
+<?php
+//Check whether id is passed or not
+if (isset($_GET['loai_id'])) {
+    //Category id is set and get the id
+    $loai_id = $_GET['loai_id'];
+    //Get the category title based on Category ID
+    $sql = "SELECT ten_loai FROM loai_san_pham WHERE id=$loai_id";
+
+    //Execute the Query
+    $res = mysqli_query($conn, $sql);
+
+    //Get the vaue from Database
+    $row = mysqli_fetch_assoc($res);
+    //Get the title
+    $ten_loai = $row['ten_loai'];
+} else {
+    //Category not passed
+    //Redirect to Home page
+    header('location:' . SITEURL);
+}
+?>
+
 <!-- fOOD sEARCH Section Starts Here -->
 <section class="food-search text-center">
     <div class="container">
 
-        <h2>Foods on <a href="#" class="text-white">"Category"</a></h2>
+        <h2>Danh mục <a href="#" class="text-white">"<?php echo $ten_loai; ?>"</a></h2>
 
     </div>
 </section>
@@ -15,114 +37,76 @@
 <!-- fOOD MEnu Section Starts Here -->
 <section class="food-menu">
     <div class="container">
-        <h2 class="text-center">Food Menu</h2>
+        <h2 class="text-center">SẢN PHẨM</h2>
 
-        <div class="food-menu-box">
-            <div class="food-menu-img">
-                <img src="images/menu-pizza.jpg" alt="Chicke Hawain Pizza" class="img-responsive img-curve">
-            </div>
+        <?php
+        //Create SQL Query to Get foods based on Selected Category
+        $sql2 = "SELECT * FROM san_pham WHERE loai_id = $loai_id";
 
-            <div class="food-menu-desc">
-                <h4>Food Title</h4>
-                <p class="food-price">$2.3</p>
-                <p class="food-detail">
-                    Made with Italian Sauce, Chicken, and organice vegetables.
-                </p>
-                <br>
+        //Execute the Query
+        $res2 = mysqli_query($conn, $sql2);
 
-                <a href="#" class="btn btn-primary">Order Now</a>
-            </div>
-        </div>
+        //COunt the rows
+        $count2 = mysqli_num_rows($res2);
 
-        <div class="food-menu-box">
-            <div class="food-menu-img">
-                <img src="images/menu-burger.jpg" alt="Chicke Hawain Pizza" class="img-responsive img-curve">
-            </div>
+        //Check whether food is available or not
+        if ($count2 > 0) {
+            //Food is available 
+            while ($row2 = mysqli_fetch_assoc($res2)) {
+                $ten_san_pham = $row2['ten_san_pham'];
+                $gia = $row2['gia'];
+                $gia_khuyen_mai = $row2['gia_khuyen_mai'];
+                $mo_ta = $row2['mo_ta'];
+                $anh = $row2['anh'];
+        ?>
 
-            <div class="food-menu-desc">
-                <h4>Smoky Burger</h4>
-                <p class="food-price">$2.3</p>
-                <p class="food-detail">
-                    Made with Italian Sauce, Chicken, and organice vegetables.
-                </p>
-                <br>
+                <div class="food-menu-box">
+                    <div class="food-menu-img">
+                        <?php
+                        //Check whether image available or not
+                        if ($anh == "") {
+                            //Image not Available
+                            echo "<div class='error'>Không có hình ảnh.</div>";
+                        } else {
+                            //Image Available
+                        ?>
+                            <img height="130px" src="<?php echo SITEURL; ?>images/agricultural/<?php echo $anh; ?>" alt="" class="img-responsive img-curve">
+                        <?php
+                        }
+                        ?>
 
-                <a href="#" class="btn btn-primary">Order Now</a>
-            </div>
-        </div>
+                    </div>
 
-        <div class="food-menu-box">
-            <div class="food-menu-img">
-                <img src="images/menu-burger.jpg" alt="Chicke Hawain Burger" class="img-responsive img-curve">
-            </div>
+                    <div class="food-menu-desc">
+                        <h4><?php echo $ten_san_pham; ?></h4>
+                        <p class="food-price">
+                            <?php
+                            if ($gia_khuyen_mai != 0) {
+                                echo "<span class='error'>Khuyến mãi: </span>";
+                                echo ($gia - $gia_khuyen_mai * 0.01 * $gia);
+                            } else {
+                                echo $gia;
+                            }
+                            ?>VND
+                        </p>
+                        <p class="food-detail">
+                            <?php echo $mo_ta; ?>
+                        </p>
+                        <br>
 
-            <div class="food-menu-desc">
-                <h4>Nice Burger</h4>
-                <p class="food-price">$2.3</p>
-                <p class="food-detail">
-                    Made with Italian Sauce, Chicken, and organice vegetables.
-                </p>
-                <br>
+                        <a href="order.php" class="btn btn-primary">Đặt hàng</a>
+                    </div>
+                </div>
 
-                <a href="#" class="btn btn-primary">Order Now</a>
-            </div>
-        </div>
-
-        <div class="food-menu-box">
-            <div class="food-menu-img">
-                <img src="images/menu-pizza.jpg" alt="Chicke Hawain Pizza" class="img-responsive img-curve">
-            </div>
-
-            <div class="food-menu-desc">
-                <h4>Food Title</h4>
-                <p class="food-price">$2.3</p>
-                <p class="food-detail">
-                    Made with Italian Sauce, Chicken, and organice vegetables.
-                </p>
-                <br>
-
-                <a href="#" class="btn btn-primary">Order Now</a>
-            </div>
-        </div>
-
-        <div class="food-menu-box">
-            <div class="food-menu-img">
-                <img src="images/menu-pizza.jpg" alt="Chicke Hawain Pizza" class="img-responsive img-curve">
-            </div>
-
-            <div class="food-menu-desc">
-                <h4>Food Title</h4>
-                <p class="food-price">$2.3</p>
-                <p class="food-detail">
-                    Made with Italian Sauce, Chicken, and organice vegetables.
-                </p>
-                <br>
-
-                <a href="#" class="btn btn-primary">Order Now</a>
-            </div>
-        </div>
-
-        <div class="food-menu-box">
-            <div class="food-menu-img">
-                <img src="images/menu-momo.jpg" alt="Chicke Hawain Momo" class="img-responsive img-curve">
-            </div>
-
-            <div class="food-menu-desc">
-                <h4>Chicken Steam Momo</h4>
-                <p class="food-price">$2.3</p>
-                <p class="food-detail">
-                    Made with Italian Sauce, Chicken, and organice vegetables.
-                </p>
-                <br>
-
-                <a href="#" class="btn btn-primary">Order Now</a>
-            </div>
-        </div>
-
+        <?php
+            }
+        } else {
+            //Food not available
+            echo "<div class='error'>Không có sản phẩm.</div>";
+        }
+        ?>
 
         <div class="clearfix"></div>
-
-
 
     </div>
 

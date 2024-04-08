@@ -5,7 +5,7 @@
 
     <div class="wrapper">
 
-        <h1>QUẢN LÝ NÔNG SẢN</h1>
+        <h1>DANH MỤC SẢN PHẨM</h1>
         <br><br><br>
 
         <?php

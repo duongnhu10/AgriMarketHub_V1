@@ -4,7 +4,7 @@
 <section class="food-search text-center">
     <div class="container">
 
-        <form action="food-search.html" method="POST">
+        <form action="<?php echo SITEURL ?>agricultural-search.php" method="POST">
             <input type="search" name="search" placeholder="Tìm kiếm sản phẩm.." required>
             <input type="submit" name="submit" value="Tìm kiếm" class="btn btn-primary">
         </form>
@@ -34,7 +34,7 @@
                 $ten_loai = $row['ten_loai'];
                 $anh = $row['anh'];
         ?>
-                <a href="category-foods.html">
+                <a href="<?php echo SITEURL; ?>category-agricultural.php?loai_id=<?php echo $id; ?>">
                     <div class="box-3 float-container">
                         <?php
                         //Check whether Image is available or not
@@ -148,7 +148,7 @@
     </div>
 
     <p class="text-center">
-        <a href="#">Xem thêm sản phẩm.</a>
+        <a href="<?php echo SITEURL; ?>agricultural.php">Xem thêm sản phẩm.</a>
     </p>
 </section>
 <!-- fOOD Menu Section Ends Here -->
