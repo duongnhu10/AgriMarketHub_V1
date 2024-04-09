@@ -13,6 +13,13 @@
 </section>
 <!-- fOOD sEARCH Section Ends Here -->
 
+<?php
+if (isset($_SESSION['dat_hang'])) {
+    echo $_SESSION['dat_hang'];
+    unset($_SESSION['dat_hang']);
+}
+?>
+
 <!-- CAtegories Section Starts Here -->
 <section class="categories">
     <div class="container">
@@ -118,8 +125,9 @@
                         <p class="food-price">
                             <?php
                             if ($gia_khuyen_mai != 0) {
-                                echo "<span class='error'>Khuyến mãi: </span>";
-                                echo ($gia - $gia_khuyen_mai * 0.01 * $gia);
+                                echo "<span class='red'>Khuyến mãi: </span>";
+                                $gia = $gia - $gia_khuyen_mai * 0.01 * $gia;
+                                echo $gia;
                             } else {
                                 echo $gia;
                             }

@@ -8,8 +8,7 @@
 
 <body>
     <div class="login">
-        <h1 class="text-center">ĐĂNG NHẬP</h1>
-        <br><br>
+        <h1 class="text-center" style="font-size: 26px; margin: 5px;">ĐĂNG NHẬP QUẢN TRỊ</h1>
 
         <?php
         if (isset($_SESSION['Login'])) {
