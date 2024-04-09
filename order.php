@@ -113,7 +113,7 @@ if (isset($_GET['spham_id'])) {
 
             $ngay_dat = date("Y-m-d h:i:sa"); //Order Date
 
-            $trang_thai = "Đặt hàng"; //Ordered, On delivery, Delivered, ...
+            $trang_thai = "Chờ xác nhận"; //Ordered, On delivery, Delivered, ...
 
             $khach_ten = $_POST['khach_ten'];
             $khach_sdt = $_POST['khach_sdt'];

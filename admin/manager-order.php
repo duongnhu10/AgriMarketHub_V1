@@ -8,43 +8,98 @@
         <h1>DANH MỤC ĐẶT HÀNG</h1>
         <br><br><br>
 
+        <?php
+        if (isset($_SESSION['update'])) {
+            echo $_SESSION['update'];
+            unset($_SESSION['update']);
+        }
+        ?>
+
+        <br><br>
+
         <table class="tbl-full">
             <tr>
-                <th>ID</th>
-                <th>Full name</th>
-                <th>Username</th>
-                <th>Action</th>
+                <th>STT</th>
+                <th>Tên sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Tổng tiền</th>
+                <th>Ngày đặt</th>
+                <th>Trạng thái</th>
+                <th>Tên khách hàng</th>
+                <th>SDT</th>
+                <th>Email</th>
+                <th>Địa chỉ</th>
+                <th>Hành động</th>
             </tr>
 
-            <tr>
-                <td>1.</td>
-                <td>Duong Nhu</td>
-                <td>nhuduong10</td>
-                <td>
-                    <a href="#" class="btn-secondary">Update admin</a>
-                    <a href="#" class="btn-danger">Delete admin</a>
-                </td>
-            </tr>
+            <?php
+            //Get all the orders from database
+            $sql = "SELECT * FROM don_hang ORDER BY id DESC"; //DIsplay the lastest Order at First
+            //Execute Query
+            $res = mysqli_query($conn, $sql);
+            //Count the rows
+            $count = mysqli_num_rows($res);
 
-            <tr>
-                <td>2.</td>
-                <td>Duong Nhu</td>
-                <td>nhuduong10</td>
-                <td>
-                    <a href="#" class="btn-secondary">Update admin</a>
-                    <a href="#" class="btn-danger">Delete admin</a>
-                </td>
-            </tr>
+            $sn = 1;
 
-            <tr>
-                <td>3.</td>
-                <td>Duong Nhu</td>
-                <td>nhuduong10</td>
-                <td>
-                    <a href="#" class="btn-secondary">Update admin</a>
-                    <a href="#" class="btn-danger">Delete admin</a>
-                </td>
-            </tr>
+            if ($count > 0) {
+                //Order Available
+                while ($row = mysqli_fetch_assoc($res)) {
+                    //Get all the order details
+                    $id = $row['id'];
+                    $san_pham = $row['san_pham'];
+                    $gia = $row['gia'];
+                    $so_luong = $row['so_luong'];
+                    $tong_tien = $row['tong_tien'];
+                    $ngay_dat = $row['ngay_dat'];
+                    $trang_thai = $row['trang_thai'];
+                    $khach_ten = $row['khach_ten'];
+                    $khach_sdt = $row['khach_sdt'];
+                    $khach_email = $row['khach_email'];
+                    $khach_diachi = $row['khach_diachi'];
+            ?>
+
+                    <tr>
+                        <td><?php echo $sn++; ?></td>
+                        <td><?php echo $san_pham; ?></td>
+                        <td><?php echo $gia; ?></td>
+                        <td><?php echo $so_luong; ?></td>
+                        <td><?php echo $tong_tien; ?></td>
+                        <td><?php echo $ngay_dat; ?></td>
+
+                        <td>
+                            <?php
+
+                            if ($trang_thai == "Chờ xác nhận") {
+                                echo "<lable>$trang_thai</lable>";
+                            } else if ($trang_thai == "Đang giao hàng") {
+                                echo "<lable style='color:orange;'>$trang_thai</lable>";
+                            } else if ($trang_thai == "Đã giao hàng") {
+                                echo "<lable style='color:green;'>$trang_thai</lable>";
+                            } else if ($trang_thai == "Đã hủy") {
+                                echo "<lable style='color:red;'>$trang_thai</lable>";
+                            }
+
+                            ?>
+                        </td>
+
+                        <td><?php echo $khach_ten; ?></td>
+                        <td><?php echo $khach_sdt; ?></td>
+                        <td><?php echo $khach_email; ?></td>
+                        <td><?php echo $khach_diachi; ?></td>
+                        <td>
+                            <a href="<?php echo SITEURL; ?>admin/update-order.php?id=<?php echo $id; ?>" class="btn-secondary">Cập nhật đơn hàng</a>
+                        </td>
+                    </tr>
+
+            <?php
+                }
+            } else {
+                //Order not available
+                echo "<tr><td colspan='12' class='error'></td>Không có đơn hàng.</tr>";
+            }
+            ?>
 
         </table>
 
