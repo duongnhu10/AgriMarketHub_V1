@@ -53,6 +53,7 @@ if (isset($_GET['loai_id'])) {
         if ($count2 > 0) {
             //Food is available 
             while ($row2 = mysqli_fetch_assoc($res2)) {
+                $id = $row2['id'];
                 $ten_san_pham = $row2['ten_san_pham'];
                 $gia = $row2['gia'];
                 $gia_khuyen_mai = $row2['gia_khuyen_mai'];
@@ -94,7 +95,7 @@ if (isset($_GET['loai_id'])) {
                         </p>
                         <br>
 
-                        <a href="order.php" class="btn btn-primary">Đặt hàng</a>
+                        <a href="<?php echo SITEURL; ?>order.php?spham_id=<?php echo $id; ?>" class="btn btn-primary">Đặt hàng</a>
                     </div>
                 </div>
 

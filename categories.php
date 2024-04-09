@@ -31,7 +31,7 @@
                         } else {
                             //Image Available
                         ?>
-                            <img height="350px" src="<?php echo SITEURL; ?>images/category/<?php echo $anh; ?>" alt="Pizza" class="img-responsive img-curve">
+                            <img height="450px" src="<?php echo SITEURL; ?>images/category/<?php echo $anh; ?>" alt="Pizza" class="img-responsive img-curve">
                         <?php
                         }
                         ?>

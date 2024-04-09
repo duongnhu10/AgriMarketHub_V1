@@ -44,7 +44,7 @@
                         } else {
                             //Image Available
                         ?>
-                            <img height="350px" src="<?php echo SITEURL; ?>images/category/<?php echo $anh; ?>" alt="Pizza" class="img-responsive img-curve">
+                            <img height="450px" src="<?php echo SITEURL; ?>images/category/<?php echo $anh; ?>" alt="Pizza" class="img-responsive img-curve">
                         <?php
                         }
                         ?>
@@ -130,7 +130,7 @@
                         </p>
                         <br>
 
-                        <a href="order.php" class="btn btn-primary">Đặt hàng</a>
+                        <a href="<?php echo SITEURL; ?>order.php?spham_id=<?php echo $id; ?>" class="btn btn-primary">Đặt hàng</a>
                     </div>
                 </div>
 

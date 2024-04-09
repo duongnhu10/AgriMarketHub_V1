@@ -110,3 +110,10 @@
 <br>
 ✅ Display Foods by Category Selected
 <br>
+
+✅ Order Food from Admin Panel
+<br>
+✅ Manage Foods from Admin Panel
+<br>
+✅ Track Food Delivery
+<br>

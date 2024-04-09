@@ -80,7 +80,7 @@
                         </p>
                         <br>
 
-                        <a href="order.php" class="btn btn-primary">Đặt hàng</a>
+                        <a href="<?php echo SITEURL; ?>order.php?spham_id=<?php echo $id; ?>" class="btn btn-primary">Đặt hàng</a>
                     </div>
                 </div>
 
