@@ -1,6 +1,6 @@
 # XÂY DỰNG HỆ THỐNG CỦA HÀNG NÔNG SẢN TRỰC TUYẾN
 
-🍅 Sử dụng: PHP, HTML, CSS
+🍅 LANGUAGES: PHP, HTML, CSS
 <br>
 
 # PROCESS
@@ -116,4 +116,15 @@
 ✅ Manage Foods from Admin Panel
 <br>
 ✅ Track Food Delivery
+<br>
+
+✅ Create Summary Dashboard
+<br>
+✅ Use Aggregate Function to calculate actual Revenue
+<br>
+
+<br>
+✅  Know the Security Vulnerability (SQL Injection) in our Website
+<br>
+✅  Secure our Website with a single code
 <br>

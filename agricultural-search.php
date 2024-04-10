@@ -6,10 +6,11 @@
 
         <?php
         //Get the Search Keyword
-        $search = $_POST['search'];
+        //$search = $_POST['search'];
+        $search = mysqli_real_escape_string($conn, $_POST['search']);
         ?>
 
-        <h2>Các sản phẩm cho từ khóa <a href="#" class="text-white">"<?php echo $search; ?>"</a></h2>
+        <h2>CÁC SẢN PHẨM CHO TỪ KHÓA <a href="#" class="text-white">"<?php echo $search; ?>"</a></h2>
 
     </div>
 </section>
@@ -25,6 +26,8 @@
         <?php
 
         //SQL Query to Get foods based on search keyword
+        //$search = burger'; DROP database name;
+        //"SELECT * FROM san_pham WHERE ten_san_pham LIKE '%$burger'%' OR mo_ta LIKE '%$burger%'";
         $sql = "SELECT * FROM san_pham WHERE ten_san_pham LIKE '%$search%' OR mo_ta LIKE '%$search%'";
 
         //Execute the Query
@@ -85,6 +88,8 @@
                 </div>
         <?php
             }
+        } else {
+            echo "<div class='error'>Không tìm thấy sản phẩm.</div>";
         }
 
         ?>

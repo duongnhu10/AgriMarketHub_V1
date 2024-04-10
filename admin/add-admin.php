@@ -3,6 +3,7 @@
 <div class="main-content">
     <div class="wrapper">
         <h1>THÊM QUẢN TRỊ VIÊN</h1>
+
         <br><br>
 
         <?php
@@ -11,6 +12,8 @@
             unset($_SESSION['add']); //Removing session Message
         }
         ?>
+
+        <br><br>
 
         <form action="" method="POST">
 

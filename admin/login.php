@@ -9,6 +9,7 @@
 <body>
     <div class="login">
         <h1 class="text-center" style="font-size: 26px; margin: 5px;">ĐĂNG NHẬP QUẢN TRỊ</h1>
+        <br><br>
 
         <?php
         if (isset($_SESSION['Login'])) {
@@ -51,8 +52,12 @@
 if (isset($_POST["submit"])) {
     //Process for Login
     //1. Get the Data form Login form
-    $ten_nguoi_dung = $_POST['ten_nguoi_dung'];
-    $mat_khau = md5($_POST['mat_khau']);
+    //$ten_nguoi_dung = $_POST['ten_nguoi_dung'];
+    //$mat_khau = md5($_POST['mat_khau']);
+    $ten_nguoi_dung = mysqli_real_escape_string($conn, $_POST['ten_nguoi_dung']);
+
+    $raw_mat_khau = md5($_POST['mat_khau']);
+    $mat_khau = mysqli_real_escape_string($conn, $raw_mat_khau);
 
     //2. SQL to check whether the user with username and password exists or not
     $sql = "SELECT * FROM admin WHERE ten_nguoi_dung='$ten_nguoi_dung' AND mat_khau='$mat_khau'";

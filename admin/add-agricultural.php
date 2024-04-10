@@ -4,7 +4,7 @@
     <div class="wrapper">
         <h1>THÊM SẢN PHẨM</h1>
 
-        <br><br><br>
+        <br><br>
 
         <?php
         if (isset($_SESSION['upload'])) {
@@ -12,6 +12,8 @@
             unset($_SESSION['upload']);
         }
         ?>
+
+        <br><br>
 
         <form action="" method="POST" enctype="multipart/form-data">
 
