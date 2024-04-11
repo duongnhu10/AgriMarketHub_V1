@@ -123,8 +123,13 @@
 ✅ Use Aggregate Function to calculate actual Revenue
 <br>
 
+✅ Know the Security Vulnerability (SQL Injection) in our Website
 <br>
-✅  Know the Security Vulnerability (SQL Injection) in our Website
+✅ Secure our Website with a single code
 <br>
-✅  Secure our Website with a single code
+
+<br>
+✅  Tracking order of user
+<br>
+✅  Add to cart
 <br>
