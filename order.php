@@ -2,9 +2,10 @@
 
 <?php
 //Check whether food id is set or not
-if (isset($_GET['spham_id'])) {
+if (isset($_GET['spham_id']) && isset($_GET['so'])) {
     //Get the Food id and details of the selected food
     $spham_id = $_GET['spham_id'];
+    $so = $_GET['so'];
 
     //Get the details of the selected food
     $sql = "SELECT * FROM san_pham WHERE id=$spham_id";
@@ -75,7 +76,14 @@ if (isset($_GET['spham_id'])) {
                     <input type="hidden" name="gia" value="<?php echo $gia; ?>">
 
                     <div class="order-label">Số lượng</div>
-                    <input type="number" name="so_luong" class="input-responsive" value="1" required>
+                    <?php
+                    if ($so > 1) {
+                        echo '<input type="number" name="so_luong" class="input-responsive" value="' . $so . '" required>';
+                    } else {
+                        echo '<input type="number" name="so_luong" class="input-responsive" value="1" required>';
+                    }
+                    ?>
+
 
                 </div>
 
@@ -96,6 +104,7 @@ if (isset($_GET['spham_id'])) {
                 <textarea name="khach_diachi" rows="10" placeholder="VD. Trần Văn Khéo, Cái Khế, Ninh Kiều, Cần Thơ" class="input-responsive" required></textarea>
 
                 <input type="submit" name="submit" value="Đặt hàng" class="btn btn-primary">
+
             </fieldset>
 
         </form>

@@ -11,6 +11,7 @@
 
     <!-- Link our CSS file -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body>
@@ -36,6 +37,10 @@
                     </li>
                     <li>
                         <a href="#">LIÊN HỆ</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo SITEURL; ?>cart.php"><i class="fas fa-shopping-cart"></i></a>
+
                     </li>
                 </ul>
             </div>

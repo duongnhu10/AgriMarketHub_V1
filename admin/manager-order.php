@@ -5,7 +5,7 @@
 
     <div class="wrapper">
 
-        <h1>DANH MỤC ĐẶT HÀNG</h1>
+        <h1>DANH MỤC ĐƠN HÀNG</h1>
         <br><br><br>
 
         <?php
