@@ -81,7 +81,11 @@
                         </p>
                         <br>
 
-                        <a href="<?php echo SITEURL; ?>order.php?spham_id=<?php echo $id; ?>" class="btn btn-primary">Đặt hàng</a>
+                        <?php
+                        $so = 1;
+                        ?>
+
+                        <a href="<?php echo SITEURL; ?>order.php?spham_id=<?php echo $id; ?>&so=<?php echo $so; ?>" class="btn btn-primary">Đặt hàng</a>
                         <a href="#" onclick="addToCart(<?php echo $id; ?>)" class="btn btn-primary">Thêm vào giỏ hàng</a>
 
                         <script>

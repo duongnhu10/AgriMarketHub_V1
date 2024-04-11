@@ -3,6 +3,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+<?php
+$sql = "SELECT * FROM gio_hang";
+$res = mysqli_query($conn, $sql);
+$count = mysqli_num_rows($res);
+?>
+
 <head>
     <meta charset="UTF-8">
     <!-- Important to make website responsive -->
@@ -39,9 +46,16 @@
                         <a href="#">LIÊN HỆ</a>
                     </li>
                     <li>
-                        <a href="<?php echo SITEURL; ?>cart.php"><i class="fas fa-shopping-cart"></i></a>
-
+                        <a href="<?php echo SITEURL; ?>tracking-order.php">ĐƠN HÀNG</a>
                     </li>
+
+                    <li>
+                        <a href="<?php echo SITEURL; ?>cart.php" class="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-quantity"><?php echo $count; ?></span>
+                        </a>
+                    </li>
+
                 </ul>
             </div>
 

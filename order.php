@@ -1,4 +1,5 @@
-<?php include('partials-font/menu.php'); ?>
+<?php include('partials-font/menu.php');
+ob_start(); ?>
 
 <?php
 //Check whether food id is set or not
@@ -33,13 +34,13 @@ if (isset($_GET['spham_id']) && isset($_GET['so'])) {
 ?>
 
 <!-- fOOD sEARCH Section Starts Here -->
-<section class="food-search">
+<section class="food-menu">
     <div class="container">
 
-        <h2 class="text-center text-white">ĐIỀN THÔNG TIN ĐỂ ĐẶT HÀNG</h2>
+        <h2 class="text-center " style="color: black;">ĐIỀN THÔNG TIN ĐỂ ĐẶT HÀNG</h2>
 
         <form action="" method="POST" class="order">
-            <fieldset>
+            <fieldset style="border: 1px solid black;">
                 <legend>SẢN PHẨM ĐÃ CHỌN</legend>
 
                 <div class="food-menu-img">
@@ -89,8 +90,8 @@ if (isset($_GET['spham_id']) && isset($_GET['so'])) {
 
             </fieldset>
 
-            <fieldset>
-                <legend>THÔNG TIN GIAO HÀNG</legend>
+            <fieldset style="border: 1px solid black;">
+                <legend style="color: black;">THÔNG TIN GIAO HÀNG</legend>
                 <div class="order-label">Họ và tên</div>
                 <input type="text" name="khach_ten" placeholder="VD. Nguyễn Văn A" class="input-responsive" required>
 
@@ -166,4 +167,6 @@ if (isset($_GET['spham_id']) && isset($_GET['so'])) {
 </section>
 <!-- fOOD sEARCH Section Ends Here -->
 
-<?php include('partials-font/footer.php'); ?>
+<?php include('partials-font/footer.php');
+
+ob_end_flush(); ?>

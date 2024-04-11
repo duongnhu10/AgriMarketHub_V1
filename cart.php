@@ -13,11 +13,11 @@ $res = mysqli_query($conn, $sql);
 $count = mysqli_num_rows($res);
 if ($count > 0) {
     // Bắt đầu phần fieldset chung
-    echo '<section class="food-search">
+    echo '<section class="food-menu">
             <div class="container">
-                <h2 class="text-center text-white">THÔNG TIN GIỎ HÀNG</h2>
+                <h2 class="text-center style="color: black;"">THÔNG TIN GIỎ HÀNG</h2>
                 <form action="" method="POST" class="order">
-                    <fieldset>
+                    <fieldset style="border: 1px solid black;">
                         <legend>SẢN PHẨM ĐÃ THÊM VÀO GIỎ HÀNG</legend>';
 
     while ($row = mysqli_fetch_assoc($res)) {
@@ -73,11 +73,11 @@ if ($count > 0) {
         </div>
         </section>';
 } else {
-    echo '<section class="food-search">
+    echo '<section class="food-menu">
     <div class="container">
-        <h2 class="text-center text-white">THÔNG TIN GIỎ HÀNG</h2>
+        <h2 class="text-center style="color: black;"">THÔNG TIN GIỎ HÀNG</h2>
         <form action="" method="POST" class="order">
-            <fieldset>
+            <fieldset style="border: 1px solid black;">
                 <legend>SẢN PHẨM ĐÃ THÊM VÀO GIỎ HÀNG</legend>
                 <h3 class="red text-center">GIỎ HÀNG TRỐNG.</h3>
             </fieldset>
