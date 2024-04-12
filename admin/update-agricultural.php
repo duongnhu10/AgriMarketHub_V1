@@ -161,7 +161,7 @@ if (isset($_GET['id'])) {
                 </tr>
 
                 <tr>
-                    <td>
+                    <td colspan="2">
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
                         <input type="hidden" name="current_image" value="<?php echo $current_image; ?>">
 
@@ -250,10 +250,10 @@ if (isset($_GET['id'])) {
                         }
                     }
                 } else {
-                    $ten_anh = $current_image;
+                    $ten_anh = $current_image; //Default Image when image is not selected
                 }
             } else {
-                $ten_anh = $current_image;
+                $ten_anh = $current_image; //Default image when button is not clicked
             }
 
             //4. Update the Food in Database

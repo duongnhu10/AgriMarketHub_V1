@@ -10,11 +10,15 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.wrapper {
-  /* border: 1px solid black; */
+/* .wrapper {
   padding: 1%;
   width: 80%;
   margin: 0 auto;
+} */
+
+.wrapper {
+  width: 80%; /* Width of the menu container */
+  margin: 0 auto; /* Center align the menu */
 }
 
 .text-center {
@@ -34,7 +38,7 @@
   width: 30%;
 }
 
-table tr th {
+/* table tr th {
   border-bottom: 1px solid black;
   padding: 1%;
   text-align: left;
@@ -42,8 +46,40 @@ table tr th {
 
 table tr td {
   padding: 1%;
+} */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 20px;
 }
 
+th,
+td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  color: #333;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+  background-color: #eaeaea;
+}
+/* 
 .btn-primary {
   background-color: #1e90ff;
   padding: 1%;
@@ -54,6 +90,20 @@ table tr td {
 
 .btn-primary:hover {
   background-color: #3742fa;
+} */
+
+.btn-primary {
+  display: inline-block;
+  background-color: #1e90ff; /* Background color */
+  color: #fff; /* Text color */
+  padding: 10px 20px; /* Padding */
+  text-decoration: none; /* Remove underline */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.btn-primary:hover {
+  background-color: #3742fa; /* Darker background color on hover */
 }
 
 /* CSS for main-content */
@@ -70,7 +120,7 @@ table tr td {
   float: left;
 }
 
-.btn-secondary {
+/* .btn-secondary {
   background-color: #7bed9f;
   padding: 1%;
   color: black;
@@ -80,9 +130,23 @@ table tr td {
 
 .btn-secondary:hover {
   background-color: #2ed573;
+} */
+
+.btn-secondary {
+  display: inline-block;
+  background-color: #7bed9f; /* Background color */
+  color: #fff; /* Text color */
+  padding: 10px 20px; /* Padding */
+  text-decoration: none; /* Remove underline */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition */
 }
 
-.btn-danger {
+.btn-secondary:hover {
+  background-color: #2ed573; /* Darker background color on hover */
+}
+
+/* .btn-danger {
   background-color: #ff6b81;
   padding: 1%;
   color: white;
@@ -92,6 +156,20 @@ table tr td {
 
 .btn-danger:hover {
   background-color: #ff4757;
+} */
+
+.btn-danger {
+  display: inline-block;
+  background-color: #ff6b81; /* Background color */
+  color: #fff; /* Text color */
+  padding: 10px 20px; /* Padding */
+  text-decoration: none; /* Remove underline */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.btn-danger:hover {
+  background-color: #ff4757; /* Darker background color on hover */
 }
 
 .success {
@@ -103,34 +181,70 @@ table tr td {
 }
 
 /* CSS for menu */
-.menu {
+/* .menu {
   border-bottom: 1px solid grey;
+} */
+
+.menu {
+  background-color: #f8f9fa; /* Background color of the menu */
+  padding: 20px 0; /* Padding for top and bottom */
 }
+
+/* .menu ul {
+  list-style-type: none;
+} */
 
 .menu ul {
-  list-style-type: none;
+  list-style-type: none; /* Remove default bullet points */
+  padding: 0; /* Remove default padding */
 }
 
-.menu ul li {
+.menu li {
+  display: inline-block; /* Display menu items horizontally */
+  margin-right: 20px; /* Right margin between menu items */
+}
+
+/* .menu ul li {
   display: inline;
   padding: 1%;
-}
+} */
 
 .menu ul li a {
+  text-decoration: none; /* Remove underline from links */
+  color: #ff6b81; /* Text color of the links */
+  font-size: 18px; /* Font size of the links */
+  font-weight: bold; /* Bold font weight */
+  padding: 10px 20px; /* Padding for the links */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+/* .menu ul li a {
   text-decoration: none;
   text-transform: uppercase;
   font-weight: bold;
   color: #ff6b81;
-}
+} */
 
 .menu ul li a:hover {
   color: #ff4757;
 }
 
 /* CSS for footer */
-.footer {
+/* .footer {
   background-color: #ff4757;
   color: white;
+} */
+
+.footer {
+  background-color: #ff4757; /* Red background color */
+  color: white; /* White text color */
+  padding: 20px; /* Padding for the footer content */
+  text-align: center; /* Center align the text */
+}
+
+.footer p {
+  margin: 0; /* Remove default margin for paragraphs */
 }
 
 /* CSS for login */
@@ -186,4 +300,52 @@ table tr td {
   font-size: 14px;
   color: #333;
   text-align: left;
+}
+
+/* Style for heading */
+h1 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Style for line breaks */
+br {
+  display: block; /* Ensures line breaks behave like block elements */
+  margin: 20px 0; /* Add vertical margin for spacing */
+  content: ""; /* Ensures line breaks are rendered */
+}
+
+/* CSS cho input */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* CSS cho nút */
+button[type="submit"],
+input[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Hover state cho nút */
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+  background-color: #45a049;
 }

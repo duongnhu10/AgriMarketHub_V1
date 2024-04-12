@@ -80,7 +80,7 @@
             $row4 = mysqli_fetch_assoc($res4);
 
             //Get the total Revenue
-            $doanh_thu = $row4['tong_tien'];
+            $doanh_thu =  str_replace(',', ' ', number_format($row4['tong_tien']));
 
             ?>
 

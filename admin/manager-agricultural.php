@@ -36,7 +36,7 @@
             unset($_SESSION['update']);
         }
         ?>
-        <br><br><br>
+        <br><br>
 
         <!-- Button to Add Admin -->
         <a href="<?php echo SITEURL; ?>admin/add-agricultural.php" class="btn-primary">Thêm sản phẩm</a>
@@ -45,7 +45,7 @@
 
         <table class="tbl-full">
             <tr>
-                <th>ID</th>
+                <th>STT</th>
                 <th>Tên sản phẩm</th>
                 <th>Giá gốc</th>
                 <th>Giá hiện tại</th>
@@ -84,8 +84,8 @@
                     <tr>
                         <td><?php echo $sn++; ?></td>
                         <td><?php echo $ten_san_pham; ?></td>
-                        <td><?php echo $gia_goc; ?>VND</td>
-                        <td><?php echo $gia; ?>VND</td>
+                        <td><?php echo str_replace(',', ' ', number_format($gia_goc)); ?> VND</td>
+                        <td><?php echo str_replace(',', ' ', number_format($gia)); ?> VND</td>
                         <td><?php echo $gia_khuyen_mai; ?>%</td>
                         <td>
                             <?php

@@ -101,8 +101,15 @@ fieldset {
 .menu {
   line-height: 60px;
 }
+
 .menu ul {
-  list-style-type: none;
+  list-style-type: none; /* Remove default bullet points */
+  padding: 0; /* Remove default padding */
+}
+
+.menu li {
+  display: inline-block; /* Display menu items horizontally */
+  margin-right: 20px; /* Right margin between menu items */
 }
 
 .success {
@@ -115,10 +122,14 @@ fieldset {
   color: red;
 }
 
-.menu ul li {
-  display: inline;
-  padding: 1%;
-  font-weight: bold;
+.menu ul li a {
+  text-decoration: none; /* Remove underline from links */
+  color: #ff6b81; /* Text color of the links */
+  font-size: 18px; /* Font size of the links */
+  font-weight: bold; /* Bold font weight */
+  padding: 10px 20px; /* Padding for the links */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s; /* Smooth transition for background color */
 }
 
 /* CSS for Food SEarch Section */
@@ -283,8 +294,8 @@ fieldset {
   line-height: 20px; /* Canh giữa văn bản theo chiều dọc */
   text-align: center; /* Canh giữa văn bản theo chiều ngang */
   position: absolute;
-  top: 8px; /* Đưa phần tử lên trên để căn giữa theo chiều dọc */
-  right: -18px; /* Đưa phần tử sang phải để căn giữa theo chiều ngang */
+  top: 19px; /* Đưa phần tử lên trên để căn giữa theo chiều dọc */
+  right: 4px; /* Đưa phần tử sang phải để căn giữa theo chiều ngang */
   background-color: red;
   color: white;
   border-radius: 50%; /* Tạo hình tròn */

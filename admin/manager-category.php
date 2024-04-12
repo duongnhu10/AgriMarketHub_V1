@@ -88,7 +88,7 @@
                     $trang_thai = $row['trang_thai'];
             ?>
                     <tr>
-                        <td><?php echo $sn++; ?>.</td>
+                        <td><?php echo $sn++; ?></td>
                         <td><?php echo $ten_loai; ?></td>
 
                         <td>

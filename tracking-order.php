@@ -1,5 +1,12 @@
 <?php include('partials-font/menu.php'); ?>
 
+<?php
+if (isset($_SESSION['delete'])) {
+    echo $_SESSION['delete'];
+    unset($_SESSION['delete']);
+}
+?>
+
 
 <section class="food-menu">
     <div class="container">
@@ -20,6 +27,7 @@
                     <th>SDT</th>
                     <th>Email</th>
                     <th>Địa chỉ</th>
+                    <th>Hành động</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,10 +59,14 @@
                         echo "<td>" . $row['khach_sdt'] . "</td>";
                         echo "<td>" . $row['khach_email'] . "</td>";
                         echo "<td>" . $row['khach_diachi'] . "</td>";
+                        echo "<td><a href='" . SITEURL . "delete-order.php?order-id=" . $row['id'] . "' class='btn btn-primary'>Hủy đơn hàng</a></td>";
+
+
                         echo "</tr>";
                     }
                 } else {
-                    echo "<div class='error'>Không có đơn hàng.</div>";
+                    echo "<tr><td colspan='12' class='error'>Không có đơn hàng.</td></tr>
+                    ";
                 }
 
                 ?>

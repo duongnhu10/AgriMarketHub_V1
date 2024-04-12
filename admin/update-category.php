@@ -80,7 +80,7 @@
                 </tr>
 
                 <tr>
-                    <td>
+                    <td colspan="2">
                         <input type="hidden" name="current_image" value="<?php echo $current_image; ?>">
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
                         <input class="btn-secondary" type="submit" name="submit" value="Cập nhật">

@@ -2,7 +2,7 @@
 
 <div class="main-content">
     <div class="wrapper">
-        <h1>UPDATE ADMIN</h1>
+        <h1>CẬP NHẬT QUẢN TRỊ VIÊN</h1>
 
         <br><br>
 

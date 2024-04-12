@@ -109,7 +109,7 @@
                 </tr>
 
                 <tr>
-                    <td clospan="2">
+                    <td colspan="2">
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
                         <input type="hidden" name="gia" value="<?php echo $gia; ?>">
 

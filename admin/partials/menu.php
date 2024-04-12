@@ -20,7 +20,7 @@ include('login-check.php')
                 <li><a href="manager-admin.php">QUẢN TRỊ VIÊN</a></li>
                 <li><a href="manager-category.php">LOẠI SẢN PHẨM</a></li>
                 <li><a href="manager-agricultural.php">SẢN PHẨM</a></li>
-                <li><a href="manager-order.php">ĐẶT HÀNG</a></li>
+                <li><a href="manager-order.php">ĐƠN HÀNG</a></li>
                 <li><a href="logout.php">ĐĂNG XUẤT</a></li>
             </ul>
         </div>

@@ -128,8 +128,13 @@
 ✅ Secure our Website with a single code
 <br>
 
+✅ Tracking order of user
 <br>
-✅  Tracking order of user
+✅ Add to cart
 <br>
-✅  Add to cart
+
+<br>
+✅  Cancel order
+<br>
+✅  Tracking Cancel order of user (role admin)
 <br>
