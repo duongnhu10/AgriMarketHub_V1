@@ -24,6 +24,7 @@ if ($count > 0) {
         $id = $row['id'];
         $ten_san_pham = $row['ten_san_pham'];
         $gia = $row['gia'];
+        $gia_khuyen_mai = $row['gia_khuyen_mai'];
         $anh = $row['anh'];
         $so_luong = $row['so_luong'];
         $spham_id = $row['san_pham_id'];
@@ -49,11 +50,16 @@ if ($count > 0) {
             <p class="food-price">
                 <?php
 
-                echo $gia;
+                if ($gia_khuyen_mai != 0) {
+                    echo "<i style='text-decoration-line: line-through;'>" . str_replace(',', ' ', number_format($gia)) . " VND <br></i>";
+                    $gia_km = $gia - $gia_khuyen_mai * 0.01 * $gia;
+                    echo "<i class='red'>" . str_replace(',', ' ', number_format($gia_km)) . " VND</i>";
+                } else {
+                    echo "<i>" . str_replace(',', ' ', number_format($gia)) . " VND <br></i>";
+                }
 
-                ?>VND
+                ?>
             </p>
-
             <span class="order-label">Số lượng: </span>
             <?php echo $so_luong; ?>
             <br>

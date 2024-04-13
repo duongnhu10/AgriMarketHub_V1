@@ -21,6 +21,7 @@ include('login-check.php')
                 <li><a href="manager-category.php">LOẠI SẢN PHẨM</a></li>
                 <li><a href="manager-agricultural.php">SẢN PHẨM</a></li>
                 <li><a href="manager-order.php">ĐƠN HÀNG</a></li>
+                <li><a href="contact.php">PHẢN HỒI</a></li>
                 <li><a href="logout.php">ĐĂNG XUẤT</a></li>
             </ul>
         </div>

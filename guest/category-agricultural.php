@@ -1,4 +1,4 @@
-<?php include('partials-font/menu.php'); ?>
+<?php include('partials/menu.php'); ?>
 
 <?php
 //Check whether id is passed or not
@@ -98,30 +98,10 @@ if (isset($_GET['loai_id'])) {
                         </p>
                         <br>
 
-                        <a href="<?php echo SITEURL; ?>order.php?spham_id=<?php echo $id; ?>" class="btn btn-primary">Đặt hàng</a>
-                        <a href="#" onclick="addToCart(<?php echo $id; ?>)" class="btn btn-primary">Thêm vào giỏ hàng</a>
 
-                        <script>
-                            function addToCart(productId) {
-                                // Tạo một yêu cầu XMLHttpRequest
-                                var xhttp = new XMLHttpRequest();
+                        <a href="<?php echo SITEURL; ?>guest/sign-up.php?>" class="btn btn-primary">Đặt hàng</a>
 
-                                // Thiết lập hàm xử lý sự kiện khi yêu cầu hoàn thành
-                                xhttp.onreadystatechange = function() {
-                                    if (this.readyState == 4 && this.status == 200) {
-                                        // Xử lý phản hồi từ máy chủ (nếu cần)
-                                        alert("Đã thêm sản phẩm vào giỏ hàng!");
-                                    }
-                                };
-
-                                // Tạo một yêu cầu GET đến trang add-to-cart.php với id sản phẩm
-                                xhttp.open("GET", "<?php echo SITEURL; ?>add-to-cart.php?spham_id=" + productId, true);
-                                xhttp.send();
-
-                                // Ngăn chặn hành động mặc định của thẻ <a>
-                                return false;
-                            }
-                        </script>
+                        <a href="<?php echo SITEURL; ?>guest/sign-up.php?>" class="btn btn-primary">Thêm vào giỏ hàng</a>
 
                     </div>
                 </div>
@@ -141,4 +121,4 @@ if (isset($_GET['loai_id'])) {
 </section>
 <!-- fOOD Menu Section Ends Here -->
 
-<?php include('partials-font/footer.php'); ?>
+<?php include('partials/footer.php'); ?>

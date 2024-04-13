@@ -35,6 +35,7 @@ if (isset($_GET['spham_id'])) {
             $sql_insert = "INSERT INTO gio_hang SET 
                         ten_san_pham = '$ten_san_pham',
                         gia = $gia,
+                        gia_khuyen_mai = $gia_khuyen_mai,
                         anh = '$anh',
                         so_luong = 1,
                         san_pham_id = '$spham_id'";

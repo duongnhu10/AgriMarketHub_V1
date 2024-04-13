@@ -133,8 +133,12 @@
 ✅ Add to cart
 <br>
 
+✅ Cancel order
 <br>
-✅  Cancel order
+✅ Tracking Cancel order of user (role admin)
+
 <br>
-✅  Tracking Cancel order of user (role admin)
+✅  Contact with admin
+<br>
+✅  See and Delete contact
 <br>

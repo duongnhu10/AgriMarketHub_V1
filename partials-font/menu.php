@@ -1,4 +1,5 @@
-<?php include('config/constants.php'); ?>
+<?php include('config/constants.php');
+include('login-check.php') ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,11 +44,12 @@ $count = mysqli_num_rows($res);
                         <a href="<?php echo SITEURL; ?>agricultural.php">SẢN PHẨM</a>
                     </li>
                     <li>
-                        <a href="#">LIÊN HỆ</a>
-                    </li>
-                    <li>
                         <a href="<?php echo SITEURL; ?>tracking-order.php">ĐƠN HÀNG</a>
                     </li>
+                    <li>
+                        <a href="<?php echo SITEURL; ?>contact.php">LIÊN HỆ</a>
+                    </li>
+
 
                     <li>
                         <a href="<?php echo SITEURL; ?>cart.php" class="cart-icon">
@@ -56,10 +58,26 @@ $count = mysqli_num_rows($res);
                         </a>
                     </li>
 
+
+                    <span class="dropdown">
+                        <li><a class="dropbtn"><i class="fas fa-user fa-lg"></i></a></li>
+
+                        <div id="myDropdown" class="dropdown-content">
+
+                            <li><a href="<?php echo SITEURL; ?>infor.php?session_user=<?php echo $_SESSION['user']; ?>">THÔNG TIN</a></li>
+
+                            <li> <a href=" <?php echo SITEURL; ?>logout.php">
+                                    ĐĂNG XUẤT
+                                </a></li>
+
+                        </div>
+                    </span>
+
                 </ul>
             </div>
 
-            <div class="clearfix"></div>
+            <div class=" clearfix">
+            </div>
         </div>
     </section>
     <!-- Navbar Section Ends Here -->

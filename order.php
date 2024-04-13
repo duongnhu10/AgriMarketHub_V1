@@ -68,11 +68,11 @@ if (isset($_GET['spham_id']) && isset($_GET['so'])) {
                         if ($gia_khuyen_mai != 0) {
                             echo "<span class='red'>Khuyến mãi: </span>";
                             $gia = $gia - $gia_khuyen_mai * 0.01 * $gia;
-                            echo $gia;
+                            echo "<i>" . str_replace(',', ' ', number_format($gia)) . " VND <br></i>";
                         } else {
-                            echo $gia;
+                            echo "<i>" . str_replace(',', ' ', number_format($gia)) . " VND <br></i>";
                         }
-                        ?>VND
+                        ?>
                     </p>
                     <input type="hidden" name="gia" value="<?php echo $gia; ?>">
 

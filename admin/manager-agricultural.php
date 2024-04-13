@@ -47,8 +47,8 @@
             <tr>
                 <th>STT</th>
                 <th>Tên sản phẩm</th>
-                <th>Giá gốc</th>
-                <th>Giá hiện tại</th>
+                <th>Giá nhập</th>
+                <th>Giá bán</th>
                 <th>Khuyến mãi</th>
                 <th>Hình ảnh</th>
                 <th>Trạng thái</th>

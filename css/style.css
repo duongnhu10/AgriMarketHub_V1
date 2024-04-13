@@ -64,6 +64,17 @@ a:hover {
   background-color: #ff6b81;
   color: white;
   cursor: pointer;
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition */
+  padding: 10px 20px; /* Padding */
+}
+.btn-search {
+  background-color: #ff6b81;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition */
+  padding: 10px 20px; /* Padding */
 }
 .btn-primary:hover {
   color: white;
@@ -109,7 +120,7 @@ fieldset {
 
 .menu li {
   display: inline-block; /* Display menu items horizontally */
-  margin-right: 20px; /* Right margin between menu items */
+  margin-right: 5px; /* Right margin between menu items */
 }
 
 .success {
@@ -334,4 +345,96 @@ tbody tr:nth-child(even) {
 
 tbody tr:hover {
   background-color: #eaeaea;
+}
+/* Style cho button */
+.dropbtn {
+  /* background-color: #3498db; */
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown content (ẩn ban đầu) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 160px;
+  z-index: 1;
+  border-radius: 6%;
+}
+
+/* Hiển thị dropdown khi hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Link trong dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-radius: 4%;
+}
+
+/* Change color on hover */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.btn-secondary {
+  display: inline-block;
+  background-color: #18ce51; /* Background color */
+  color: #fff; /* Text color */
+  padding: 10px 20px; /* Padding */
+  text-decoration: none; /* Remove underline */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition */
+  border: none;
+}
+
+.btn-secondary:hover {
+  background-color: #2ed573; /* Darker background color on hover */
+}
+
+/* CSS cho input */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* CSS cho nút */
+button[type="submit"],
+input[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Hover state cho nút */
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+  background-color: #45a049;
 }

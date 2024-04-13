@@ -1,13 +1,16 @@
-<?php include('partials-font/menu.php'); ?>
+<?php include('partials/menu.php'); ?>
 
 <!-- fOOD sEARCH Section Starts Here -->
 <section class="food-search text-center">
     <div class="container">
 
-        <form action="<?php echo SITEURL ?>agricultural-search.php" method="POST">
-            <input type="search" name="search" placeholder="Tìm kiếm sản phẩm.." required>
-            <input type="submit" name="submit" value="Tìm kiếm" class="btn btn-primary">
-        </form>
+        <?php
+        //Get the Search Keyword
+        //$search = $_POST['search'];
+        $search = mysqli_real_escape_string($conn, $_POST['search']);
+        ?>
+
+        <h2>CÁC SẢN PHẨM CHO TỪ KHÓA <a href="#" class="text-white">"<?php echo $search; ?>"</a></h2>
 
     </div>
 </section>
@@ -20,24 +23,24 @@
     <div class="container">
         <h2 class="text-center">SẢN PHẨM</h2>
 
-
         <?php
 
-        //Getting Foods from Database that are active 
-        //SQL Query
-        $sql2 = "SELECT * FROM san_pham WHERE trang_thai = 'Còn hàng'";
+        //SQL Query to Get foods based on search keyword
+        //$search = burger'; DROP database name;
+        //"SELECT * FROM san_pham WHERE ten_san_pham LIKE '%$burger'%' OR mo_ta LIKE '%$burger%'";
+        $sql = "SELECT * FROM san_pham WHERE ten_san_pham LIKE '%$search%'";
 
         //Execute the Query
-        $res2 = mysqli_query($conn, $sql2);
+        $res = mysqli_query($conn, $sql);
 
-        //COunt Rows
-        $count2 = mysqli_num_rows($res2);
+        //Count Rows
+        $count = mysqli_num_rows($res);
 
         //Check whether food available or not
-        if ($count2 > 0) {
-            //Food available
-            while ($row = mysqli_fetch_assoc($res2)) {
-                //Get all the values
+        if ($count > 0) {
+            //Food Available
+            while ($row = mysqli_fetch_assoc($res)) {
+                //Get the details
                 $id = $row['id'];
                 $ten_san_pham = $row['ten_san_pham'];
                 $gia = $row['gia'];
@@ -45,7 +48,6 @@
                 $mo_ta = $row['mo_ta'];
                 $anh = $row['anh'];
         ?>
-
                 <div class="food-menu-box">
                     <div class="food-menu-img">
                         <?php
@@ -83,54 +85,25 @@
                         </p>
                         <br>
 
-                        <?php
-                        $so = 1;
-                        ?>
 
-                        <a href="<?php echo SITEURL; ?>order.php?spham_id=<?php echo $id; ?>&so=<?php echo $so; ?>" class="btn btn-primary">Đặt hàng</a>
-                        <a href="#" onclick="addToCart(<?php echo $id; ?>)" class="btn btn-primary">Thêm vào giỏ hàng</a>
+                        <a href="<?php echo SITEURL; ?>guest/sign-up.php?>" class="btn btn-primary">Đặt hàng</a>
 
-                        <script>
-                            function addToCart(productId) {
-                                // Tạo một yêu cầu XMLHttpRequest
-                                var xhttp = new XMLHttpRequest();
-
-                                // Thiết lập hàm xử lý sự kiện khi yêu cầu hoàn thành
-                                xhttp.onreadystatechange = function() {
-                                    if (this.readyState == 4 && this.status == 200) {
-                                        // Xử lý phản hồi từ máy chủ (nếu cần)
-                                        alert("Đã thêm sản phẩm vào giỏ hàng!");
-                                    }
-                                };
-
-                                // Tạo một yêu cầu GET đến trang add-to-cart.php với id sản phẩm
-                                xhttp.open("GET", "<?php echo SITEURL; ?>add-to-cart.php?spham_id=" + productId, true);
-                                xhttp.send();
-
-                                // Ngăn chặn hành động mặc định của thẻ <a>
-                                return false;
-                            }
-                        </script>
-
+                        <a href="<?php echo SITEURL; ?>guest/sign-up.php?>" class="btn btn-primary">Thêm vào giỏ hàng</a>
                     </div>
                 </div>
-
         <?php
             }
         } else {
-            //Food not available
-            echo "<div class='error'>Không có sản phẩm.</div>";
+            echo "<div class='error'>Không tìm thấy sản phẩm.</div>";
         }
 
         ?>
 
         <div class="clearfix"></div>
 
-
-
     </div>
 
 </section>
 <!-- fOOD Menu Section Ends Here -->
 
-<?php include('partials-font/footer.php'); ?>
+<?php include('partials/footer.php'); ?>

@@ -42,9 +42,10 @@ if (isset($_SESSION['delete'])) {
                         echo "<tr>";
                         echo "<td>" . $sn++ . "</td>";
                         echo "<td>" . $row['san_pham'] . "</td>";
-                        echo "<td>" . $row['gia'] . "</td>";
+
+                        echo "<td>" .  str_replace(',', ' ', number_format($row['gia'])) . " VND</td>";
                         echo "<td>" . $row['so_luong'] . "</td>";
-                        echo "<td>" . $row['tong_tien'] . "</td>";
+                        echo "<td>" . str_replace(',', ' ', number_format($row['tong_tien'])) . "  VND</td>";
                         echo "<td>" . $row['ngay_dat'] . "</td>";
                         if ($row['trang_thai']  == "Chờ xác nhận") {
                             echo "<td>" . $row['trang_thai'] . "</td>";

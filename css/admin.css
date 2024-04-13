@@ -349,3 +349,15 @@ button[type="submit"]:hover,
 input[type="submit"]:hover {
   background-color: #45a049;
 }
+
+/* CSS cho phần link "Đăng nhập" */
+p[name="dang_nhap"] {
+  text-align: center; /* Canh giữa văn bản */
+  font-size: 16px; /* Kích thước chữ */
+  margin-top: 20px; /* Khoảng cách từ phần tử trên đó */
+}
+
+/* CSS cho phần link "Đăng nhập" khi di chuột qua */
+p[name="dang_nhap"] a:hover {
+  color: #3498db; /* Màu chữ khi di chuột qua */
+}

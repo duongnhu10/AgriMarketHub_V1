@@ -1,10 +1,10 @@
-<?php include('partials-font/menu.php'); ?>
+<?php include('partials/menu.php'); ?>
 
 <!-- fOOD sEARCH Section Starts Here -->
 <section class="food-search text-center">
     <div class="container">
 
-        <form action="<?php echo SITEURL ?>agricultural-search.php" method="POST">
+        <form action="<?php echo SITEURL ?>guest/agricultural-search.php" method="POST">
             <input type="search" name="search" placeholder="Tìm kiếm sản phẩm.." required>
             <input type="submit" name="submit" value="Tìm kiếm" class="btn btn-primary">
         </form>
@@ -12,17 +12,6 @@
     </div>
 </section>
 <!-- fOOD sEARCH Section Ends Here -->
-
-<?php
-if (isset($_SESSION['Login'])) {
-    echo $_SESSION['Login'];
-    unset($_SESSION['Login']);
-}
-
-if (isset($_SESSION['dat_hang'])) {
-    echo $_SESSION['dat_hang'];
-    unset($_SESSION['dat_hang']);
-}
 
 ?>
 
@@ -47,7 +36,7 @@ if (isset($_SESSION['dat_hang'])) {
                 $ten_loai = $row['ten_loai'];
                 $anh = $row['anh'];
         ?>
-                <a href="<?php echo SITEURL; ?>category-agricultural.php?loai_id=<?php echo $id; ?>">
+                <a href="<?php echo SITEURL; ?>guest/category-agricultural.php?loai_id=<?php echo $id; ?>">
                     <div class="box-3 float-container">
                         <?php
                         //Check whether Image is available or not
@@ -150,31 +139,11 @@ if (isset($_SESSION['dat_hang'])) {
                         $so = 1;
                         ?>
 
-                        <a href="<?php echo SITEURL; ?>order.php?spham_id=<?php echo $id; ?>&so=<?php echo $so; ?>" class="btn btn-primary">Đặt hàng</a>
+                        <a href="<?php echo SITEURL; ?>guest/sign-up.php?>" class="btn btn-primary">Đặt hàng</a>
 
-                        <a href="#" onclick="addToCart(<?php echo $id; ?>)" class="btn btn-primary">Thêm vào giỏ hàng</a>
+                        <a href="<?php echo SITEURL; ?>guest/sign-up.php?>" class="btn btn-primary">Thêm vào giỏ hàng</a>
 
-                        <script>
-                            function addToCart(productId) {
-                                // Tạo một yêu cầu XMLHttpRequest
-                                var xhttp = new XMLHttpRequest();
 
-                                // Thiết lập hàm xử lý sự kiện khi yêu cầu hoàn thành
-                                xhttp.onreadystatechange = function() {
-                                    if (this.readyState == 4 && this.status == 200) {
-                                        // Xử lý phản hồi từ máy chủ (nếu cần)
-                                        alert("Đã thêm sản phẩm vào giỏ hàng!");
-                                    }
-                                };
-
-                                // Tạo một yêu cầu GET đến trang add-to-cart.php với id sản phẩm
-                                xhttp.open("GET", "<?php echo SITEURL; ?>add-to-cart.php?spham_id=" + productId, true);
-                                xhttp.send();
-
-                                // Ngăn chặn hành động mặc định của thẻ <a>
-                                return false;
-                            }
-                        </script>
 
                     </div>
                 </div>
@@ -193,9 +162,9 @@ if (isset($_SESSION['dat_hang'])) {
     </div>
 
     <p class="text-center">
-        <a href="<?php echo SITEURL; ?>agricultural.php">Xem thêm sản phẩm.</a>
+        <a href="<?php echo SITEURL; ?>guest/agricultural.php">Xem thêm sản phẩm.</a>
     </p>
 </section>
 <!-- fOOD Menu Section Ends Here -->
 
-<?php include('partials-font/footer.php'); ?>
+<?php include('partials/footer.php'); ?>

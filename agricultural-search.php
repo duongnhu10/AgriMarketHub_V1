@@ -28,7 +28,7 @@
         //SQL Query to Get foods based on search keyword
         //$search = burger'; DROP database name;
         //"SELECT * FROM san_pham WHERE ten_san_pham LIKE '%$burger'%' OR mo_ta LIKE '%$burger%'";
-        $sql = "SELECT * FROM san_pham WHERE ten_san_pham LIKE '%$search%' OR mo_ta LIKE '%$search%'";
+        $sql = "SELECT * FROM san_pham WHERE ten_san_pham LIKE '%$search%'";
 
         //Execute the Query
         $res = mysqli_query($conn, $sql);
@@ -69,21 +69,51 @@
                         <h4><?php echo $ten_san_pham; ?></h4>
                         <p class="food-price">
                             <?php
+
                             if ($gia_khuyen_mai != 0) {
-                                echo "<span class='red'>Khuyến mãi: </span>";
-                                $gia = $gia - $gia_khuyen_mai * 0.01 * $gia;
-                                echo $gia;
+                                echo "<i style='text-decoration-line: line-through;'>" . str_replace(',', ' ', number_format($gia)) . " VND <br></i>";
+                                $gia_km = $gia - $gia_khuyen_mai * 0.01 * $gia;
+                                echo "<i class='red'>" . str_replace(',', ' ', number_format($gia_km)) . " VND</i>";
                             } else {
-                                echo $gia;
+                                echo "<i>" . str_replace(',', ' ', number_format($gia)) . " VND <br></i>";
                             }
-                            ?>VND
+
+                            ?>
                         </p>
                         <p class="food-detail">
                             <?php echo $mo_ta; ?>
                         </p>
                         <br>
 
-                        <a href="order.php" class="btn btn-primary">Đặt hàng</a>
+                        <?php
+                        $so = 1;
+                        ?>
+
+                        <a href="<?php echo SITEURL; ?>order.php?spham_id=<?php echo $id; ?>&so=<?php echo $so; ?>" class="btn btn-primary">Đặt hàng</a>
+
+                        <a href="#" onclick="addToCart(<?php echo $id; ?>)" class="btn btn-primary">Thêm vào giỏ hàng</a>
+
+                        <script>
+                            function addToCart(productId) {
+                                // Tạo một yêu cầu XMLHttpRequest
+                                var xhttp = new XMLHttpRequest();
+
+                                // Thiết lập hàm xử lý sự kiện khi yêu cầu hoàn thành
+                                xhttp.onreadystatechange = function() {
+                                    if (this.readyState == 4 && this.status == 200) {
+                                        // Xử lý phản hồi từ máy chủ (nếu cần)
+                                        alert("Đã thêm sản phẩm vào giỏ hàng!");
+                                    }
+                                };
+
+                                // Tạo một yêu cầu GET đến trang add-to-cart.php với id sản phẩm
+                                xhttp.open("GET", "<?php echo SITEURL; ?>add-to-cart.php?spham_id=" + productId, true);
+                                xhttp.send();
+
+                                // Ngăn chặn hành động mặc định của thẻ <a>
+                                return false;
+                            }
+                        </script>
                     </div>
                 </div>
         <?php
