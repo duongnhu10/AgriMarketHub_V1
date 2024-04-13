@@ -60,11 +60,26 @@ $count = mysqli_num_rows($res);
 
 
                     <span class="dropdown">
-                        <li><a class="dropbtn"><i class="fas fa-user fa-lg"></i></a></li>
+                        <li><a class="dropbtn">
+                                <?php
+                                $sql = "SELECT anh FROM khach_hang WHERE ten_nguoi_dung='" . $_SESSION['user'] . "'";
+                                $res = mysqli_query($conn, $sql);
+
+                                $row = mysqli_fetch_assoc($res);
+                                $anh = $row['anh'];
+                                if ($anh != "") {
+                                    echo "<img src='" . SITEURL . "images/avatar/$anh' style='max-width: 30px; max-height: 30px; border-radius: 50%;'>";
+                                } else {
+                                    echo "<i class='fas fa-user fa-lg'></i>";
+                                }
+
+
+                                ?> </a>
+                        </li>
 
                         <div id="myDropdown" class="dropdown-content">
 
-                            <li><a href="<?php echo SITEURL; ?>infor.php?session_user=<?php echo $_SESSION['user']; ?>">THÔNG TIN</a></li>
+                            <li><a href="<?php echo SITEURL; ?>infor.php?session_user=<?php echo $_SESSION['user']; ?>">THÔNG TIN <i style="font-size: 5px;" class="fas fa-question-circle fa-sm"></i></a></li>
 
                             <li> <a href=" <?php echo SITEURL; ?>logout.php">
                                     ĐĂNG XUẤT
