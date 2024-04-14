@@ -1,4 +1,22 @@
-<?php include('partials-font/menu.php'); ?>
+<?php include('partials-font/menu.php');
+ob_start();
+$session_user = ""; // Khởi tạo biến session_user
+
+$id_us = "";
+
+if (isset($_GET['session_user'])) {
+    $session_user = $_GET['session_user']; // Lấy giá trị session_user từ URL nếu tồn tại
+}
+$sql_s = "SELECT * FROM khach_hang WHERE ten_nguoi_dung='$session_user'";
+$res_s = mysqli_query($conn, $sql_s);
+$row_s = mysqli_fetch_assoc($res_s);
+$count_s = mysqli_num_rows($res_s);
+if ($count_s == 1) {
+    //Have data
+    $id_us = $row_s['id'];
+} else {
+    //No data
+} ?>
 
 <!-- fOOD sEARCH Section Starts Here -->
 <section class="food-search text-center">
@@ -104,6 +122,7 @@ if (isset($_SESSION['dat_hang'])) {
                 $id = $row['id'];
                 $ten_san_pham = $row['ten_san_pham'];
                 $gia = $row['gia'];
+                $gia_dn = $row['gia_dn'];
                 $gia_khuyen_mai = $row['gia_khuyen_mai'];
                 $mo_ta = $row['mo_ta'];
                 $anh = $row['anh'];
@@ -130,16 +149,35 @@ if (isset($_SESSION['dat_hang'])) {
                         <h4><?php echo $ten_san_pham; ?></h4>
                         <p class="food-price">
                             <?php
+                            // $doanh_nghiep = 0;
 
-                            if ($gia_khuyen_mai != 0) {
-                                echo "<i style='text-decoration-line: line-through;'>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
-                                $gia_km = $gia - $gia_khuyen_mai * 0.01 * $gia;
-                                echo "<i class='red'>" . str_replace(',', ' ', number_format($gia_km)) . " VND/Kg</i>";
+                            $sql_dn = "SELECT * FROM khach_hang WHERE id=$id_us";
+                            $res_dn = mysqli_query($conn, $sql_dn);
+                            if ($res_dn == true) {
+                                //Thành công
+                                $row_dn = mysqli_fetch_assoc($res_dn);
+                                $doanh_nghiep = $row_dn['doanh_nghiep'];
                             } else {
-                                echo "<i>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
+                                //Kết nối thất bại
                             }
+
+                            if ($doanh_nghiep == 1) {
+                                //Hiển thị giá doanh nghiệp
+                                echo "<i class='fas fa-fire blinking-icon'></i>";
+                                echo "<i> " . str_replace(',', ' ', number_format($gia_dn)) . " VND/Kg <br></i>";
+                            } else {
+                                //Hiển thị giá người dùng không phải doanh nghiệp
+                                if ($gia_khuyen_mai != 0) {
+                                    echo "<i style='text-decoration-line: line-through;'>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
+                                    $gia_km = $gia - $gia_khuyen_mai * 0.01 * $gia;
+                                    echo "<i class='red'>" . str_replace(',', ' ', number_format($gia_km)) . " VND/Kg</i>";
+                                } else {
+                                    echo "<i>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
+                                }
+                            }
+
                             ?>
-                            <!-- <i class="fas fa-fire blinking-icon"></i> -->
+
                         </p>
                         <p class="food-detail">
                             <?php echo $mo_ta; ?>
@@ -197,4 +235,5 @@ if (isset($_SESSION['dat_hang'])) {
 </section>
 <!-- fOOD Menu Section Ends Here -->
 
-<?php include('partials-font/footer.php'); ?>
+<?php include('partials-font/footer.php');
+ob_end_flush(); ?>

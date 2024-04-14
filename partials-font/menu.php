@@ -81,15 +81,20 @@ $count = mysqli_num_rows($res);
                     <span class="dropdown">
                         <li><a class="dropbtn">
                                 <?php
-                                $sql = "SELECT anh FROM khach_hang WHERE ten_nguoi_dung='" . $_SESSION['user'] . "'";
+                                $sql = "SELECT * FROM khach_hang WHERE ten_nguoi_dung='" . $_SESSION['user'] . "'";
                                 $res = mysqli_query($conn, $sql);
 
                                 $row = mysqli_fetch_assoc($res);
                                 $anh = $row['anh'];
+                                $doanh_nghiep = $row['doanh_nghiep'];
                                 if ($anh != "") {
-                                    echo "<img src='" . SITEURL . "images/avatar/$anh' style='max-width: 30px; max-height: 30px; border-radius: 50%;'>";
+                                    if ($doanh_nghiep == 1) {
+                                        echo "<img src='" . SITEURL . "images/avatar/$anh' style='max-width: 50px; max-height: 50px; border-radius: 50%; border: 10px solid yellow;'>";
+                                    } else {
+                                        echo "<img src='" . SITEURL . "images/avatar/$anh' style='max-width: 50px; max-height: 50px; border-radius: 50%;'>";
+                                    }
                                 } else {
-                                    echo "<i class='fas fa-user fa-lg'></i>";
+                                    echo "<i class='fas fa-user fa-lg' style='max-width: 50px; max-height: 50px; ></i>";
                                 }
 
 

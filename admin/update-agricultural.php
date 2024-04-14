@@ -20,6 +20,7 @@ if (isset($_GET['id'])) {
     $mo_ta = $row2['mo_ta'];
     $gia_goc = $row2['gia_goc'];
     $gia = $row2['gia'];
+    $gia_dn = $row2['gia_dn'];
     $gia_khuyen_mai = $row2['gia_khuyen_mai'];
     $current_image = $row2['anh'];
     $loai_san_pham = $row2['loai_id'];
@@ -55,16 +56,23 @@ if (isset($_GET['id'])) {
                 </tr>
 
                 <tr>
-                    <td>Giá gốc:</td>
+                    <td>Giá gốc/Kg:</td>
                     <td>
                         <input type="number" name="gia_goc" value="<?php echo $gia_goc; ?>">
                     </td>
                 </tr>
 
                 <tr>
-                    <td>Giá hiện tại:</td>
+                    <td>Giá hiện tại/Kg:</td>
                     <td>
                         <input type="number" name="gia" value="<?php echo $gia; ?>">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Giá doanh nghiệp/Kg:</td>
+                    <td>
+                        <input type="number" name="gia_dn" value="<?php echo $gia_dn; ?>">
                     </td>
                 </tr>
 
@@ -184,6 +192,7 @@ if (isset($_GET['id'])) {
             $mo_ta = $_POST['mo_ta'];
             $gia_goc = $_POST['gia_goc']; //Giá nhập
             $gia = $_POST['gia']; //Giá hiện tại
+            $gia_dn = $_POST['gia_dn']; //Giá bán cho doanh nghiệp
             $gia_khuyen_mai = $_POST['gia_khuyen_mai']; //Phần trăm khuyến mãi
             $current_image = $_POST['current_image'];
             $loai_san_pham = $_POST['loai_san_pham'];
@@ -263,6 +272,7 @@ if (isset($_GET['id'])) {
             mo_ta = '$mo_ta',
             gia_goc = $gia_goc,
             gia = $gia,
+            gia_dn = $gia_dn,
             gia_khuyen_mai = $gia_khuyen_mai,
             anh = '$ten_anh',
             loai_id = '$loai_san_pham',

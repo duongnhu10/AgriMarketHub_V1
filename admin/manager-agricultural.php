@@ -47,8 +47,9 @@
             <tr>
                 <th>STT</th>
                 <th>Tên sản phẩm</th>
-                <th>Giá nhập</th>
+                <th>Giá nhập/Kg</th>
                 <th>Giá bán/kg</th>
+                <th>Giá doanh nghiệp/kg</th>
                 <th>Khuyến mãi</th>
                 <th>Hình ảnh</th>
                 <th>Trạng thái</th>
@@ -76,6 +77,7 @@
                     $ten_san_pham = $row['ten_san_pham'];
                     $gia_goc = $row['gia_goc'];
                     $gia = $row['gia'];
+                    $gia_dn = $row['gia_dn'];
                     $gia_khuyen_mai = $row['gia_khuyen_mai'];
                     $anh = $row['anh'];
                     $trang_thai = $row['trang_thai'];
@@ -86,6 +88,7 @@
                         <td><?php echo $ten_san_pham; ?></td>
                         <td><?php echo str_replace(',', ' ', number_format($gia_goc)); ?> VND</td>
                         <td><?php echo str_replace(',', ' ', number_format($gia)); ?> VND</td>
+                        <td><?php echo str_replace(',', ' ', number_format($gia_dn)); ?> VND</td>
                         <td><?php echo $gia_khuyen_mai; ?>%</td>
                         <td>
                             <?php

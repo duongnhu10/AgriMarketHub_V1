@@ -34,7 +34,7 @@
                 </tr>
 
                 <tr>
-                    <td>Giá nhập:</td>
+                    <td>Giá nhập/Kg:</td>
                     <td>
                         <input type="number" name="gia_goc">
                     </td>
@@ -44,6 +44,13 @@
                     <td>Giá bán/kg:</td>
                     <td>
                         <input type="number" name="gia">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Giá doanh nghiệp/kg:</td>
+                    <td>
+                        <input type="number" name="gia_dn">
                     </td>
                 </tr>
 
@@ -135,6 +142,7 @@
             $mo_ta = $_POST['mo_ta'];
             $gia_goc = $_POST['gia_goc']; //Giá nhập
             $gia = $_POST['gia']; //Giá hiện tại
+            $gia_dn = $_POST['gia_dn'];
             $gia_khuyen_mai = $_POST['gia_khuyen_mai']; //Phần trăm khuyến mãi
             $loai_san_pham = $_POST['loai_san_pham'];
 
@@ -196,6 +204,7 @@
                 mo_ta = '$mo_ta',
                 gia_goc = $gia_goc,
                 gia = $gia,
+                gia_dn = $gia_dn,
                 gia_khuyen_mai = $gia_khuyen_mai,
                 anh = '$ten_anh',
                 loai_id = $loai_san_pham,

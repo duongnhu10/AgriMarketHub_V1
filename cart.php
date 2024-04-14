@@ -46,6 +46,7 @@ if ($res == true) {
             $id = $row['id'];
             $ten_san_pham = $row['ten_san_pham'];
             $gia = $row['gia'];
+            $gia_dn = $row['gia_dn'];
             $gia_khuyen_mai = $row['gia_khuyen_mai'];
             $anh = $row['anh'];
             $so_luong = $row['so_luong'];
@@ -71,16 +72,35 @@ if ($res == true) {
                 <h4><?php echo $ten_san_pham; ?></h4>
                 <p class="food-price">
                     <?php
+                    // $doanh_nghiep = 0;
 
-                    if ($gia_khuyen_mai != 0) {
-                        echo "<i style='text-decoration-line: line-through;'>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
-                        $gia_km = $gia - $gia_khuyen_mai * 0.01 * $gia;
-                        echo "<i class='red'>" . str_replace(',', ' ', number_format($gia_km)) . " VND/Kg</i>";
+                    $sql_dn = "SELECT * FROM khach_hang WHERE id=$id_us";
+                    $res_dn = mysqli_query($conn, $sql_dn);
+                    if ($res_dn == true) {
+                        //Thành công
+                        $row_dn = mysqli_fetch_assoc($res_dn);
+                        $doanh_nghiep = $row_dn['doanh_nghiep'];
                     } else {
-                        echo "<i>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
+                        //Kết nối thất bại
+                    }
+
+                    if ($doanh_nghiep == 1) {
+                        //Hiển thị giá doanh nghiệp
+                        echo "<i class='fas fa-fire blinking-icon'></i>";
+                        echo "<i> " . str_replace(',', ' ', number_format($gia_dn)) . " VND/Kg <br></i>";
+                    } else {
+                        //Hiển thị giá người dùng không phải doanh nghiệp
+                        if ($gia_khuyen_mai != 0) {
+                            echo "<i style='text-decoration-line: line-through;'>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
+                            $gia_km = $gia - $gia_khuyen_mai * 0.01 * $gia;
+                            echo "<i class='red'>" . str_replace(',', ' ', number_format($gia_km)) . " VND/Kg</i>";
+                        } else {
+                            echo "<i>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
+                        }
                     }
 
                     ?>
+
                 </p>
                 <span class="order-label">Số lượng: </span>
                 <?php echo $so_luong; ?>

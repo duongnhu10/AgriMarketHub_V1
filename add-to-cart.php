@@ -38,6 +38,7 @@ if (isset($_GET['spham_id'])) {
         $row = mysqli_fetch_assoc($res);
         $ten_san_pham = $row['ten_san_pham'];
         $gia = $row['gia'];
+        $gia_dn = $row['gia_dn'];
         $gia_khuyen_mai = $row['gia_khuyen_mai'];
         $anh = $row['anh'];
 
@@ -55,6 +56,7 @@ if (isset($_GET['spham_id'])) {
             $sql_insert = "INSERT INTO gio_hang SET 
                         ten_san_pham = '$ten_san_pham',
                         gia = $gia,
+                        gia_dn = $gia_dn,
                         gia_khuyen_mai = $gia_khuyen_mai,
                         anh = '$anh',
                         so_luong = 1,

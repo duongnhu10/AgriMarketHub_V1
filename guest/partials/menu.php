@@ -39,7 +39,7 @@
                     </li>
 
                     <span class="dropdown">
-                        <li><a class="dropbtn"><i class="fas fa-user fa-lg"></i></a></li>
+                        <li><a class="dropbtn"><i class="fas fa-user fa-lg "></i></a></li>
 
                         <div id="myDropdown" class="dropdown-content">
 
