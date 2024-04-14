@@ -4,7 +4,7 @@
 <section class="food-search text-center">
     <div class="container">
 
-        <form action="<?php echo SITEURL ?>agricultural-search.php" method="POST">
+        <form action="<?php echo SITEURL ?>agricultural-search.php?session_user=<?php echo $_SESSION['user']; ?>" method="POST">
             <input type="search" name="search" placeholder="Tìm kiếm sản phẩm.." required>
             <input type="submit" name="submit" value="Tìm kiếm" class="btn btn-primary">
         </form>
@@ -69,11 +69,11 @@
                             <?php
 
                             if ($gia_khuyen_mai != 0) {
-                                echo "<i style='text-decoration-line: line-through;'>" . str_replace(',', ' ', number_format($gia)) . " VND <br></i>";
+                                echo "<i style='text-decoration-line: line-through;'>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
                                 $gia_km = $gia - $gia_khuyen_mai * 0.01 * $gia;
-                                echo "<i class='red'>" . str_replace(',', ' ', number_format($gia_km)) . " VND</i>";
+                                echo "<i class='red'>" . str_replace(',', ' ', number_format($gia_km)) . " VND/Kg</i>";
                             } else {
-                                echo "<i>" . str_replace(',', ' ', number_format($gia)) . " VND <br></i>";
+                                echo "<i>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
                             }
 
                             ?>
@@ -87,7 +87,7 @@
                         $so = 1;
                         ?>
 
-                        <a href="<?php echo SITEURL; ?>order.php?spham_id=<?php echo $id; ?>&so=<?php echo $so; ?>" class="btn btn-primary">Đặt hàng</a>
+                        <a href="<?php echo SITEURL; ?>order.php?spham_id=<?php echo $id; ?>&so=<?php echo $so; ?>&session_user=<?php echo $_SESSION['user']; ?>" class="btn btn-primary">Đặt hàng</a>
                         <a href="#" onclick="addToCart(<?php echo $id; ?>)" class="btn btn-primary">Thêm vào giỏ hàng</a>
 
                         <script>
@@ -103,8 +103,8 @@
                                     }
                                 };
 
-                                // Tạo một yêu cầu GET đến trang add-to-cart.php với id sản phẩm
-                                xhttp.open("GET", "<?php echo SITEURL; ?>add-to-cart.php?spham_id=" + productId, true);
+                                // Tạo một yêu cầu GET đến trang add-to-cart.php với id sản phẩm và session user
+                                xhttp.open("GET", "<?php echo SITEURL; ?>add-to-cart.php?spham_id=" + productId + "&session_user=<?php echo $_SESSION['user']; ?>", true);
                                 xhttp.send();
 
                                 // Ngăn chặn hành động mặc định của thẻ <a>

@@ -1,13 +1,30 @@
 <?php include('config/constants.php');
-include('login-check.php') ?>
+include('login-check.php');
+$session_user = ""; // Khởi tạo biến session_user
+
+if (isset($_GET['session_user'])) {
+    $session_user = $_GET['session_user']; // Lấy giá trị session_user từ URL nếu tồn tại
+}
+$sql_s = "SELECT * FROM khach_hang WHERE ten_nguoi_dung='$session_user'";
+$res_s = mysqli_query($conn, $sql_s);
+$row_s = mysqli_fetch_assoc($res_s);
+$count_s = mysqli_num_rows($res_s);
+if ($count_s == 1) {
+    //Have data
+    $id_us = $row_s['id'];
+} else {
+    //No data
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 
 <?php
-$sql = "SELECT * FROM gio_hang";
+$sql = "SELECT * FROM gio_hang WHERE user_id=$id_us";
 $res = mysqli_query($conn, $sql);
+
 $count = mysqli_num_rows($res);
 ?>
 
@@ -27,7 +44,7 @@ $count = mysqli_num_rows($res);
     <section class="navbar">
         <div class="container">
             <div class="logo">
-                <a href="<?php echo SITEURL; ?>index.php" title="Logo">
+                <a href="<?php echo SITEURL; ?>index.php?session_user=<?php echo $_SESSION['user']; ?>" title="Logo">
                     <img height="60px" width="20px" src="images/index/logo1.png" alt="Restaurant Logo" class="img-responsive">
                 </a>
             </div>
@@ -35,24 +52,26 @@ $count = mysqli_num_rows($res);
             <div class="menu text-right">
                 <ul>
                     <li>
-                        <a href="<?php echo SITEURL; ?>index.php">TRANG CHỦ</a>
+                        <a href="<?php echo SITEURL; ?>index.php?session_user=<?php echo $_SESSION['user']; ?>">TRANG CHỦ</a>
                     </li>
                     <li>
-                        <a href="<?php echo SITEURL; ?>categories.php">LOẠI SẢN PHẨM</a>
+                        <a href="<?php echo SITEURL; ?>categories.php?session_user=<?php echo $_SESSION['user']; ?>">LOẠI SẢN PHẨM</a>
                     </li>
                     <li>
-                        <a href="<?php echo SITEURL; ?>agricultural.php">SẢN PHẨM</a>
+                        <a href="<?php echo SITEURL; ?>agricultural.php?session_user=<?php echo $_SESSION['user']; ?>">SẢN PHẨM</a>
                     </li>
                     <li>
-                        <a href="<?php echo SITEURL; ?>tracking-order.php">ĐƠN HÀNG</a>
+
+                        <a href="<?php echo SITEURL; ?>tracking-order.php?session_user=<?php echo $_SESSION['user']; ?>">ĐƠN HÀNG</a>
                     </li>
                     <li>
-                        <a href="<?php echo SITEURL; ?>contact.php">LIÊN HỆ</a>
+
+                        <a href="<?php echo SITEURL; ?>contact.php?session_user=<?php echo $_SESSION['user']; ?>">LIÊN HỆ</a>
                     </li>
 
 
                     <li>
-                        <a href="<?php echo SITEURL; ?>cart.php" class="cart-icon">
+                        <a href="<?php echo SITEURL; ?>cart.php?session_user=<?php echo $_SESSION['user']; ?>" class="cart-icon">
                             <i class="fas fa-shopping-cart"></i>
                             <span class="cart-quantity"><?php echo $count; ?></span>
                         </a>
@@ -81,9 +100,14 @@ $count = mysqli_num_rows($res);
 
                             <li><a href="<?php echo SITEURL; ?>infor.php?session_user=<?php echo $_SESSION['user']; ?>">THÔNG TIN <i style="font-size: 5px;" class="fas fa-question-circle fa-sm"></i></a></li>
 
+                            <li> <a href=" <?php echo SITEURL; ?>update-password.php?session_user=<?php echo $_SESSION['user']; ?>">
+                                    ĐỔI M KHẨU
+                                </a></li>
+
                             <li> <a href=" <?php echo SITEURL; ?>logout.php">
                                     ĐĂNG XUẤT
                                 </a></li>
+
 
                         </div>
                     </span>

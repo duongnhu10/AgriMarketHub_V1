@@ -39,6 +39,8 @@
             <input type="submit" name="submit" value="Đăng nhập" class="btn-primary submit">
 
             <br><br>
+            <p type="text" name="dang_ky">Nếu bạn chưa có tài khoản <a href="<?php echo SITEURL . 'guest/sign-up.php' ?>">Đăng Ký</a></p>
+            <br>
         </form>
         <!-- Login form ends here -->
 
@@ -79,7 +81,7 @@ if (isset($_POST["submit"])) {
         $loggedIn = true; // Đặt biến đăng nhập thành true
 
         //Redirect to home page
-        header('location: ' . SITEURL);
+        header('Location: ' . SITEURL . '?session_user=' . $_SESSION['user']);
     } else {
         //User not available and login fail
         $_SESSION['Login']  =  "<div class='error text-center'>Tên người dùng hoặc mật khẩu không đúng.</div>";

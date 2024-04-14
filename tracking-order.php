@@ -1,4 +1,21 @@
-<?php include('partials-font/menu.php'); ?>
+<?php include('partials-font/menu.php');
+$session_user = ""; // Khởi tạo biến session_user
+
+$id_us = "";
+
+if (isset($_GET['session_user'])) {
+    $session_user = $_GET['session_user']; // Lấy giá trị session_user từ URL nếu tồn tại
+}
+$sql_s = "SELECT * FROM khach_hang WHERE ten_nguoi_dung='$session_user'";
+$res_s = mysqli_query($conn, $sql_s);
+$row_s = mysqli_fetch_assoc($res_s);
+$count_s = mysqli_num_rows($res_s);
+if ($count_s == 1) {
+    //Have data
+    $id_us = $row_s['id'];
+} else {
+    //No data
+} ?>
 
 <?php
 if (isset($_SESSION['delete'])) {
@@ -19,7 +36,7 @@ if (isset($_SESSION['delete'])) {
                     <th>STT</th>
                     <th>Tên sản phẩm</th>
                     <th>Giá</th>
-                    <th>Số lượng</th>
+                    <th>Số lượng/kg</th>
                     <th>Tổng tiền</th>
                     <th>Ngày đặt</th>
                     <th>Trạng thái</th>
@@ -34,7 +51,7 @@ if (isset($_SESSION['delete'])) {
                 <!-- Đoạn mã PHP để hiển thị dữ liệu từ cơ sở dữ liệu vào bảng -->
                 <?php
                 $sn = 1;
-                $sql = "SELECT * FROM don_hang ORDER BY id DESC";  //Lấy thông tin
+                $sql = "SELECT * FROM don_hang WHERE user_id=$id_us ORDER BY id DESC";  //Lấy thông tin
                 $res = mysqli_query($conn, $sql); //Kết nối
                 $count = mysqli_num_rows($res); //Đếm số dòng
                 if ($count > 0) {
@@ -60,7 +77,8 @@ if (isset($_SESSION['delete'])) {
                         echo "<td>" . $row['khach_sdt'] . "</td>";
                         echo "<td>" . $row['khach_email'] . "</td>";
                         echo "<td>" . $row['khach_diachi'] . "</td>";
-                        echo "<td><a href='" . SITEURL . "delete-order.php?order-id=" . $row['id'] . "' class='btn btn-primary'>Hủy đơn hàng</a></td>";
+                        echo "<td><a href='" . SITEURL . "delete-order.php?order-id=" . $row['id'] . "&session_user=" . $_SESSION['user'] . "' class='btn btn-primary'>Hủy đơn hàng</a></td>";
+
 
 
                         echo "</tr>";

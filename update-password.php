@@ -1,15 +1,28 @@
-<?php include("./partials/menu.php") ?>
+<?php include("partials-font/menu.php");
+ob_start();
+$session_user = ""; // Khởi tạo biến session_user
 
-<div class="main-content">
-    <div class="wrapper">
+$id_us = "";
+
+if (isset($_GET['session_user'])) {
+    $session_user = $_GET['session_user']; // Lấy giá trị session_user từ URL nếu tồn tại
+}
+$sql_s = "SELECT * FROM khach_hang WHERE ten_nguoi_dung='$session_user'";
+$res_s = mysqli_query($conn, $sql_s);
+$row_s = mysqli_fetch_assoc($res_s);
+$count_s = mysqli_num_rows($res_s);
+if ($count_s == 1) {
+    //Have data
+    $id_us = $row_s['id'];
+} else {
+    //No data
+}
+?>
+
+<div class="food-menu">
+    <div class="container">
         <h1>ĐỔI MẬT KHẨU</h1>
         <br><br>
-
-        <?php
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-        }
-        ?>
 
         <!-- Create form  -->
         <form action="" method="POST">
@@ -38,7 +51,7 @@
 
                 <tr>
                     <td colspan="2">
-                        <input type="hidden" name="id" value="<?php echo $id; ?>">
+                        <!-- <input type="hidden" name="id" value="<?php echo $id; ?>"> -->
                         <input type="submit" name="submit" value="Thay đổi mật khẩu" class="btn-secondary">
                     </td>
                 </tr>
@@ -55,13 +68,13 @@ if (isset($_POST['submit'])) {
     //echo "Clicked"
 
     //1. Get the data from form
-    $id = $_POST['id'];
+
     $current_password = md5($_POST['current_password']);
     $new_password = md5($_POST['new_password']);
     $confirm_password = md5($_POST['confirm_password']);
 
     //2. Check whether the user with current ID and Current Password Exists or Not
-    $sql = "SELECT * FROM admin WHERE id=$id AND mat_khau = '$current_password'";
+    $sql = "SELECT * FROM khach_hang WHERE id=$id_us AND mat_khau = '$current_password'";
 
     //Execute the query
     $res = mysqli_query($conn, $sql);
@@ -80,9 +93,9 @@ if (isset($_POST['submit'])) {
             if ($new_password == $confirm_password) {
                 //Update the password
                 //echo "Password Match";
-                $sql2 = "UPDATE admin SET 
+                $sql2 = "UPDATE khach_hang SET 
                         mat_khau = '$new_password'
-                        WHERE id=$id";
+                        WHERE id=$id_us";
 
                 //Execute the Query
                 $res2 = mysqli_query($conn, $sql2);
@@ -93,29 +106,30 @@ if (isset($_POST['submit'])) {
                     //Redirect to the manager-admin page with success message
                     $_SESSION['change-pwd'] = "<div class='success'>Mật khẩu thay đổi thành công.</div>";
                     //Redirect the User
-                    header("location:" . SITEURL . "/admin/manager-admin.php");
+                    header('location:' . SITEURL . 'infor.php?session_user=' . $_SESSION['user']);
                 } else {
                     //Display error message with error message
                     //Redirect to the manager-admin page with error message
                     $_SESSION['change-pwd'] = "<div class='error'>Thay đổi mật khẩu thất bại.</div>";
                     //Redirect the User
-                    header("location:" . SITEURL . "/admin/manager-admin.php");
+                    header('location:' . SITEURL . 'infor.php?session_user=' . $_SESSION['user']);
                 }
             } else {
                 //Redirect to the manager-admin page with error message
                 $_SESSION['pwd-not-match'] = "<div class='error'>Mật khẩu mới không trùng khớp.</div>";
                 //Redirect the User
-                header("location:" . SITEURL . "/admin/manager-admin.php");
+                header('location:' . SITEURL . 'infor.php?session_user=' . $_SESSION['user']);
             }
         } else {
             //User does not exist set message and redirect 
-            $_SESSION['user-not-found'] = "<div class='error'>Không tìm thấy người dùng.</div>";
+            $_SESSION['user-not-found'] = "<div class='error'>Mật khẩu hiện tại không đúng.</div>";
             //Redirect the User
-            header("location:" . SITEURL . "/admin/manager-admin.php");
+            header('location:' . SITEURL . 'infor.php?session_user=' . $_SESSION['user']);
         }
     }
 }
 
 ?>
 
-<?php include("./partials/footer.php") ?>
+<?php include("partials-font/footer.php");
+ob_end_flush(); ?>

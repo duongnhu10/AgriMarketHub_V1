@@ -21,7 +21,7 @@
                 $ten_loai = $row['ten_loai'];
                 $anh = $row['anh'];
         ?>
-                <a href="<?php echo SITEURL; ?>category-agricultural.php?loai_id=<?php echo $id; ?>">
+                <a href="<?php echo SITEURL; ?>category-agricultural.php?loai_id=<?php echo $id; ?>&session_user=<?php echo $_SESSION['user']; ?>">
                     <div class="box-3 float-container">
                         <?php
                         //Check whether Image is available or not

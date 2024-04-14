@@ -13,11 +13,16 @@
 </section>
 <!-- fOOD sEARCH Section Ends Here -->
 
+<?php if (isset($_SESSION['delete'])) {
+    echo $_SESSION['delete'];
+    unset($_SESSION['delete']);
+}
 ?>
 
 <!-- CAtegories Section Starts Here -->
 <section class="categories">
     <div class="container">
+
         <h2 class="text-center">LOẠI SẢN PHẨM</h2>
 
         <?php
@@ -121,11 +126,11 @@
                             <?php
 
                             if ($gia_khuyen_mai != 0) {
-                                echo "<i style='text-decoration-line: line-through;'>" . str_replace(',', ' ', number_format($gia)) . " VND <br></i>";
+                                echo "<i style='text-decoration-line: line-through;'>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
                                 $gia_km = $gia - $gia_khuyen_mai * 0.01 * $gia;
-                                echo "<i class='red'>" . str_replace(',', ' ', number_format($gia_km)) . " VND</i>";
+                                echo "<i class='red'>" . str_replace(',', ' ', number_format($gia_km)) . " VND/Kg</i>";
                             } else {
-                                echo "<i>" . str_replace(',', ' ', number_format($gia)) . " VND <br></i>";
+                                echo "<i>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
                             }
 
                             ?>

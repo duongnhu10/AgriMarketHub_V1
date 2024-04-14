@@ -109,7 +109,7 @@ if (isset($_POST['submit'])) {
             }
         } else {
             //User does not exist set message and redirect 
-            $_SESSION['user-not-found'] = "<div class='error'>Không tìm thấy người dùng.</div>";
+            $_SESSION['user-not-found'] = "<div class='error'>Mật khẩu hiện tại không đúng.</div>";
             //Redirect the User
             header("location:" . SITEURL . "/admin/manager-admin.php");
         }

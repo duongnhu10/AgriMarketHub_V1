@@ -1,5 +1,6 @@
 <?php include('partials-font/menu.php');
-ob_start(); ?>
+ob_start();
+?>
 
 <?php
 if (isset($_SESSION['lien_he'])) {
@@ -72,11 +73,11 @@ if (isset($_SESSION['lien_he'])) {
             if ($res2 == true) {
                 //Query Executed and Order Saved
                 $_SESSION['lien_he'] = "<div class='success'>Đã gửi thông tin liên hệ thành công.</div>";
-                header('location:' . SITEURL . 'contact.php');
+                header('location:' . SITEURL . 'contact.php?session_user=' . $_SESSION['user']);
             } else {
                 //Failed to Save Order
                 $_SESSION['lien_he'] = "<div class='error'>Vui lòng thử lại sau.</div>";
-                header('location:' . SITEURL . 'contact.php');
+                header('location:' . SITEURL . 'contact.php?session_user=' . $_SESSION['user']);
             }
         }
         ?>

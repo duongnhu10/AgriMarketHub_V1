@@ -53,12 +53,12 @@ if ($res2 == true) {
     //Create a Session Variable to Display Message
     $_SESSION['delete'] = "<div class='success'>Hủy đơn hàng thành công.</div>";
     //Redirect Page to Manager Admin
-    header("location:" . SITEURL . "tracking-order.php");
+    header("location:" . SITEURL . "tracking-order.php?session_user=" . $_SESSION['user']);
 } else {
     //Failed to Delete Admin
     // echo "Failed to Delete Admin";
     //Create a Session Variable to Display Message
     $_SESSION['delete'] = "<div class='error'>Hủy đơn hàng thất bại.</div>";
     //Redirect Page to Manager Admin
-    header("location:" . SITEURL . "tracking-order.php");
+    header("location:" . SITEURL . "tracking-order.php?session_user=" . $_SESSION['user']);
 }

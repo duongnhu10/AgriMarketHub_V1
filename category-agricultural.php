@@ -18,7 +18,7 @@ if (isset($_GET['loai_id'])) {
 } else {
     //Category not passed
     //Redirect to Home page
-    header('location:' . SITEURL);
+    header('location:' . SITEURL . "?session_user=" . $_SESSION['user']);
 }
 ?>
 
@@ -84,11 +84,11 @@ if (isset($_GET['loai_id'])) {
                             <?php
 
                             if ($gia_khuyen_mai != 0) {
-                                echo "<i style='text-decoration-line: line-through;'>" . str_replace(',', ' ', number_format($gia)) . " VND <br></i>";
+                                echo "<i style='text-decoration-line: line-through;'>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
                                 $gia_km = $gia - $gia_khuyen_mai * 0.01 * $gia;
-                                echo "<i class='red'>" . str_replace(',', ' ', number_format($gia_km)) . " VND</i>";
+                                echo "<i class='red'>" . str_replace(',', ' ', number_format($gia_km)) . " VND/Kg</i>";
                             } else {
-                                echo "<i>" . str_replace(',', ' ', number_format($gia)) . " VND <br></i>";
+                                echo "<i>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
                             }
 
                             ?>
@@ -98,7 +98,12 @@ if (isset($_GET['loai_id'])) {
                         </p>
                         <br>
 
-                        <a href="<?php echo SITEURL; ?>order.php?spham_id=<?php echo $id; ?>" class="btn btn-primary">Đặt hàng</a>
+
+                        <?php
+                        $so = 1;
+                        ?>
+
+                        <a href="<?php echo SITEURL; ?>order.php?spham_id=<?php echo $id; ?>&so=<?php echo $so; ?>&session_user=<?php echo $_SESSION['user']; ?>" class="btn btn-primary">Đặt hàng</a>
                         <a href="#" onclick="addToCart(<?php echo $id; ?>)" class="btn btn-primary">Thêm vào giỏ hàng</a>
 
                         <script>
@@ -114,8 +119,8 @@ if (isset($_GET['loai_id'])) {
                                     }
                                 };
 
-                                // Tạo một yêu cầu GET đến trang add-to-cart.php với id sản phẩm
-                                xhttp.open("GET", "<?php echo SITEURL; ?>add-to-cart.php?spham_id=" + productId, true);
+                                // Tạo một yêu cầu GET đến trang add-to-cart.php với id sản phẩm và session user
+                                xhttp.open("GET", "<?php echo SITEURL; ?>add-to-cart.php?spham_id=" + productId + "&session_user=<?php echo $_SESSION['user']; ?>", true);
                                 xhttp.send();
 
                                 // Ngăn chặn hành động mặc định của thẻ <a>

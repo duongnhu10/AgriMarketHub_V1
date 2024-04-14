@@ -219,6 +219,7 @@ if (isset($_GET['id'])) {
 
                     //Finally upload the food image
                     $upload = move_uploaded_file($src_path, $dest_path);
+                    // sleep(1);
 
                     //Check whether image uplaoded or not
                     if ($upload == false) {

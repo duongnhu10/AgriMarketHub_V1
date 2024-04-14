@@ -1,5 +1,20 @@
 <?php include('partials-font/menu.php');
-ob_start(); ?>
+ob_start();
+$session_user = ""; // Khởi tạo biến session_user
+
+if (isset($_GET['session_user'])) {
+    $session_user = $_GET['session_user']; // Lấy giá trị session_user từ URL nếu tồn tại
+}
+$sql_s = "SELECT * FROM khach_hang WHERE ten_nguoi_dung='$session_user'";
+$res_s = mysqli_query($conn, $sql_s);
+$row_s = mysqli_fetch_assoc($res_s);
+$count_s = mysqli_num_rows($res_s);
+if ($count_s == 1) {
+    //Have data
+    $id_us = $row_s['id'];
+} else {
+    //No data
+} ?>
 
 <?php
 //Check whether food id is set or not
@@ -25,11 +40,11 @@ if (isset($_GET['spham_id']) && isset($_GET['so'])) {
     } else {
         //Food not available
         //Redirect to Home page
-        header('location:' . SITEURL);
+        header('location:' . SITEURL . "?session_user=" . $_SESSION['user']);
     }
 } else {
     //Redirect to homepage
-    header('location:' . SITEURL);
+    header('location:' . SITEURL . "?session_user=" . $_SESSION['user']);
 }
 ?>
 
@@ -68,15 +83,17 @@ if (isset($_GET['spham_id']) && isset($_GET['so'])) {
                         if ($gia_khuyen_mai != 0) {
                             echo "<span class='red'>Khuyến mãi: </span>";
                             $gia = $gia - $gia_khuyen_mai * 0.01 * $gia;
-                            echo "<i>" . str_replace(',', ' ', number_format($gia)) . " VND <br></i>";
+                            echo "<i>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
                         } else {
-                            echo "<i>" . str_replace(',', ' ', number_format($gia)) . " VND <br></i>";
+                            echo "<i>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
                         }
                         ?>
                     </p>
                     <input type="hidden" name="gia" value="<?php echo $gia; ?>">
 
-                    <div class="order-label">Số lượng</div>
+                    <div class="order-label">
+
+                    </div>
                     <?php
                     if ($so > 1) {
                         echo '<input type="number" name="so_luong" class="input-responsive" value="' . $so . '" required>';
@@ -142,7 +159,8 @@ if (isset($_GET['spham_id']) && isset($_GET['so'])) {
                 khach_ten = '$khach_ten',
                 khach_sdt = '$khach_sdt',
                 khach_email = '$khach_email',
-                khach_diachi = '$khach_diachi'
+                khach_diachi = '$khach_diachi',
+                user_id = $id_us
             ";
 
             // echo $sql2; die();
@@ -154,11 +172,11 @@ if (isset($_GET['spham_id']) && isset($_GET['so'])) {
             if ($res2 == true) {
                 //Query Executed and Order Saved
                 $_SESSION['dat_hang'] = "<div class='success text-center'>Đặt hàng thành công.</div>";
-                header('location:' . SITEURL);
+                header('location:' . SITEURL . '?session_user=' . $_SESSION['user']);
             } else {
                 //Failed to Save Order
                 $_SESSION['dat_hang'] = "<div class='error  text-center'>Đặt hàng thất bại.</div>";
-                header('location:' . SITEURL);
+                header('location:' . SITEURL . '?session_user=' . $_SESSION['user']);
             }
         }
         ?>

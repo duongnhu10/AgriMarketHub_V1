@@ -34,21 +34,21 @@
                 </tr>
 
                 <tr>
-                    <td>Giá gốc:</td>
+                    <td>Giá nhập:</td>
                     <td>
                         <input type="number" name="gia_goc">
                     </td>
                 </tr>
 
                 <tr>
-                    <td>Giá hiện tại:</td>
+                    <td>Giá bán/kg:</td>
                     <td>
                         <input type="number" name="gia">
                     </td>
                 </tr>
 
                 <tr>
-                    <td>Giá khuyến mãi:</td>
+                    <td>Khuyến mãi:</td>
                     <td>
                         <input type="number" name="gia_khuyen_mai">
                     </td>

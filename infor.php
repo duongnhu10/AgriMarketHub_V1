@@ -36,6 +36,26 @@ if (isset($_GET['session_user'])) {
             unset($_SESSION['no-user-found']);
         }
 
+        if (isset($_SESSION['delete'])) {
+            echo $_SESSION['delete'];
+            unset($_SESSION['delete']);
+        }
+
+        if (isset($_SESSION['pwd-not-match'])) {
+            echo $_SESSION['pwd-not-match'];
+            unset($_SESSION['pwd-not-match']);
+        }
+
+        if (isset($_SESSION['user-not-found'])) {
+            echo $_SESSION['user-not-found'];
+            unset($_SESSION['user-not-found']);
+        }
+
+        if (isset($_SESSION['change-pwd'])) {
+            echo $_SESSION['change-pwd'];
+            unset($_SESSION['change-pwd']);
+        }
+
         ?>
         <br>
         <table class="tbl-full">
@@ -99,7 +119,7 @@ if (isset($_GET['session_user'])) {
 
                         <td>
                             <a href="<?php echo SITEURL; ?>update-infor.php?session_user=<?php echo $_SESSION['user']; ?>" class="btn-secondary">Cập nhật thông tin</a>
-                            <a href="" class="btn-primary">Xóa tài khoản</a>
+                            <a href="<?php echo SITEURL; ?>delete-acc.php?session_user=<?php echo $_SESSION['user']; ?>" class="btn-primary">Xóa tài khoản</a>
                         </td>
                     </tr>
 

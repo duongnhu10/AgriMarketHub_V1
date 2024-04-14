@@ -19,11 +19,11 @@ if ($res == true) {
     // echo "Admin Deleted";
     //Create a Session Variable to Display Message
     $_SESSION['delete'] = "<div class='success'>Xóa sản phẩm thành công.</div>";
-    header('location:' . SITEURL . 'cart.php');
+    header('location:' . SITEURL . 'cart.php?session_user=' . $_SESSION['user']);
 } else {
     //Failed to Delete Admin
     // echo "Failed to Delete Admin";
     //Create a Session Variable to Display Message
     $_SESSION['delete'] = "<div class='error'>Xóa sản phẩm thất bại.</div>";
-    header('location:' . SITEURL . 'cart.php');
+    header('location:' . SITEURL . 'cart.php?session_user=' . $_SESSION['user']);
 }
