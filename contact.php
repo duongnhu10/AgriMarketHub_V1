@@ -14,7 +14,7 @@ if (isset($_SESSION['lien_he'])) {
 <section class="food-menu">
     <div class="container">
 
-        <h2 class="text-center " style="color: black;">LIÊN HỆ</h2>
+        <h2 class="text-center " style="color: black;">PHẢN HỒI</h2>
 
         <form action="" method="POST" class="order">
 

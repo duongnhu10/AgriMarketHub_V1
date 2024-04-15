@@ -103,7 +103,7 @@ if ($res == true) {
 
                 </p>
                 <span class="order-label">Số lượng: </span>
-                <?php echo $so_luong; ?>
+                <input type="number" value="<?php echo $so_luong; ?>">
                 <br>
                 <br>
 

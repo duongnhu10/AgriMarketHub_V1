@@ -66,7 +66,7 @@ $count = mysqli_num_rows($res);
                     </li>
                     <li>
 
-                        <a href="<?php echo SITEURL; ?>contact.php?session_user=<?php echo $_SESSION['user']; ?>">LIÊN HỆ</a>
+                        <a href="<?php echo SITEURL; ?>contact.php?session_user=<?php echo $_SESSION['user']; ?>">PHẢN HỒI</a>
                     </li>
 
 
