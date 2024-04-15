@@ -43,8 +43,8 @@
 
                         <div id="myDropdown" class="dropdown-content">
 
-                            <li><a href="<?php echo SITEURL; ?>guest/sign-up.php"> ĐĂNG KÝ <i class="fas fa-key"></i></a></li>
-                            <li><a href="<?php echo SITEURL; ?>guest/login.php">ĐĂNG NHẬP</a></li>
+                            <li><a href="<?php echo SITEURL; ?>guest/sign-up.php"> ĐĂNG KÝ <i style="font-size: 18px;" class="fas fa-user-plus"></i></a></li>
+                            <li><a href="<?php echo SITEURL; ?>guest/login.php">ĐĂNG NHẬP <i style="font-size: 18px;" class="fas fa-sign-in-alt"></i></a></li>
 
                         </div>
                     </span>

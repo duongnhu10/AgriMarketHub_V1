@@ -35,7 +35,7 @@ if (isset($_SESSION['delete'])) {
                 <tr>
                     <th>STT</th>
                     <th>Tên sản phẩm</th>
-                    <th>Giá</th>
+                    <th>Giá/Kg</th>
                     <th>Số lượng/kg</th>
                     <th>Tổng tiền</th>
                     <th>Ngày đặt</th>
@@ -91,6 +91,61 @@ if (isset($_SESSION['delete'])) {
                 ?>
             </tbody>
         </table>
+    </div>
+    <br>
+    <div class="container">
+        <h2 class="text-center">LỊCH SỬ ĐƠN HÀNG</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá/Kg</th>
+                    <th>Số lượng/kg</th>
+                    <th>Tổng tiền</th>
+                    <th>Ngày đặt</th>
+                    <th>Tên khách hàng</th>
+                    <th>SDT</th>
+                    <th>Email</th>
+                    <th>Địa chỉ</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Đoạn mã PHP để hiển thị dữ liệu từ cơ sở dữ liệu vào bảng -->
+                <?php
+                $sn = 1;
+                $sql = "SELECT * FROM don_hang WHERE user_id=$id_us AND trang_thai='Đã giao hàng' ORDER BY id DESC";  //Lấy thông tin
+                $res = mysqli_query($conn, $sql); //Kết nối
+                $count = mysqli_num_rows($res); //Đếm số dòng
+                if ($count > 0) {
+                    while ($row = mysqli_fetch_assoc($res)) {
+                        echo "<tr>";
+                        echo "<td>" . $sn++ . "</td>";
+                        echo "<td>" . $row['san_pham'] . "</td>";
+
+                        echo "<td>" .  str_replace(',', ' ', number_format($row['gia'])) . " VND</td>";
+                        echo "<td>" . $row['so_luong'] . "</td>";
+                        echo "<td>" . str_replace(',', ' ', number_format($row['tong_tien'])) . "  VND</td>";
+                        echo "<td>" . $row['ngay_dat'] . "</td>";
+
+                        echo "<td>" . $row['khach_ten'] . "</td>";
+                        echo "<td>" . $row['khach_sdt'] . "</td>";
+                        echo "<td>" . $row['khach_email'] . "</td>";
+                        echo "<td>" . $row['khach_diachi'] . "</td>";
+
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='12' class='error'>Không có lịch sử đơn hàng.</td></tr>
+            ";
+                }
+
+                ?>
+            </tbody>
+        </table>
+
     </div>
 </section>
 

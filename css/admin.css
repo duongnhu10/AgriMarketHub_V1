@@ -361,3 +361,48 @@ p[name="dang_nhap"] {
 p[name="dang_nhap"] a:hover {
   color: #3498db; /* Màu chữ khi di chuột qua */
 }
+
+/* Style cho button */
+.dropbtn {
+  /* background-color: #3498db; */
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown content (ẩn ban đầu) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 220px;
+  z-index: 1;
+  border-radius: 6%;
+}
+
+/* Hiển thị dropdown khi hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Link trong dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-radius: 4%;
+}
+
+/* Change color on hover */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}

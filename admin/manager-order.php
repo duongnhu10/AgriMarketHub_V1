@@ -21,8 +21,8 @@
             <tr>
                 <th>STT</th>
                 <th>Tên sản phẩm</th>
-                <th>Giá</th>
-                <th>Số lượng</th>
+                <th>Giá/Kg</th>
+                <th>Số lượng/Kg</th>
                 <th>Tổng tiền</th>
                 <th>Ngày đặt</th>
                 <th>Trạng thái</th>
@@ -126,8 +126,8 @@
             <tr>
                 <th>STT</th>
                 <th>Tên sản phẩm</th>
-                <th>Giá</th>
-                <th>Số lượng</th>
+                <th>Giá/Kg</th>
+                <th>Số lượng/kg</th>
                 <th>Tổng tiền</th>
                 <th>Ngày đặt</th>
                 <th>Tên khách hàng</th>

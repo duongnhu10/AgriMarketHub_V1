@@ -367,7 +367,7 @@ tbody tr:hover {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  width: 160px;
+  width: 190px;
   z-index: 1;
   border-radius: 6%;
 }

@@ -103,14 +103,14 @@ $count = mysqli_num_rows($res);
 
                         <div id="myDropdown" class="dropdown-content">
 
-                            <li><a href="<?php echo SITEURL; ?>infor.php?session_user=<?php echo $_SESSION['user']; ?>">THÔNG TIN <i style="font-size: 5px;" class="fas fa-question-circle fa-sm"></i></a></li>
+                            <li><a href="<?php echo SITEURL; ?>infor.php?session_user=<?php echo $_SESSION['user']; ?>">THÔNG TIN <i style="font-size: 18px;" class="fas fa-question-circle fa-sm"></i></a></li>
 
                             <li> <a href=" <?php echo SITEURL; ?>update-password.php?session_user=<?php echo $_SESSION['user']; ?>">
-                                    ĐỔI M KHẨU
+                                    ĐỔI MẬT KHẨU
                                 </a></li>
 
                             <li> <a href=" <?php echo SITEURL; ?>logout.php">
-                                    ĐĂNG XUẤT
+                                    ĐĂNG XUẤT <i style="font-size: 18px;" class="fas fa-sign-out-alt"></i>
                                 </a></li>
 
 
