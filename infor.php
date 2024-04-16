@@ -108,7 +108,7 @@ if (isset($_GET['session_user'])) {
                         <td><?php echo $ho_va_ten; ?></td>
                         <td><?php echo $ten_nguoi_dung; ?></td>
 
-                        <td><?php if ($gioi_tinh == 1)
+                        <td><?php if ($doanh_nghiep == 1)
                                 echo "Có";
                             else echo "Không";  ?></td>
 

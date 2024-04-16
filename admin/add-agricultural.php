@@ -1,4 +1,5 @@
-<?php include('partials/menu.php') ?>
+<?php include('partials/menu.php');
+ob_start(); ?>
 
 <div class="main-content">
     <div class="wrapper">
@@ -231,4 +232,5 @@
     </div>
 </div>
 
-<?php include('partials/footer.php') ?>
+<?php include('partials/footer.php');
+ob_end_flush(); ?>

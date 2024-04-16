@@ -25,9 +25,11 @@ include('login-check.php')
                     <div id="myDropdown" class="dropdown-content">
 
                         <li><a href="manager-admin.php">QUẢN TRỊ VIÊN</a></li>
+                        <li><a href="manager-user.php">NGƯỜI DÙNG</a></li>
                         <li><a href="manager-category.php">LOẠI SẢN PHẨM</a></li>
                         <li><a href="manager-agricultural.php">SẢN PHẨM</a></li>
                         <li><a href="manager-order.php">ĐƠN HÀNG</a></li>
+
                         <li><a href="contact.php">PHẢN HỒI</a></li>
 
                     </div>
