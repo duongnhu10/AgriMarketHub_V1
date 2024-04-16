@@ -1,5 +1,6 @@
 <?php include('partials-font/menu.php');
 ob_start();
+
 $session_user = ""; // Khởi tạo biến session_user
 
 $id_us = "";
@@ -9,14 +10,17 @@ if (isset($_GET['session_user'])) {
 }
 $sql_s = "SELECT * FROM khach_hang WHERE ten_nguoi_dung='$session_user'";
 $res_s = mysqli_query($conn, $sql_s);
-$row_s = mysqli_fetch_assoc($res_s);
-$count_s = mysqli_num_rows($res_s);
-if ($count_s == 1) {
-    //Have data
-    $id_us = $row_s['id'];
-} else {
-    //No data
-} ?>
+if ($res_s == true) {
+    $row_s = mysqli_fetch_assoc($res_s);
+    $count_s = mysqli_num_rows($res_s);
+    if ($count_s == 1) {
+        //Have data
+        $id_us = $row_s['id'];
+    } else {
+        //No data
+    }
+}
+?>
 
 <!-- fOOD sEARCH Section Starts Here -->
 <section class="food-search text-center">

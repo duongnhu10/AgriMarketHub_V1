@@ -41,6 +41,7 @@ $count = mysqli_num_rows($res);
 
 <body>
     <!-- Navbar Section Starts Here -->
+    <!-- Navbar Section Ends Here -->
     <section class="navbar">
         <div class="container">
             <div class="logo">
@@ -61,29 +62,23 @@ $count = mysqli_num_rows($res);
                         <a href="<?php echo SITEURL; ?>agricultural.php?session_user=<?php echo $_SESSION['user']; ?>">SẢN PHẨM</a>
                     </li>
                     <li>
-
                         <a href="<?php echo SITEURL; ?>tracking-order.php?session_user=<?php echo $_SESSION['user']; ?>">ĐƠN HÀNG</a>
                     </li>
                     <li>
-
                         <a href="<?php echo SITEURL; ?>contact.php?session_user=<?php echo $_SESSION['user']; ?>">PHẢN HỒI</a>
                     </li>
-
-
                     <li>
                         <a href="<?php echo SITEURL; ?>cart.php?session_user=<?php echo $_SESSION['user']; ?>" class="cart-icon">
                             <i class="fas fa-shopping-cart"></i>
                             <span class="cart-quantity"><?php echo $count; ?></span>
                         </a>
                     </li>
-
-
-                    <span class="dropdown">
-                        <li><a class="dropbtn">
+                    <li>
+                        <div class="dropdown">
+                            <a href="#" class="dropbtn">
                                 <?php
                                 $sql = "SELECT * FROM khach_hang WHERE ten_nguoi_dung='" . $_SESSION['user'] . "'";
                                 $res = mysqli_query($conn, $sql);
-
                                 $row = mysqli_fetch_assoc($res);
                                 $anh = $row['anh'];
                                 $doanh_nghiep = $row['doanh_nghiep'];
@@ -94,34 +89,20 @@ $count = mysqli_num_rows($res);
                                         echo "<img src='" . SITEURL . "images/avatar/$anh' style='max-width: 50px; max-height: 50px; border-radius: 50%;'>";
                                     }
                                 } else {
-                                    echo "<i class='fas fa-user fa-lg' style='max-width: 50px; max-height: 50px; ></i>";
+                                    echo "<i class='fas fa-user fa-lg'></i>";
                                 }
-
-
-                                ?> </a>
-                        </li>
-
-                        <div id="myDropdown" class="dropdown-content">
-
-                            <li><a href="<?php echo SITEURL; ?>infor.php?session_user=<?php echo $_SESSION['user']; ?>">THÔNG TIN <i style="font-size: 18px;" class="fas fa-question-circle fa-sm"></i></a></li>
-
-                            <li> <a href=" <?php echo SITEURL; ?>update-password.php?session_user=<?php echo $_SESSION['user']; ?>">
-                                    ĐỔI MẬT KHẨU
-                                </a></li>
-
-                            <li> <a href=" <?php echo SITEURL; ?>logout.php">
-                                    ĐĂNG XUẤT <i style="font-size: 18px;" class="fas fa-sign-out-alt"></i>
-                                </a></li>
-
-
+                                ?>
+                            </a>
+                            <div id="myDropdown" class="dropdown-content">
+                                <a href="<?php echo SITEURL; ?>infor.php?session_user=<?php echo $_SESSION['user']; ?>">THÔNG TIN <i class="fas fa-question-circle fa-sm"></i></a>
+                                <a href="<?php echo SITEURL; ?>update-password.php?session_user=<?php echo $_SESSION['user']; ?>">ĐỔI MẬT KHẨU</a>
+                                <a href="<?php echo SITEURL; ?>logout.php">ĐĂNG XUẤT <i class="fas fa-sign-out-alt"></i></a>
+                            </div>
                         </div>
-                    </span>
-
+                    </li>
                 </ul>
             </div>
-
-            <div class=" clearfix">
-            </div>
+            <div class="clearfix"></div>
         </div>
     </section>
     <!-- Navbar Section Ends Here -->
