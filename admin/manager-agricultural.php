@@ -53,6 +53,7 @@
                 <th>Khuyến mãi</th>
                 <th>Hình ảnh</th>
                 <th>Trạng thái</th>
+                <th>Tồn kho</th>
                 <th>Hành động</th>
             </tr>
 
@@ -81,6 +82,7 @@
                     $gia_khuyen_mai = $row['gia_khuyen_mai'];
                     $anh = $row['anh'];
                     $trang_thai = $row['trang_thai'];
+                    $ton_kho = $row['ton_kho'];
             ?>
 
                     <tr>
@@ -105,6 +107,7 @@
                             ?>
                         </td>
                         <td><?php echo $trang_thai; ?></td>
+                        <td><?php echo $ton_kho; ?></td>
                         <td>
                             <a href="<?php echo SITEURL; ?>admin/update-agricultural.php?id=<?php echo $id; ?>" class="btn-secondary">Cập nhật sản phẩm</a>
                             <a href="<?php echo SITEURL; ?>admin/delete-agricultural.php?id=<?php echo $id; ?>&anh=<?php echo $anh; ?>" class="btn-danger">Xóa sản phẩm</a>

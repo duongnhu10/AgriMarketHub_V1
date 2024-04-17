@@ -130,6 +130,7 @@ if (isset($_SESSION['dat_hang'])) {
                 $gia_khuyen_mai = $row['gia_khuyen_mai'];
                 $mo_ta = $row['mo_ta'];
                 $anh = $row['anh'];
+                $ton_kho = $row['ton_kho'];
         ?>
 
                 <div class="food-menu-box">
@@ -183,6 +184,11 @@ if (isset($_SESSION['dat_hang'])) {
                             ?>
 
                         </p>
+
+                        <p class="food-price">
+                            <?php echo "<i> <b>Tồn kho: </b>" . $ton_kho . " Kg <br></i>"; ?>
+                        </p>
+
                         <p class="food-detail">
                             <?php echo $mo_ta; ?>
                         </p>

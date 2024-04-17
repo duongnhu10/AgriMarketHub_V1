@@ -123,6 +123,13 @@ ob_start(); ?>
                 </tr>
 
                 <tr>
+                    <td>Tồn kho/kg:</td>
+                    <td>
+                        <input type="number" name="ton_kho">
+                    </td>
+                </tr>
+
+                <tr>
                     <td colspan="2">
                         <input class="btn-secondary" type="submit" name="submit" value="Thêm sản phẩm">
                     </td>
@@ -146,6 +153,7 @@ ob_start(); ?>
             $gia_dn = $_POST['gia_dn'];
             $gia_khuyen_mai = $_POST['gia_khuyen_mai']; //Phần trăm khuyến mãi
             $loai_san_pham = $_POST['loai_san_pham'];
+            $ton_kho = $_POST['ton_kho'];
 
             //Check whether radio button for active is checked or not
             if (isset($_POST['trang_thai'])) {
@@ -209,7 +217,8 @@ ob_start(); ?>
                 gia_khuyen_mai = $gia_khuyen_mai,
                 anh = '$ten_anh',
                 loai_id = $loai_san_pham,
-                trang_thai = '$trang_thai'
+                trang_thai = '$trang_thai',
+                ton_kho = $ton_kho
             ";
 
             //Execute the Query 

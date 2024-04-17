@@ -78,6 +78,7 @@ if (isset($_GET['loai_id'])) {
                 $gia_khuyen_mai = $row2['gia_khuyen_mai'];
                 $mo_ta = $row2['mo_ta'];
                 $anh = $row2['anh'];
+                $ton_kho = $row2['ton_kho'];
         ?>
 
                 <div class="food-menu-box">
@@ -132,6 +133,11 @@ if (isset($_GET['loai_id'])) {
                             ?>
 
                         </p>
+
+                        <p class="food-price">
+                            <?php echo "<i> <b>Tồn kho: </b>" . $ton_kho . " Kg <br></i>"; ?>
+                        </p>
+
                         <p class="food-detail">
                             <?php echo $mo_ta; ?>
                         </p>

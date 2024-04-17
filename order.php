@@ -38,6 +38,7 @@ if (isset($_GET['spham_id']) && isset($_GET['so'])) {
         $gia_dn = $row['gia_dn'];
         $gia_khuyen_mai = $row['gia_khuyen_mai'];
         $anh = $row['anh'];
+        $ton_kho = $row['ton_kho'];
     } else {
         //Food not available
         //Redirect to Home page
@@ -165,6 +166,19 @@ if (isset($_GET['spham_id']) && isset($_GET['so'])) {
             $san_pham = $_POST['san_pham'];
             $gia = $_POST['gia'];
             $so_luong = $_POST['so_luong'];
+
+            // Kiểm tra xem số lượng đặt hàng có vượt quá số lượng tồn kho hay không
+            if ($so_luong > $ton_kho) {
+                // Nếu vượt quá, hiển thị cảnh báo và chuyển hướng trở lại trang đặt hàng
+                $_SESSION['dat_hang'] = "<div class='error text-center'>Số lượng đặt hàng vượt quá số lượng tồn kho.</div>";
+                header('location:' . SITEURL . '?session_user=' . $_SESSION['user']);
+                exit; // Dừng việc thực hiện tiếp các lệnh sau khi chuyển hướng
+            } else {
+                $ton_kho = $ton_kho - $so_luong;
+            }
+
+            $sql_tk = "UPDATE san_pham SET ton_kho = $ton_kho WHERE ten_san_pham='$ten_san_pham'";
+            $res_tk = mysqli_query($conn, $sql_tk);
 
             $tong_tien = $gia * $so_luong; //total = price x qty
 

@@ -23,6 +23,14 @@ $khach_sdt = $row['khach_sdt'];
 $khach_email = $row['khach_email'];
 $khach_diachi = $row['khach_diachi'];
 
+$sql_update_tk = "SELECT * FROM san_pham";
+$res_update_tk = mysqli_query($conn, $sql_update_tk);
+$row_update_tk = mysqli_fetch_assoc($res_update_tk);
+$ton_kho = $row_update_tk['ton_kho'];
+
+$sql_tk1 = "UPDATE san_pham SET ton_kho = $ton_kho + $so_luong WHERE ten_san_pham='$san_pham'";
+$res_tk1 = mysqli_query($conn, $sql_tk1);
+
 $sql1 = "INSERT INTO don_huy 
         SET 
         san_pham = '$san_pham',

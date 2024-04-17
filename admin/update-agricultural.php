@@ -25,6 +25,7 @@ if (isset($_GET['id'])) {
     $current_image = $row2['anh'];
     $loai_san_pham = $row2['loai_id'];
     $trang_thai = $row2['trang_thai'];
+    $ton_kho = $row2['ton_kho'];
 } else {
     //Redirect to Manage Food
     header('location:' . SITEURL . 'admin/manager-agricultural.php');
@@ -168,6 +169,14 @@ if (isset($_GET['id'])) {
                     </td>
                 </tr>
 
+
+                <tr>
+                    <td>Tồn kho/kg:</td>
+                    <td>
+                        <input type="number" name="ton_kho">
+                    </td>
+                </tr>
+
                 <tr>
                     <td colspan="2">
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
@@ -198,6 +207,7 @@ if (isset($_GET['id'])) {
             $loai_san_pham = $_POST['loai_san_pham'];
 
             $trang_thai = $_POST['trang_thai'];
+            $ton_kho = $_POST['ton_kho'];
 
             //2. Upload the Image if selected
             //Check whether the select image is clicked or not
@@ -276,7 +286,8 @@ if (isset($_GET['id'])) {
             gia_khuyen_mai = $gia_khuyen_mai,
             anh = '$ten_anh',
             loai_id = '$loai_san_pham',
-            trang_thai = '$trang_thai'
+            trang_thai = '$trang_thai',
+            ton_kho = $ton_kho
             WHERE id=$id
         ";
 
