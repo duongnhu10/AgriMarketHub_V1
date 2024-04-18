@@ -53,7 +53,7 @@
                 <th>Khuyến mãi</th>
                 <th>Hình ảnh</th>
                 <th>Trạng thái</th>
-                <th>Tồn kho</th>
+                <th>Tồn kho/kg</th>
                 <th>Hành động</th>
             </tr>
 
