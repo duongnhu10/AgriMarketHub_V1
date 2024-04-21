@@ -80,6 +80,7 @@
                     $gia = $row['gia'];
                     $gia_dn = $row['gia_dn'];
                     $gia_khuyen_mai = $row['gia_khuyen_mai'];
+
                     $anh = $row['anh'];
                     $trang_thai = $row['trang_thai'];
                     $ton_kho = $row['ton_kho'];

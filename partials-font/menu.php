@@ -64,9 +64,7 @@ $count = mysqli_num_rows($res);
                     <li>
                         <a href="<?php echo SITEURL; ?>tracking-order.php?session_user=<?php echo $_SESSION['user']; ?>">ĐƠN HÀNG</a>
                     </li>
-                    <li>
-                        <a href="<?php echo SITEURL; ?>contact.php?session_user=<?php echo $_SESSION['user']; ?>">PHẢN HỒI</a>
-                    </li>
+
                     <li>
                         <a href="<?php echo SITEURL; ?>cart.php?session_user=<?php echo $_SESSION['user']; ?>" class="cart-icon">
                             <i class="fas fa-shopping-cart"></i>

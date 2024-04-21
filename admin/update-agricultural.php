@@ -1,5 +1,8 @@
 <?php include('partials/menu.php');
-ob_start(); ?>
+ob_start();
+
+
+?>
 
 <?php
 //Check whether id is set or not
@@ -22,6 +25,30 @@ if (isset($_GET['id'])) {
     $gia = $row2['gia'];
     $gia_dn = $row2['gia_dn'];
     $gia_khuyen_mai = $row2['gia_khuyen_mai'];
+    $ton_kho = $row2['ton_kho'];
+
+    $sql_km = "SELECT * FROM khuyen_mai WHERE sanpham_id=$id";
+    $res_km = mysqli_query($conn, $sql_km);
+
+    if ($res_km) {
+        $row_km = mysqli_fetch_assoc($res_km);
+        if ($row_km) {
+            // Dữ liệu được trả về từ truy vấn
+            $ngay_batdau = isset($row_km['ngay_batdau']) ? $row_km['ngay_batdau'] : "0000-00-00";
+            $ngay_ketthuc = isset($row_km['ngay_ketthuc']) ? $row_km['ngay_ketthuc'] : "0000-00-00";
+        } else {
+            // Không có dữ liệu từ truy vấn
+            $ngay_batdau = "0000-00-00";
+            $ngay_ketthuc = "0000-00-00";
+        }
+    } else {
+        // Lỗi khi thực hiện truy vấn
+        $ngay_batdau = "0000-00-00";
+        $ngay_ketthuc = "0000-00-00";
+    }
+
+
+
     $current_image = $row2['anh'];
     $loai_san_pham = $row2['loai_id'];
     $trang_thai = $row2['trang_thai'];
@@ -78,9 +105,23 @@ if (isset($_GET['id'])) {
                 </tr>
 
                 <tr>
-                    <td>Giá khuyến mãi:</td>
+                    <td>Khuyến mãi (%):</td>
                     <td>
                         <input type="number" name="gia_khuyen_mai" value="<?php echo $gia_khuyen_mai; ?>">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Ngày bắt đầu:</td>
+                    <td>
+                        <input type="text" name="ngay_bat_dau" placeholder="yyyy-mm-dd" value="<?php echo $ngay_batdau; ?>">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Ngày kết thúc:</td>
+                    <td>
+                        <input type="text" name="ngay_ket_thuc" placeholder="yyyy-mm-dd" value="<?php echo $ngay_ketthuc; ?>">
                     </td>
                 </tr>
 
@@ -173,7 +214,7 @@ if (isset($_GET['id'])) {
                 <tr>
                     <td>Tồn kho/kg:</td>
                     <td>
-                        <input type="number" name="ton_kho">
+                        <input type="number" name="ton_kho" value="<?php echo $ton_kho; ?>">
                     </td>
                 </tr>
 
@@ -196,13 +237,18 @@ if (isset($_GET['id'])) {
             // echo "Clicked";
 
             //1. Get the Data from Form
-            $id = $_POST['id'];
+            // $id = $_POST['id'];
             $ten_san_pham = $_POST['ten_san_pham'];
             $mo_ta = $_POST['mo_ta'];
             $gia_goc = $_POST['gia_goc']; //Giá nhập
             $gia = $_POST['gia']; //Giá hiện tại
             $gia_dn = $_POST['gia_dn']; //Giá bán cho doanh nghiệp
             $gia_khuyen_mai = $_POST['gia_khuyen_mai']; //Phần trăm khuyến mãi
+
+
+            $ngay_bat_dau = date('Y-m-d', strtotime($_POST['ngay_bat_dau']));
+            $ngay_ket_thuc = date('Y-m-d', strtotime($_POST['ngay_ket_thuc']));
+
             $current_image = $_POST['current_image'];
             $loai_san_pham = $_POST['loai_san_pham'];
 
@@ -284,6 +330,7 @@ if (isset($_GET['id'])) {
             gia = $gia,
             gia_dn = $gia_dn,
             gia_khuyen_mai = $gia_khuyen_mai,
+            
             anh = '$ten_anh',
             loai_id = '$loai_san_pham',
             trang_thai = '$trang_thai',
@@ -291,8 +338,16 @@ if (isset($_GET['id'])) {
             WHERE id=$id
         ";
 
+
             //Execute the SQL Query
             $res3 = mysqli_query($conn, $sql3);
+
+            $sql_km = "INSERT INTO khuyen_mai SET 
+            ngay_batdau = '$ngay_bat_dau',
+            ngay_ketthuc = '$ngay_ket_thuc',
+            sanpham_id = $id";
+            $res_km = mysqli_query($conn, $sql_km);
+
 
             //Check whether the query is executed or not
             if ($res3 == true) {

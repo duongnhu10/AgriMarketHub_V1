@@ -24,8 +24,8 @@
         <!-- Sign up form starts here -->
         <form action="" method="POST" class="text-center">
             <div class="text-login">HỌ VÀ TÊN</div>
-
             <input class="text" type="text" name="ho_va_ten" placeholder="Nhập họ tên của bạn.">
+
             <br>
             <div class="text-login">TÊN NGƯỜI DÙNG</div>
 
@@ -43,9 +43,17 @@
                 <option value="0">Không</option>
                 <option value="1">Có</option>
             </select>
+
+            <div class="text-login">TÊN DOANH NGHIỆP</div>
+            <input class="text" type="text" name="ten_doanh_nghiep" placeholder="Bỏ trống nếu không phải doanh nghiệp.">
+            <br><br>
+
+            <div class="text-login">MÃ SỐ THUẾ</div>
+            <input class="text" type="text" name="ma_so_thue" placeholder="Bỏ trống nếu không phải doanh nghiệp.">
+            <br><br>
+
             <div class="text-login">MẬT KHẨU
             </div>
-
             <input class="password" type="password" name="mat_khau" placeholder="Nhập mật khẩu của bạn.">
             <br><br>
 
@@ -82,6 +90,8 @@ if (isset($_POST["submit"])) {
     }
 
     $doanh_nghiep = $_POST['doanh_nghiep'];
+    $ten_doanh_nghiep = $_POST['ten_doanh_nghiep'];
+    $ma_so_thue = $_POST['ma_so_thue'];
     $gioi_tinh = $_POST['gioi_tinh'];
     $raw_mat_khau = md5($_POST['mat_khau']);
     $mat_khau = mysqli_real_escape_string($conn, $raw_mat_khau);  //SQL injecttion
@@ -91,6 +101,8 @@ if (isset($_POST["submit"])) {
             ho_va_ten = '$ho_va_ten',
             ten_nguoi_dung = '$ten_nguoi_dung',
             doanh_nghiep = $doanh_nghiep,
+            ten_doanh_nghiep = '$ten_doanh_nghiep',
+            ma_so_thue = '$ma_so_thue',
             gioi_tinh = $gioi_tinh,
             mat_khau = '$mat_khau'";
 

@@ -64,6 +64,8 @@ if (isset($_GET['session_user'])) {
                 <th>Họ và tên</th>
                 <th>Tên người dùng</th>
                 <th>Doanh nghiệp</th>
+                <th>Tên doanh nghiệp</th>
+                <th>Mã số thuế</th>
                 <th>Giới tính</th>
                 <th>Hành động</th>
             </tr>
@@ -87,6 +89,8 @@ if (isset($_GET['session_user'])) {
                     $ten_nguoi_dung = $row['ten_nguoi_dung'];
                     $gioi_tinh = $row['gioi_tinh'];
                     $doanh_nghiep = $row['doanh_nghiep'];
+                    $ten_doanh_nghiep = $row['ten_doanh_nghiep'];
+                    $ma_so_thue = $row['ma_so_thue'];
                     $anh = $row['anh'];
             ?>
 
@@ -111,6 +115,9 @@ if (isset($_GET['session_user'])) {
                         <td><?php if ($doanh_nghiep == 1)
                                 echo "Có";
                             else echo "Không";  ?></td>
+
+                        <td><?php echo $ten_doanh_nghiep; ?></td>
+                        <td><?php echo $ma_so_thue; ?></td>
 
                         <td><?php
                             if ($gioi_tinh == 1)

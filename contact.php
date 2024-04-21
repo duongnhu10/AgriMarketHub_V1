@@ -1,5 +1,9 @@
 <?php include('partials-font/menu.php');
 ob_start();
+
+if (isset($_GET['donhang_id'])) {
+    $donhang_id = $_GET['donhang_id']; // Lấy giá trị session_user từ URL nếu tồn tại
+}
 ?>
 
 <?php
@@ -61,7 +65,8 @@ if (isset($_SESSION['lien_he'])) {
                 khach_ten = '$khach_ten',
                 khach_sdt = '$khach_sdt',
                 khach_email = '$khach_email',
-                khach_diachi = '$khach_diachi'
+                khach_diachi = '$khach_diachi',
+                donhang_id = $donhang_id
             ";
 
             // echo $sql2; die();
@@ -72,8 +77,8 @@ if (isset($_SESSION['lien_he'])) {
             //Check whether query executed successfully or not
             if ($res2 == true) {
                 //Query Executed and Order Saved
-                $_SESSION['lien_he'] = "<div class='success'>Đã gửi thông tin liên hệ thành công.</div>";
-                header('location:' . SITEURL . 'contact.php?session_user=' . $_SESSION['user']);
+                $_SESSION['lien_he'] = "<div class='success'>Đã gửi thông tin phản hồi thành công.</div>";
+                header('location:' . SITEURL . 'tracking-order.php?session_user=' . $_SESSION['user']);
             } else {
                 //Failed to Save Order
                 $_SESSION['lien_he'] = "<div class='error'>Vui lòng thử lại sau.</div>";

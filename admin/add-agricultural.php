@@ -1,4 +1,6 @@
 <?php include('partials/menu.php');
+
+
 ob_start(); ?>
 
 <div class="main-content">
@@ -56,9 +58,23 @@ ob_start(); ?>
                 </tr>
 
                 <tr>
-                    <td>Khuyến mãi:</td>
+                    <td>Khuyến mãi (%):</td>
                     <td>
                         <input type="number" name="gia_khuyen_mai">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Ngày bắt đầu:</td>
+                    <td>
+                        <input type="text" name="ngay_bat_dau" placeholder="yyyy-mm-dd">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Ngày kết thúc:</td>
+                    <td>
+                        <input type="text" name="ngay_ket_thuc" placeholder="yyyy-mm-dd">
                     </td>
                 </tr>
 
@@ -152,8 +168,15 @@ ob_start(); ?>
             $gia = $_POST['gia']; //Giá hiện tại
             $gia_dn = $_POST['gia_dn'];
             $gia_khuyen_mai = $_POST['gia_khuyen_mai']; //Phần trăm khuyến mãi
+
+
+            $ngay_bat_dau = date('Y-m-d', strtotime($_POST['ngay_bat_dau']));
+            $ngay_ket_thuc = date('Y-m-d', strtotime($_POST['ngay_ket_thuc']));
+
             $loai_san_pham = $_POST['loai_san_pham'];
             $ton_kho = $_POST['ton_kho'];
+
+
 
             //Check whether radio button for active is checked or not
             if (isset($_POST['trang_thai'])) {
@@ -204,6 +227,7 @@ ob_start(); ?>
                 $ten_anh = ""; //Setting default value as blank 
             }
 
+
             //3. Insert Into Database
 
             //Create a SQL Query to Save or Add food
@@ -223,6 +247,18 @@ ob_start(); ?>
 
             //Execute the Query 
             $res2 = mysqli_query($conn, $sql2);
+
+            $sql_id = "SELECT * FROM san_pham WHERE ten_san_pham = '$ten_san_pham'";
+            $res_id = mysqli_query($conn, $sql_id);
+            $row_id = mysqli_fetch_assoc($res_id);
+            $id_sp = $row_id['id'];
+
+            $sql_km = "INSERT INTO khuyen_mai SET 
+                        ngay_batdau = '$ngay_bat_dau',
+                        ngay_ketthuc = '$ngay_ket_thuc',
+                        sanpham_id = $id_sp";
+            $res_km = mysqli_query($conn, $sql_km);
+
 
             //Check whether add inserted or not 
             //4. Redirect with Message to Manager Food page

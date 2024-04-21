@@ -90,6 +90,24 @@ if ($count_s == 1) {
                         <p class="food-price">
                             <?php
                             // $doanh_nghiep = 0;
+                            $sql_km = "SELECT * FROM khuyen_mai WHERE sanpham_id = $id ORDER BY ngay_batdau DESC LIMIT 1";
+                            $res_km = mysqli_query($conn, $sql_km);
+
+                            if ($res_km) {
+                                if (mysqli_num_rows($res_km) > 0) {
+                                    $row_km = mysqli_fetch_assoc($res_km);
+                                    $ngay_bat_dau = $row_km['ngay_batdau'];
+                                    $ngay_ket_thuc = $row_km['ngay_ketthuc'];
+                                } else {
+                                    // Không có dữ liệu từ truy vấn
+                                    $ngay_bat_dau = "0000-00-00";
+                                    $ngay_ket_thuc = "0000-00-00";
+                                }
+                            } else {
+                                // Lỗi khi thực hiện truy vấn
+                                $ngay_bat_dau = "0000-00-00";
+                                $ngay_ket_thuc = "0000-00-00";
+                            }
 
                             $sql_dn = "SELECT * FROM khach_hang WHERE id=$id_us";
                             $res_dn = mysqli_query($conn, $sql_dn);
@@ -110,7 +128,8 @@ if ($count_s == 1) {
                                 if ($gia_khuyen_mai != 0) {
                                     echo "<i style='text-decoration-line: line-through;'>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
                                     $gia_km = $gia - $gia_khuyen_mai * 0.01 * $gia;
-                                    echo "<i class='red'>" . str_replace(',', ' ', number_format($gia_km)) . " VND/Kg</i>";
+                                    echo "<i class='red'>" . str_replace(',', ' ', number_format($gia_km)) . " VND/Kg<br></i>";
+                                    echo "<i><b> Từ ngày: " . $ngay_bat_dau . " đến " . $ngay_ket_thuc . "</b></i>";
                                 } else {
                                     echo "<i>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
                                 }
@@ -119,8 +138,16 @@ if ($count_s == 1) {
                             ?>
 
                         </p>
+                        <br>
                         <p class="food-price">
-                            <?php echo "<i> <b>Tồn kho: </b>" . $ton_kho . " Kg <br></i>"; ?>
+                            <?php
+                            if ($ton_kho == 0) {
+                                echo "<i class='red'>HẾT HÀNG</i>";
+                            } else {
+                                echo "<i> <b>Tồn kho: </b>" . $ton_kho . " Kg <br></i>";
+                            }
+                            ?>
+
                         </p>
                         <p class="food-detail">
                             <?php echo $mo_ta; ?>

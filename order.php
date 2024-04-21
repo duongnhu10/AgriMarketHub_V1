@@ -19,6 +19,11 @@ if ($count_s == 1) {
 <?php
 //Check whether food id is set or not
 if (isset($_GET['spham_id']) && isset($_GET['so'])) {
+    if ($_GET['so'] == 0) {
+        $_SESSION['het_hang'] = "<div class='error text-center'>Đã hết hàng.</div>";
+        header('location:' . SITEURL . 'cart.php?session_user=' . $_SESSION['user']);
+        exit; // Dừng việc thực hiện tiếp các lệnh sau khi chuyển hướng
+    }
     //Get the Food id and details of the selected food
     $spham_id = $_GET['spham_id'];
     $so = $_GET['so'];
@@ -83,6 +88,24 @@ if (isset($_GET['spham_id']) && isset($_GET['so'])) {
                     <p class="food-price">
                         <?php
                         // $doanh_nghiep = 0;
+                        $sql_km = "SELECT * FROM khuyen_mai WHERE sanpham_id = $spham_id ORDER BY ngay_batdau DESC LIMIT 1";
+                        $res_km = mysqli_query($conn, $sql_km);
+
+                        if ($res_km) {
+                            if (mysqli_num_rows($res_km) > 0) {
+                                $row_km = mysqli_fetch_assoc($res_km);
+                                $ngay_bat_dau = $row_km['ngay_batdau'];
+                                $ngay_ket_thuc = $row_km['ngay_ketthuc'];
+                            } else {
+                                // Không có dữ liệu từ truy vấn
+                                $ngay_bat_dau = "0000-00-00";
+                                $ngay_ket_thuc = "0000-00-00";
+                            }
+                        } else {
+                            // Lỗi khi thực hiện truy vấn
+                            $ngay_bat_dau = "0000-00-00";
+                            $ngay_ket_thuc = "0000-00-00";
+                        }
 
                         $sql_dn = "SELECT * FROM khach_hang WHERE id=$id_us";
                         $res_dn = mysqli_query($conn, $sql_dn);
@@ -103,7 +126,8 @@ if (isset($_GET['spham_id']) && isset($_GET['so'])) {
                             if ($gia_khuyen_mai != 0) {
                                 echo "<i style='text-decoration-line: line-through;'>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
                                 $gia_km = $gia - $gia_khuyen_mai * 0.01 * $gia;
-                                echo "<i class='red'>" . str_replace(',', ' ', number_format($gia_km)) . " VND/Kg</i>";
+                                echo "<i class='red'>" . str_replace(',', ' ', number_format($gia_km)) . " VND/Kg<br></i>";
+                                echo "<i><b> Từ ngày: " . $ngay_bat_dau . " đến " . $ngay_ket_thuc . "</b></i>";
                             } else {
                                 echo "<i>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
                             }
@@ -121,10 +145,29 @@ if (isset($_GET['spham_id']) && isset($_GET['so'])) {
                                                             } else {
                                                                 echo $gia;
                                                             } ?>">
+                    <?php
+                    $sql_tk = "SELECT * FROM san_pham WHERE id=$spham_id";
+                    $res_tk = mysqli_query($conn, $sql_tk);
+                    $row_tk = mysqli_fetch_assoc($res_tk);
+                    $ton_kho = $row_tk['ton_kho'];
+                    ?>
+                    <br>
 
-                    <div class="order-label">
+                    <p class="food-price">
+                        <?php
+                        if ($ton_kho == 0) {
+                            echo "<i class='red'>HẾT HÀNG</i>";
+                        } else {
+                            echo "<i> <b>Tồn kho: </b>" . $ton_kho . " Kg <br></i>";
+                        }
+                        ?>
 
-                    </div>
+                    </p>
+
+
+                    <!-- <div class="order-label">
+
+                    </div> -->
                     <?php
                     if ($so > 1) {
                         echo '<input type="number" name="so_luong" class="input-responsive" value="' . $so . '" required>';

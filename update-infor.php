@@ -36,6 +36,8 @@ $session_user = ""; // Khởi tạo biến session_user
                 $ten_nguoi_dung = $row['ten_nguoi_dung'];
                 $gioi_tinh = $row['gioi_tinh'];
                 $doanh_nghiep = $row['doanh_nghiep'];
+                $ten_doanh_nghiep = $row['ten_doanh_nghiep'];
+                $ma_so_thue = $row['ma_so_thue'];
             } else {
                 //Redirect to manager category page with session message
                 $_SESSION['no-user-found'] = "<div class='error'>Không tìm thấy người dùng.</div>";
@@ -90,6 +92,20 @@ $session_user = ""; // Khởi tạo biến session_user
                 </tr>
 
                 <tr>
+                    <td>Tên doanh nghiệp:</td>
+                    <td>
+                        <input type="text" name="ten_doanh_nghiep" placeholder="Tên doanh nghiệp" value="<?php echo $ten_doanh_nghiep; ?>">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Mã số thuế:</td>
+                    <td>
+                        <input type="text" name="ma_so_thue" placeholder="Mã số thuế" value="<?php echo $ma_so_thue; ?>">
+                    </td>
+                </tr>
+
+                <tr>
                     <td>Hình ảnh hiện tại:</td>
                     <td>
                         <?php
@@ -134,6 +150,8 @@ $session_user = ""; // Khởi tạo biến session_user
             $ho_va_ten = $_POST['ho_va_ten'];
             $ten_nguoi_dung = $_POST['ten_nguoi_dung'];
             $doanh_nghiep = $_POST['doanh_nghiep'];
+            $ten_doanh_nghiep = $_POST['ten_doanh_nghiep'];
+            $ma_so_thue = $_POST['ma_so_thue'];
             $gioi_tinh = $_POST['gioi_tinh'];
             $current_image = $_POST['current_image'];
 
@@ -174,6 +192,8 @@ $session_user = ""; // Khởi tạo biến session_user
             ten_nguoi_dung = '$ten_nguoi_dung',
             doanh_nghiep = $doanh_nghiep,
             gioi_tinh = $gioi_tinh,
+            ten_doanh_nghiep = '$ten_doanh_nghiep',
+            ma_so_thue = '$ma_so_thue',
             anh = '$ten_anh'
             WHERE id=$id
         ";

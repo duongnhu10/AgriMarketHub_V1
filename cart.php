@@ -25,6 +25,22 @@ if (isset($_SESSION['delete'])) {
     echo $_SESSION['delete'];
     unset($_SESSION['delete']);
 }
+
+if (isset($_SESSION['res_update'])) {
+    echo $_SESSION['res_update'];
+    unset($_SESSION['res_update']);
+}
+
+if (isset($_SESSION['gio_hang'])) {
+    echo $_SESSION['gio_hang'];
+    unset($_SESSION['gio_hang']);
+}
+
+if (isset($_SESSION['het_hang'])) {
+    echo $_SESSION['het_hang'];
+    unset($_SESSION['het_hang']);
+}
+
 ?>
 
 <?php
@@ -50,6 +66,7 @@ if ($res == true) {
             $gia_khuyen_mai = $row['gia_khuyen_mai'];
             $anh = $row['anh'];
             $so_luong = $row['so_luong'];
+            // $ton_kho = $row['ton_kho'];
             $spham_id = $row['san_pham_id'];
 ?>
             <div class="food-menu-img">
@@ -73,6 +90,24 @@ if ($res == true) {
                 <p class="food-price">
                     <?php
                     // $doanh_nghiep = 0;
+                    $sql_km = "SELECT * FROM khuyen_mai WHERE sanpham_id = $spham_id ORDER BY ngay_batdau DESC LIMIT 1";
+                    $res_km = mysqli_query($conn, $sql_km);
+
+                    if ($res_km) {
+                        if (mysqli_num_rows($res_km) > 0) {
+                            $row_km = mysqli_fetch_assoc($res_km);
+                            $ngay_bat_dau = $row_km['ngay_batdau'];
+                            $ngay_ket_thuc = $row_km['ngay_ketthuc'];
+                        } else {
+                            // Không có dữ liệu từ truy vấn
+                            $ngay_bat_dau = "0000-00-00";
+                            $ngay_ket_thuc = "0000-00-00";
+                        }
+                    } else {
+                        // Lỗi khi thực hiện truy vấn
+                        $ngay_bat_dau = "0000-00-00";
+                        $ngay_ket_thuc = "0000-00-00";
+                    }
 
                     $sql_dn = "SELECT * FROM khach_hang WHERE id=$id_us";
                     $res_dn = mysqli_query($conn, $sql_dn);
@@ -93,7 +128,8 @@ if ($res == true) {
                         if ($gia_khuyen_mai != 0) {
                             echo "<i style='text-decoration-line: line-through;'>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
                             $gia_km = $gia - $gia_khuyen_mai * 0.01 * $gia;
-                            echo "<i class='red'>" . str_replace(',', ' ', number_format($gia_km)) . " VND/Kg</i>";
+                            echo "<i class='red'>" . str_replace(',', ' ', number_format($gia_km)) . " VND/Kg<br></i>";
+                            echo "<i><b> Từ ngày: " . $ngay_bat_dau . " đến " . $ngay_ket_thuc . "</b></i>";
                         } else {
                             echo "<i>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
                         }
@@ -102,10 +138,82 @@ if ($res == true) {
                     ?>
 
                 </p>
-                <span class="order-label">Số lượng: </span>
-                <input type="number" value="<?php echo $so_luong; ?>">
+                <br>
+                <p class="food-price">
+                    <?php
+                    $sql_tk = "SELECT * FROM san_pham WHERE id=$spham_id";
+                    $res_tk = mysqli_query($conn, $sql_tk);
+                    $row_tk = mysqli_fetch_assoc($res_tk);
+                    $ton_kho = $row_tk['ton_kho'];
+
+                    if ($ton_kho == 0) {
+                        echo "<i class='red'>HẾT HÀNG</i>";
+                    } else {
+                        echo "<i> <b>Tồn kho: </b>" . $ton_kho . " Kg <br></i>";
+                    }
+                    ?>
+
+                </p>
+
+
+
+
+                <p style="display: flex; align-items: center; ">
+                    <!-- Nút giảm số lượng -->
+                    <button type="button" onclick="giamSoLuong(<?php echo $spham_id; ?>)" style="margin-right: 10px;  border: none; font-size: 25px;"><b>-</b></button>
+
+                    <!-- Input hiển thị số lượng -->
+                    <input type="text" id="so_luong_<?php echo $spham_id; ?>" readonly value="<?php echo $so_luong; ?>" style=" width: 50px;">
+
+                    <!-- Nút tăng số lượng -->
+                    <button type="button" onclick="tangSoLuong(<?php echo $spham_id; ?>)" style="margin-left: 10px; border: none; font-size: 25px;"><b>+</b></button>
+                </p>
+
+
                 <br>
                 <br>
+
+                <script>
+                    function tangSoLuong(idSanPham) {
+                        var inputSoLuong = document.getElementById("so_luong_" + idSanPham);
+                        var soLuongHienTai = parseInt(inputSoLuong.value);
+                        var soLuongMoi = soLuongHienTai + 1;
+
+                        inputSoLuong.value = soLuongMoi;
+
+                        updateSoLuong(null, idSanPham); // Gọi hàm cập nhật số lượng sau khi tăng
+                    }
+
+                    function giamSoLuong(idSanPham) {
+                        var inputSoLuong = document.getElementById("so_luong_" + idSanPham);
+                        var soLuongHienTai = parseInt(inputSoLuong.value);
+                        var soLuongMoi = Math.max(soLuongHienTai - 1, 0); // Đảm bảo số lượng không âm
+
+                        inputSoLuong.value = soLuongMoi;
+
+                        updateSoLuong(null, idSanPham); // Gọi hàm cập nhật số lượng sau khi giảm
+                    }
+
+                    function updateSoLuong(event, idSanPham) {
+                        if (event) {
+                            event.preventDefault(); // Ngăn chặn hành động mặc định của form
+                        }
+
+                        var inputSoLuong = document.getElementById("so_luong_" + idSanPham);
+                        var soLuongMoi = parseInt(inputSoLuong.value);
+
+                        // Gửi yêu cầu AJAX để cập nhật số lượng trên máy chủ
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("POST", "<?php echo SITEURL; ?>update-cart.php", true);
+                        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState == 4 && xhr.status == 200) {
+                                // Xử lý phản hồi từ máy chủ (nếu cần)
+                            }
+                        };
+                        xhr.send("sanpham_id=" + idSanPham + "&so_luong=" + soLuongMoi + "&session_user=<?php echo urlencode($session_user); ?>");
+                    }
+                </script>
 
                 <a href="<?php echo SITEURL; ?>order.php?spham_id=<?php echo $spham_id; ?>&so=<?php echo $so_luong; ?>&session_user=<?php echo $_SESSION['user']; ?>" class="btn btn-primary">Đặt hàng</a>
                 <a href="<?php echo SITEURL; ?>delete-cart.php?gio_hang_id=<?php echo $id; ?>&session_user=<?php echo $_SESSION['user']; ?>" class="btn btn-primary">Xóa khỏi giỏ hàng</a>

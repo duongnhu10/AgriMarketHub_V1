@@ -22,6 +22,13 @@ if (isset($_SESSION['delete'])) {
     echo $_SESSION['delete'];
     unset($_SESSION['delete']);
 }
+
+if (isset($_SESSION['lien_he'])) {
+    echo $_SESSION['lien_he'];
+    unset($_SESSION['lien_he']);
+}
+
+
 ?>
 
 
@@ -47,13 +54,15 @@ if (isset($_SESSION['delete'])) {
                     <th>Hành động</th>
                 </tr>
             </thead>
+
             <tbody>
                 <!-- Đoạn mã PHP để hiển thị dữ liệu từ cơ sở dữ liệu vào bảng -->
                 <?php
                 $sn = 1;
-                $sql = "SELECT * FROM don_hang WHERE user_id=$id_us ORDER BY id DESC";  //Lấy thông tin
+                $sql = "SELECT * FROM don_hang WHERE user_id=$id_us AND trang_thai!='Đã giao hàng' ORDER BY id DESC";  //Lấy thông tin
                 $res = mysqli_query($conn, $sql); //Kết nối
                 $count = mysqli_num_rows($res); //Đếm số dòng
+                // $row = mysqli_fetch_assoc($res);
                 if ($count > 0) {
                     while ($row = mysqli_fetch_assoc($res)) {
                         echo "<tr>";
@@ -84,8 +93,7 @@ if (isset($_SESSION['delete'])) {
                         echo "</tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='12' class='error'>Không có đơn hàng.</td></tr>
-                    ";
+                    echo "<tr><td colspan='12' class='error'>Không có đơn hàng.</td></tr>";
                 }
 
                 ?>
@@ -109,6 +117,7 @@ if (isset($_SESSION['delete'])) {
                     <th>SDT</th>
                     <th>Email</th>
                     <th>Địa chỉ</th>
+                    <th>Hành động</th>
 
                 </tr>
             </thead>
@@ -123,6 +132,7 @@ if (isset($_SESSION['delete'])) {
                     while ($row = mysqli_fetch_assoc($res)) {
                         echo "<tr>";
                         echo "<td>" . $sn++ . "</td>";
+                        // echo "<input type='hidden' value=" . $row['id'] . ">";
                         echo "<td>" . $row['san_pham'] . "</td>";
 
                         echo "<td>" .  str_replace(',', ' ', number_format($row['gia'])) . " VND</td>";
@@ -134,6 +144,19 @@ if (isset($_SESSION['delete'])) {
                         echo "<td>" . $row['khach_sdt'] . "</td>";
                         echo "<td>" . $row['khach_email'] . "</td>";
                         echo "<td>" . $row['khach_diachi'] . "</td>";
+
+                        //Xem đã gửi phản hồi chưa
+                        $sql_ph = "SELECT * FROM lien_he WHERE donhang_id='" . $row['id'] . "'";
+
+                        $res_ph = mysqli_query($conn, $sql_ph);
+                        $count_ph = mysqli_num_rows($res_ph);
+                        if ($count_ph == 1) {
+                            echo "<td><a href='" . SITEURL . "watch_contact.php?session_user=" . $_SESSION['user'] . "&donhang_id=" . $row['id'] . "' class='btn btn-primary'>XEM PHẢN HỒI</a></td>";
+                        } else {
+                            echo "<td><a href='" . SITEURL . "contact.php?session_user=" . $_SESSION['user'] . "&donhang_id=" . $row['id'] . "' class='btn btn-secondary'>PHẢN HỒI</a></td>";
+                        }
+
+
 
                         echo "</tr>";
                     }
