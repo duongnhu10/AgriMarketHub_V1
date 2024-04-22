@@ -22,6 +22,7 @@ $khach_ten = $row['khach_ten'];
 $khach_sdt = $row['khach_sdt'];
 $khach_email = $row['khach_email'];
 $khach_diachi = $row['khach_diachi'];
+$user_id = $row['user_id'];
 
 $sql_update_tk = "SELECT * FROM san_pham";
 $res_update_tk = mysqli_query($conn, $sql_update_tk);
@@ -42,7 +43,8 @@ $sql1 = "INSERT INTO don_huy
         khach_ten = '$khach_ten',
         khach_sdt = '$khach_sdt',
         khach_email = '$khach_email',
-        khach_diachi = '$khach_diachi'
+        khach_diachi = '$khach_diachi',
+        user_id = $user_id
         ";
 
 
