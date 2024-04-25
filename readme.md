@@ -6,19 +6,19 @@
 # CHỨC NĂNG
 
 1. Khách vãng lai
-   - Đăng ký tài khoản
-   - Tìm kiếm sản phẩm
-     - Tìm kiếm theo tên sản phẩm
-   - Xem thông tin sản phẩm
-   - Xem danh sách theo loại sản phẩm
-   - Xem tất cả sản phẩm
+- Đăng ký tài khoản
+- Tìm kiếm sản phẩm
+   - Tìm kiếm theo tên sản phẩm
+- Xem thông tin sản phẩm
+- Xem danh sách theo loại sản phẩm
+- Xem tất cả sản phẩm
 2. Người tiêu dùng (cá nhân/ doanh nghiệp)
 
-   - Quản lý tài khoản cá nhân
-     - Chỉnh sửa thông tin
-     - Đổi mật khẩu
-     - Xóa tài khoản
-   - Thêm sản phẩm vào giỏ hàng
+- Quản lý tài khoản cá nhân
+   - Chỉnh sửa thông tin
+   - Đổi mật khẩu
+   - Xóa tài khoản
+- Thêm sản phẩm vào giỏ hàng
 
 - Cập nhật giỏ hàng
   - Xóa sản phẩm
