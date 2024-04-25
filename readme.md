@@ -12,8 +12,8 @@
 - Xem thông tin sản phẩm
 - Xem danh sách theo loại sản phẩm
 - Xem tất cả sản phẩm
+  
 #2. Người tiêu dùng (cá nhân/ doanh nghiệp)
-
 - Quản lý tài khoản cá nhân
    - Chỉnh sửa thông tin
    - Đổi mật khẩu
@@ -31,7 +31,6 @@
 - Chức năng Phản hồi
 
 #3. Admin
-
 - Quản lý đơn hàng
   - Xem danh sách đơn hàng
   - Cập nhật đơn hàng
