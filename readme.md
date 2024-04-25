@@ -5,7 +5,7 @@
 
 # CHỨC NĂNG
 
-#1. Khách vãng lai
+# 1. Khách vãng lai
 - Đăng ký tài khoản
 - Tìm kiếm sản phẩm
    - Tìm kiếm theo tên sản phẩm
@@ -13,7 +13,7 @@
 - Xem danh sách theo loại sản phẩm
 - Xem tất cả sản phẩm
   
-#2. Người tiêu dùng (cá nhân/ doanh nghiệp)
+# 2. Người tiêu dùng (cá nhân/ doanh nghiệp)
 - Quản lý tài khoản cá nhân
    - Chỉnh sửa thông tin
    - Đổi mật khẩu
@@ -30,7 +30,7 @@
 - Chức năng Đặt hàng
 - Chức năng Phản hồi
 
-#3. Admin
+# 3. Admin
 - Quản lý đơn hàng
   - Xem danh sách đơn hàng
   - Cập nhật đơn hàng
