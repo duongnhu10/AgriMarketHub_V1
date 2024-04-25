@@ -1,4 +1,5 @@
-<?php include('partials-font/menu.php');
+<?php
+include('partials-font/menu.php');
 ob_start();
 $session_user = ""; // Khởi tạo biến session_user
 
@@ -7,70 +8,67 @@ $id_us = "";
 if (isset($_GET['session_user'])) {
     $session_user = $_GET['session_user']; // Lấy giá trị session_user từ URL nếu tồn tại
 }
+
+//Lấy thông tin đăng nhập
 $sql_s = "SELECT * FROM khach_hang WHERE ten_nguoi_dung='$session_user'";
 $res_s = mysqli_query($conn, $sql_s);
 $row_s = mysqli_fetch_assoc($res_s);
 $count_s = mysqli_num_rows($res_s);
 if ($count_s == 1) {
-    //Have data
+    //Có
     $id_us = $row_s['id'];
 } else {
-    //No data
+    //Không
 } ?>
 
 <?php
-//Check whether id is passed or not
+//Kiểm tra có tồn tại loai_id hay không
 if (isset($_GET['loai_id'])) {
-    //Category id is set and get the id
+    //Lấy id loại
     $loai_id = $_GET['loai_id'];
-    //Get the category title based on Category ID
+    //Lấy tên loại dựa trên id
     $sql = "SELECT ten_loai FROM loai_san_pham WHERE id=$loai_id";
 
-    //Execute the Query
+    //Chạy SQL
     $res = mysqli_query($conn, $sql);
 
-    //Get the vaue from Database
+    //Lấy dữ liệu
     $row = mysqli_fetch_assoc($res);
-    //Get the title
+    //Lấy tên
     $ten_loai = $row['ten_loai'];
 } else {
-    //Category not passed
-    //Redirect to Home page
+    //Không lấy được id
+    //Chuyển hướng đến trang chủ gửi kèm session_user
     header('location:' . SITEURL . "?session_user=" . $_SESSION['user']);
 }
 ?>
 
-<!-- fOOD sEARCH Section Starts Here -->
 <section class="food-search text-center">
     <div class="container">
-
         <h2>Danh mục <a href="#" class="text-white">"<?php echo $ten_loai; ?>"</a></h2>
-
     </div>
 </section>
-<!-- fOOD sEARCH Section Ends Here -->
 
-
-
-<!-- fOOD MEnu Section Starts Here -->
+<!-- Bắt đầu danh sách sản phẩm -->
 <section class="food-menu">
     <div class="container">
         <h2 class="text-center">SẢN PHẨM</h2>
 
         <?php
-        //Create SQL Query to Get foods based on Selected Category
+        //SQL lấy thông tin sản phẩm dựa trên loai_id
         $sql2 = "SELECT * FROM san_pham WHERE loai_id = $loai_id";
 
-        //Execute the Query
+        //Chạy SQL
         $res2 = mysqli_query($conn, $sql2);
 
-        //COunt the rows
+        //Đếm số dòng
         $count2 = mysqli_num_rows($res2);
 
-        //Check whether food is available or not
+        //Kiểm tra có sản phẩm hay không
         if ($count2 > 0) {
-            //Food is available 
+            //Tồn tại
             while ($row2 = mysqli_fetch_assoc($res2)) {
+                // Lấy thông tin
                 $id = $row2['id'];
                 $ten_san_pham = $row2['ten_san_pham'];
                 $gia = $row2['gia'];
@@ -80,29 +78,26 @@ if (isset($_GET['loai_id'])) {
                 $anh = $row2['anh'];
                 $ton_kho = $row2['ton_kho'];
         ?>
-
                 <div class="food-menu-box">
                     <div class="food-menu-img">
                         <?php
-                        //Check whether image available or not
+                        //Kiểm tra ảnh
                         if ($anh == "") {
-                            //Image not Available
+                            //Không có
                             echo "<div class='error'>Không có hình ảnh.</div>";
                         } else {
-                            //Image Available
+                            //Có
                         ?>
                             <img height="130px" src="<?php echo SITEURL; ?>images/agricultural/<?php echo $anh; ?>" alt="" class="img-responsive img-curve">
                         <?php
                         }
                         ?>
-
                     </div>
 
                     <div class="food-menu-desc">
                         <h4><?php echo $ten_san_pham; ?></h4>
                         <p class="food-price">
                             <?php
-                            // $doanh_nghiep = 0;
                             $sql_km = "SELECT * FROM khuyen_mai WHERE sanpham_id = $id ORDER BY ngay_batdau DESC LIMIT 1";
                             $res_km = mysqli_query($conn, $sql_km);
 
@@ -147,11 +142,11 @@ if (isset($_GET['loai_id'])) {
                                     echo "<i>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
                                 }
                             }
-
                             ?>
-
                         </p>
                         <br>
+
+                        <!-- Hiển thị tồn kho -->
                         <p class="food-price">
                             <?php
                             if ($ton_kho == 0) {
@@ -160,14 +155,13 @@ if (isset($_GET['loai_id'])) {
                                 echo "<i> <b>Tồn kho: </b>" . $ton_kho . " Kg <br></i>";
                             }
                             ?>
-
                         </p>
 
+                        <!-- Hiển thị mô tả -->
                         <p class="food-detail">
                             <?php echo $mo_ta; ?>
                         </p>
                         <br>
-
 
                         <?php
                         $so = 1;
@@ -197,14 +191,13 @@ if (isset($_GET['loai_id'])) {
                                 return false;
                             }
                         </script>
-
                     </div>
                 </div>
 
         <?php
             }
         } else {
-            //Food not available
+            //Không có sản phẩm
             echo "<div class='error'>Không có sản phẩm.</div>";
         }
         ?>
@@ -212,9 +205,10 @@ if (isset($_GET['loai_id'])) {
         <div class="clearfix"></div>
 
     </div>
-
 </section>
-<!-- fOOD Menu Section Ends Here -->
+<!-- Kết thúc danh sách sản phẩm-->
 
-<?php include('partials-font/footer.php');
-ob_end_flush();  ?>
+<?php
+include('partials-font/footer.php');
+ob_end_flush();
+?>

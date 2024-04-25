@@ -1,4 +1,5 @@
-<?php include('partials-font/menu.php');
+<?php
+include('partials-font/menu.php');
 ob_start();
 
 if (isset($_GET['donhang_id'])) {
@@ -13,8 +14,7 @@ if (isset($_SESSION['lien_he'])) {
 }
 ?>
 
-
-<!-- fOOD sEARCH Section Starts Here -->
+<!-- Bắt đầu phản hồi -->
 <section class="food-menu">
     <div class="container">
 
@@ -40,13 +40,12 @@ if (isset($_SESSION['lien_he'])) {
                 <textarea name="noi_dung" rows="10" placeholder="VD. Chất lượng sản phẩm rất tốt" class="input-responsive" required></textarea>
 
                 <input type="submit" name="submit" value="Gửi" class="btn btn-primary">
-
             </fieldset>
 
         </form>
 
         <?php
-        //Check whether submit button is clicked or not
+        //Kiểm tra nút Gửi
         if (isset($_POST['submit'])) {
 
             $ngay_lien_he = date("Y-m-d h:i:sa");
@@ -57,8 +56,7 @@ if (isset($_SESSION['lien_he'])) {
             $khach_diachi = $_POST['khach_diachi'];
             $noi_dung = $_POST['noi_dung'];
 
-            //Save the Order in Database
-            //Create SQL to Save the data
+            //Lưu dữ liệu
             $sql2 = "INSERT INTO lien_he SET
                 ngay = '$ngay_lien_he',
                 noi_dung = '$noi_dung',
@@ -69,27 +67,26 @@ if (isset($_SESSION['lien_he'])) {
                 donhang_id = $donhang_id
             ";
 
-            // echo $sql2; die();
-
-            //Execute the Query
+            //Chạy SQL
             $res2 = mysqli_query($conn, $sql2);
 
-            //Check whether query executed successfully or not
+            //Kiểm tra kết nối
             if ($res2 == true) {
-                //Query Executed and Order Saved
+                //Hiển thị thông báo
                 $_SESSION['lien_he'] = "<div class='success'>Đã gửi thông tin phản hồi thành công.</div>";
                 header('location:' . SITEURL . 'tracking-order.php?session_user=' . $_SESSION['user']);
             } else {
-                //Failed to Save Order
+                //Phản hồi thất bại
                 $_SESSION['lien_he'] = "<div class='error'>Vui lòng thử lại sau.</div>";
                 header('location:' . SITEURL . 'contact.php?session_user=' . $_SESSION['user']);
             }
         }
         ?>
-
     </div>
 </section>
-<!-- fOOD sEARCH Section Ends Here -->
+<!-- Kết thúc phản hồi -->
 
-<?php include('partials-font/footer.php');
-ob_end_flush(); ?>
+<?php
+include('partials-font/footer.php');
+ob_end_flush();
+?>

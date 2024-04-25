@@ -5,7 +5,7 @@ ob_start();
 $session_user = ""; // Khởi tạo biến session_user
 ?>
 
-<!-- fOOD sEARCH Section Starts Here -->
+<!-- Bắt đầu cập nhật thông tin -->
 <section class="main-content">
     <div class="container">
 
@@ -13,22 +13,22 @@ $session_user = ""; // Khởi tạo biến session_user
 
         <?php
 
-        //Check whether id is set or not
+        //Kiểm tra session_user
         if (isset($_GET['session_user'])) {
-            //Get all the details
+            //Lấy thông tin session_user
             $session_user = $_GET['session_user'];
 
-            //Query to Get all categories from Database
+            //Lấy thông tin người dùng đang đăng nhập
             $sql = "SELECT * FROM khach_hang  WHERE ten_nguoi_dung = '$session_user'";
 
-            //Execute Query
+            //Chạy SQL
             $res = mysqli_query($conn, $sql);
 
-
-            //Count the Rows to check whether the id is valid or not
+            //Đếm số dòng
             $count = mysqli_num_rows($res);
 
             if ($count == 1) {
+                //Có người dùng
                 $row = mysqli_fetch_assoc($res);
                 $id = $row['id'];
                 $current_image = $row['anh'];
@@ -39,12 +39,12 @@ $session_user = ""; // Khởi tạo biến session_user
                 $ten_doanh_nghiep = $row['ten_doanh_nghiep'];
                 $ma_so_thue = $row['ma_so_thue'];
             } else {
-                //Redirect to manager category page with session message
+                //Hiển thị thông báo và chuyển hướng
                 $_SESSION['no-user-found'] = "<div class='error'>Không tìm thấy người dùng.</div>";
                 header('location:' . SITEURL . 'infor.php?session_user=' . $_SESSION['user']);
             }
         } else {
-            //Redirect to Manager Category
+            //Chuyển hướng đến trang thông tin khách hàng
             header('location:' . SITEURL . 'infor.php?session_user=' . $_SESSION['user']);
         }
         ?>
@@ -110,10 +110,10 @@ $session_user = ""; // Khởi tạo biến session_user
                     <td>
                         <?php
                         if ($current_image == "") {
-                            //Image not Available
+                            //Không có
                             echo "<div class='error'>Không có hình ảnh.</div>";
                         } else {
-                            //Image Available
+                            //Có hình ảnh
                         ?>
                             <img width="150px" src="<?php echo SITEURL; ?>images/avatar/<?php echo $current_image; ?>">
                         <?php
@@ -145,7 +145,7 @@ $session_user = ""; // Khởi tạo biến session_user
 
         <?php
         if (isset($_POST['submit'])) {
-            //1. Get the Data from Form
+            //1. Lấy dữ liệu từ form
             $id = $_POST['id'];
             $ho_va_ten = $_POST['ho_va_ten'];
             $ten_nguoi_dung = $_POST['ten_nguoi_dung'];
@@ -155,38 +155,50 @@ $session_user = ""; // Khởi tạo biến session_user
             $gioi_tinh = $_POST['gioi_tinh'];
             $current_image = $_POST['current_image'];
 
-            //2. Upload the Image if selected
+            //2. Tải hình ảnh được chọn
             if (isset($_FILES['anh']['name'])) {
+                //Lấy tên ảnh
                 $ten_anh = $_FILES['anh']['name'];
                 if ($ten_anh != "") {
                     $ten_anh_parts = explode('.', $ten_anh);
+                    //Lấy phần mở rộng ảnh
                     $ext = end($ten_anh_parts);
+                    //Đổi tên ảnh tự động
                     $ten_anh = "Avatar" . rand(0000, 9999) . "." . $ext;
+                    //Lấy đường dẫn nguồn
                     $src_path = $_FILES['anh']['tmp_name'];
+                    //Đường dẫn đích
                     $dest_path = "images/avatar/" . $ten_anh;
+                    //Tải ảnh lên
                     $upload = move_uploaded_file($src_path, $dest_path);
                     if ($upload == false) {
+                        //Tải thất bại
                         $_SESSION['upload'] = "<div class='error'>Tải hình ảnh thất bại.</div>";
                         header('location:' . SITEURL . 'infor.php?session_user=' . $_SESSION['user']);
                         die();
                     }
+
                     if ($current_image != "") {
+                        //Gở bỏ ảnh cũ nếu có
                         $remove_path = "images/avatar/" . $current_image;
                         $remove = unlink($remove_path);
                         if ($remove == false) {
+                            //Gỡ thất bại
                             $_SESSION['remove-failed'] = "<div class='error'>Xóa hình ảnh hiện tại thất bại.</div>";
                             header('location:' . SITEURL . 'infor.php?session_user=' . $_SESSION['user']);
                             die();
                         }
                     }
                 } else {
+                    //Chọn ảnh rỗng
                     $ten_anh = $current_image;
                 }
             } else {
+                //Không chọn ảnh
                 $ten_anh = $current_image;
             }
 
-            //3. Update the User in Database
+            //3. Cập nhật
             $sql3 = "UPDATE khach_hang SET
             ho_va_ten = '$ho_va_ten',
             ten_nguoi_dung = '$ten_nguoi_dung',
@@ -200,9 +212,11 @@ $session_user = ""; // Khởi tạo biến session_user
             $res3 = mysqli_query($conn, $sql3);
             $_SESSION['user'] = $ten_nguoi_dung;
             if ($res3 == true) {
+                //Cập nhật thành công
                 $_SESSION['update'] = "<div class='success'>Cập nhật thông tin thành công.</div>";
                 header('location:' . SITEURL . 'infor.php?session_user=' . $_SESSION['user']);
             } else {
+                //Cập nhật thất bại
                 $_SESSION['update'] = "<div class='error'>Cập nhật thông tin thất bại.</div>";
                 header('location:' . SITEURL . 'infor.php?session_user=' . $_SESSION['user']);
             }
@@ -211,8 +225,9 @@ $session_user = ""; // Khởi tạo biến session_user
 
     </div>
 </section>
-<!-- fOOD sEARCH Section Ends Here -->
+<!-- Kết thúc cập nhật thông tin -->
 
-
-<?php include('partials-font/footer.php');
-ob_end_flush(); ?>
+<?php
+include('partials-font/footer.php');
+ob_end_flush();
+?>

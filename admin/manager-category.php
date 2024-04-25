@@ -1,6 +1,6 @@
 <?php include('partials/menu.php') ?>
 
-<!-- Main Content Section Starts -->
+<!-- Bắt đầu nội dung chính -->
 <div class="main-content">
 
     <div class="wrapper">
@@ -44,12 +44,11 @@
             unset($_SESSION['failed-remove']);
         }
 
-
         ?>
 
         <br><br>
 
-        <!-- Button to Add Admin -->
+        <!-- Nút thêm loại sản phẩm -->
         <a href="<?php echo SITEURL; ?>admin/add-category.php" class="btn-primary">Thêm loại sản phẩm</a>
 
         <br><br><br>
@@ -65,22 +64,22 @@
 
             <?php
 
-            //Query to Get all catefories from Database
+            //SQL lấy dữ liệu từ bảng loại sản phẩm
             $sql = "SELECT * FROM loai_san_pham";
 
-            //Execute Query
+            //Chạy SQL
             $res = mysqli_query($conn, $sql);
 
-            //Count Rows
+            //Đếm số dòng
             $count = mysqli_num_rows($res);
 
-            //Create Serial Number Variable and assign value as 1
+            //Tạo biến STT
             $sn = 1;
 
-            //Check whether we have data in databaase or not
+            //Kiểm tra có dữ liệu trong database hay không
             if ($count > 0) {
-                //We have data in database
-                //Get the data and display
+                //Có dữ liệu
+                //Lấy dữ liệu và hiển thị
                 while ($row = mysqli_fetch_assoc($res)) {
                     $id = $row['id'];
                     $ten_loai = $row['ten_loai'];
@@ -89,39 +88,36 @@
             ?>
                     <tr>
                         <td><?php echo $sn++; ?></td>
+
                         <td><?php echo $ten_loai; ?></td>
 
                         <td>
-
                             <?php
-                            //Check whether image name is available or not
+                            //Kiểm tra ảnh có tồn tại hay không
                             if ($anh != "") {
-                                //Display the image
+                                //Hiển thị hình ảnh
                             ?>
-
                                 <img width="150px" src="<?php echo SITEURL; ?>images/category/<?php echo $anh ?>">
-
                             <?php
                             } else {
-                                //Display the Message
+                                //Hiển thị thông báo
                                 echo "<div class='error'>Hình ảnh không được thêm.</div>";
                             }
                             ?>
-
                         </td>
 
                         <td><?php echo $trang_thai; ?></td>
+
                         <td>
                             <a href="<?php echo SITEURL; ?>admin/update-category.php?id=<?php echo $id; ?>" class="btn-secondary">Cập nhật loại sản phẩm</a>
                             <a href="<?php echo SITEURL; ?>admin/delete-category.php?id=<?php echo $id; ?>&anh=<?php echo $anh ?>" class="btn-danger">Xóa loại sản phẩm</a>
                         </td>
                     </tr>
-
                 <?php
                 }
             } else {
-                //We don't have data
-                //We'll display the message inside table
+                //Không có dữ liệu
+                //Hiển thị thông báo trong bảng
                 ?>
 
                 <tr>
@@ -132,13 +128,10 @@
 
             <?php
             }
-
             ?>
-
         </table>
-
     </div>
 </div>
-<!-- Main Content Section Ends -->
+<!-- Kết thúc nội dung chính -->
 
 <?php include('partials/footer.php') ?>

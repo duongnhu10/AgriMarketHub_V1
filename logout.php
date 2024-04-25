@@ -1,8 +1,8 @@
 <?php
-//Include constant.php for SITEURL
+
 include('config/constants.php');
-//1. Destroy the Session
+//1. Hủy phiên đăng nhập
 session_destroy(); //Unset $_SESSION['user']
 
-//2. Redirect the Login page
+//2. Chuyển hướng đến trang đăng nhập
 header('location:' . SITEURL . 'guest/index.php');

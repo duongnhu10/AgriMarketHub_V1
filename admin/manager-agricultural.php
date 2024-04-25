@@ -1,6 +1,6 @@
 <?php include('partials/menu.php') ?>
 
-<!-- Main Content Section Starts -->
+<!-- Bắt đầu nội dung chính -->
 <div class="main-content">
 
     <div class="wrapper">
@@ -24,12 +24,10 @@
             unset($_SESSION['upload']);
         }
 
-
         if (isset($_SESSION['unauthorize'])) {
             echo $_SESSION['unauthorize'];
             unset($_SESSION['unauthorize']);
         }
-
 
         if (isset($_SESSION['update'])) {
             echo $_SESSION['update'];
@@ -38,7 +36,7 @@
         ?>
         <br><br>
 
-        <!-- Button to Add Admin -->
+        <!-- Nút thêm sản phẩm -->
         <a href="<?php echo SITEURL; ?>admin/add-agricultural.php" class="btn-primary">Thêm sản phẩm</a>
 
         <br><br><br>
@@ -58,21 +56,21 @@
             </tr>
 
             <?php
-            //Create a SQL Query to Get all the products
+            //SQL để lấy thông tin sản phẩm
             $sql = "SELECT * FROM san_pham";
 
-            //Execute the query
+            //Chạy SQL
             $res = mysqli_query($conn, $sql);
 
-            //Count Rows to check whether we have products or not
+            //Đếm số dòng xem có sản phẩm hay không
             $count = mysqli_num_rows($res);
 
-            //Create Serial Number Variable and set default value as 1
+            //Tạo biến hiển thị STT
             $sn = 1;
 
             if ($count > 0) {
-                //We have product in Database
-                //Get the products from Database and display
+                //Có sản phẩm trong database
+                //Lấy sản phẩm từ database và hiên thị
                 while ($row = mysqli_fetch_assoc($res)) {
                     $id = $row['id'];
                     $ten_san_pham = $row['ten_san_pham'];
@@ -80,12 +78,10 @@
                     $gia = $row['gia'];
                     $gia_dn = $row['gia_dn'];
                     $gia_khuyen_mai = $row['gia_khuyen_mai'];
-
                     $anh = $row['anh'];
                     $trang_thai = $row['trang_thai'];
                     $ton_kho = $row['ton_kho'];
             ?>
-
                     <tr>
                         <td><?php echo $sn++; ?></td>
                         <td><?php echo $ten_san_pham; ?></td>
@@ -95,12 +91,12 @@
                         <td><?php echo $gia_khuyen_mai; ?>%</td>
                         <td>
                             <?php
-                            //Check whether we have image or not
+                            //Kiểm tra có ảnh hay không
                             if ($anh == "") {
-                                //We don not have image, Display Error Message
+                                //Không có ảnh, hiển thị thông báo
                                 echo "<div class='error'>Hình ảnh không được thêm.</div>";
                             } else {
-                                //We have Image, Display Image
+                                //Có ảnh, hiển thị ra hình ảnh
                             ?>
                                 <img src="<?php echo SITEURL; ?>images/agricultural/<?php echo $anh; ?>" width="150px;">
                             <?php
@@ -118,7 +114,7 @@
             <?php
                 }
             } else {
-                //Product not Added in Database
+                //Không có sản phẩm
                 echo "<tr><td colspan='7' class='error'>Sản phẩm trống.</td></tr>";
             }
 
@@ -127,6 +123,6 @@
         </table>
     </div>
 </div>
-<!-- Main Content Section Ends -->
+<!-- Kết thúc nội dung chính -->
 
 <?php include('partials/footer.php') ?>

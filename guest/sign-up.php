@@ -12,6 +12,7 @@
         <h1 class="text-center" style="font-size: 26px; margin: 5px;">ĐĂNG KÝ</h1>
         <br>
 
+        <!-- Kiểm tra có tồn tại session trùng username không, hiển thị và hủy bỏ session -->
         <?php
         if (isset($_SESSION['trung_username'])) {
             echo ($_SESSION['trung_username']);
@@ -21,14 +22,13 @@
 
         <br><br>
 
-        <!-- Sign up form starts here -->
+        <!-- Bắt đầu form đăng ký -->
         <form action="" method="POST" class="text-center">
             <div class="text-login">HỌ VÀ TÊN</div>
             <input class="text" type="text" name="ho_va_ten" placeholder="Nhập họ tên của bạn.">
-
             <br>
-            <div class="text-login">TÊN NGƯỜI DÙNG</div>
 
+            <div class="text-login">TÊN NGƯỜI DÙNG</div>
             <input class="text" type="text" name="ten_nguoi_dung" placeholder="Nhập tên người dùng của bạn.">
             <br><br>
 
@@ -52,8 +52,7 @@
             <input class="text" type="text" name="ma_so_thue" placeholder="Bỏ trống nếu không phải doanh nghiệp.">
             <br><br>
 
-            <div class="text-login">MẬT KHẨU
-            </div>
+            <div class="text-login">MẬT KHẨU</div>
             <input class="password" type="password" name="mat_khau" placeholder="Nhập mật khẩu của bạn.">
             <br><br>
 
@@ -62,7 +61,7 @@
             <p type="text" name="dang_nhap">Nếu bạn đã có tài khoản <a href="<?php echo SITEURL . 'guest/login.php' ?>">Đăng nhập</a></p>
             <br>
         </form>
-        <!--  Sign up  form ends here -->
+        <!-- Kết thúc form đăng ký -->
 
         <p class="text-center create-by">Tạo bởi CT299-06</p>
     </div>
@@ -71,20 +70,23 @@
 </html>
 
 <?php
-//Check whether the submit button is clicked or not
+//Kiểm tra nút đăng ký có được nhấn hay không
 if (isset($_POST["submit"])) {
-    //Process for Login
-    //1. Get the Data form Login form
+    //Quá trình đăng ký
+    //1. Lấy dữ liệu từ form đăng ký
     //$ten_nguoi_dung = $_POST['ten_nguoi_dung'];
     //$mat_khau = md5($_POST['mat_khau']);
     $ho_va_ten = mysqli_real_escape_string($conn, $_POST['ho_va_ten']); //SQL injecttion
     $ten_nguoi_dung = mysqli_real_escape_string($conn, $_POST['ten_nguoi_dung']); //SQL injecttion
 
-    // Kiểm tra xem tên người dùng đã tồn tại chưa
+    //Kiểm tra xem tên người dùng (khách hàng) đã tồn tại chưa
     $sql_check = "SELECT * FROM khach_hang WHERE ten_nguoi_dung = '$ten_nguoi_dung'";
+    //Chạy SQL
     $res_check = mysqli_query($conn, $sql_check);
+    //Đếm số dòng
     $row = mysqli_fetch_assoc($res_check);
     if ($row) {
+        //Trùng username với người dùng khác
         $_SESSION['trung_username'] = "<div class='error text-center'>Tên người dùng đã được sử dụng.</div>";
         header('location:' . SITEURL . 'guest/sign-up.php');
     }
@@ -96,7 +98,7 @@ if (isset($_POST["submit"])) {
     $raw_mat_khau = md5($_POST['mat_khau']);
     $mat_khau = mysqli_real_escape_string($conn, $raw_mat_khau);  //SQL injecttion
 
-    //2. SQL 
+    //2. SQL để chèn vào bảng khach_hang
     $sql_insert = "INSERT INTO khach_hang SET
             ho_va_ten = '$ho_va_ten',
             ten_nguoi_dung = '$ten_nguoi_dung',
@@ -106,14 +108,14 @@ if (isset($_POST["submit"])) {
             gioi_tinh = $gioi_tinh,
             mat_khau = '$mat_khau'";
 
-    //3.Execute the query
+    //3. Chạy SQL
     $res_insert = mysqli_query($conn, $sql_insert);
 
     if ($res_insert == true) {
-        // Đăng ký thành công
+        //Đăng ký thành công
         echo "<script>alert('Đăng ký thành công'); window.location.href = '" . $SITEURL . "login.php';</script>";
     } else {
-        // Đăng ký không thành công
+        //Đăng ký không thành công
         echo "<script>alert('Đăng ký không thành công'); window.location.href = '" . $SITEURL . "sign-up.php';</script>";
     }
 }

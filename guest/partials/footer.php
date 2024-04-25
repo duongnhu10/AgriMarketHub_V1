@@ -1,4 +1,4 @@
-<!-- social Section Starts Here -->
+<!-- Bắt đầu session social -->
 <section class="social">
     <div class="container text-center">
         <ul>
@@ -14,15 +14,15 @@
         </ul>
     </div>
 </section>
-<!-- social Section Ends Here -->
+<!-- Kết thúc session social -->
 
-<!-- footer Section Starts Here -->
+<!-- Bắt đầu session chân trang -->
 <section class="footer">
     <div class="container text-center">
         <p>Tạo bởi <a href="#">CT299-06</a></p>
     </div>
 </section>
-<!-- footer Section Ends Here -->
+<!-- Kết thúc session chân trang -->
 
 </body>
 

@@ -7,33 +7,32 @@
         <br><br>
 
         <?php
-        //1. Get the ID of Selected Admin
+        //1. Lấy id của admin được chọn
         $id = $_GET['id'];
 
-        //2. Create SQL Query to Get the Details
+        //2. SQL lấy chi tiết admin
         $sql = "SELECT * FROM admin WHERE id=$id";
 
-        //Execute the Query
+        //Chạy SQL
         $res = mysqli_query($conn, $sql);
 
-        //Check whether the query is executed or not
+        //Kiểm tra câu lệnh thành công hay không
         if ($res == true) {
-            //Check whether the data is a avaiable or not
+            //Kiểm tra dữ liệu có tồn tại hay không
             $count = mysqli_num_rows($res);
-            //Check whether we have admin data or not
+            //Kiểm tra xem có admin trong database hay không
             if ($count == 1) {
-                //Get the Details
+                //Lấy chi tiết
                 //echo "Admin Available";
                 $row = mysqli_fetch_assoc($res);
 
                 $ho_va_ten = $row['ho_va_ten'];
                 $ten_nguoi_dung = $row['ten_nguoi_dung'];
             } else {
-                //Redirect to Manager Admin Page
+                //Chuyển hướng đến trang quản lý admin
                 header('location:' . SITEURL . 'admin/manager-admin');
             }
         }
-
         ?>
 
         <form action="" method="POST">
@@ -59,41 +58,39 @@
                         <input type="submit" name="submit" value="Cập nhật" class="btn-secondary">
                     </td>
                 </tr>
-
             </table>
 
         </form>
-
     </div>
 </div>
 
 <?php
-//Check whether The Submit Button is clicked ot not 
+//Kiêm tra nút có được nhấn hay không
 if (isset($_POST['submit'])) {
     //echo "Button clicked.";
-    //Get all values from Form Update
+    //Lấy giá trị để cập nhật
     $id = $_POST['id'];
     $ho_va_ten = $_POST['ho_va_ten'];
     $ten_nguoi_dung = $_POST['ten_nguoi_dung'];
 
-    //Create a SQL query to Update Admin
+    //SQL cập nhật admin
     $sql = "UPDATE admin SET 
     ho_va_ten = '$ho_va_ten', ten_nguoi_dung = '$ten_nguoi_dung' 
     WHERE id = '$id'";
 
-    //Execute the Query
+    //Chạy SQL
     $res = mysqli_query($conn, $sql);
 
-    //Check whether the Query executed successfully or not
+    //Kiểm tra câu lệnh chạy thành công hay thất bại
     if ($res == true) {
-        //Query Executed and Admin Updated
+        //Cập nhật thành công
         $_SESSION['update'] = "<div class='success'>Cập nhật thành công.<div>";
-        //Redirect to Manager Admin Page
+        //Chuyển hướng đến trang quản lý admin
         header('location:' . SITEURL . 'admin/manager-admin.php');
     } else {
-        //Failed to Update Admin
+        //Cập nhật thất bại
         $_SESSION['update'] = "<div class='error'>Cập nhật thất bại.<div>";
-
+        //Chuyển hướng đến trang quản lý admin
         header('location:' . SITEURL . 'admin/manager-admin.php');
     }
 }

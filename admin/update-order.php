@@ -6,21 +6,21 @@
         <br><br>
 
         <?php
-        //Check whether id is set or not
+        //Kiểm tra xem có tồn tại id được gửi đi hay không
         if (isset($_GET['id'])) {
-            //Get the Order Details
+            //Lấy chi tiết đơn hàng
             $id = $_GET['id'];
 
-            //Get all other details based on this id
-            //SQL Query to get the order details
+            //Lấy thông tin khác dựa vào id
+            //SQL để lấy chi tiết đơn hàng
             $sql = "SELECT * FROM don_hang WHERE id=$id";
-            //Execute Query
+            //Chạy SQL
             $res = mysqli_query($conn, $sql);
-            //COunt Rows
+            //Đếm số dòng
             $count = mysqli_num_rows($res);
 
             if ($count == 1) {
-                //Detail Available
+                //Có dữ liệu
                 $row = mysqli_fetch_assoc($res);
 
                 $san_pham = $row['san_pham'];
@@ -34,10 +34,9 @@
             } else {
             }
         } else {
-            //Redirect to Manage Order page
+            //Chuyển hướng đến trang quản lí đơn hàng
             header('location:' . SITEURL . 'admin/manager-order.php');
         }
-
         ?>
 
         <form action="" method="POST">
@@ -116,30 +115,26 @@
                         <input type="submit" name="submit" value="Cập nhật" class="btn-secondary">
                     </td>
                 </tr>
-
             </table>
 
         </form>
 
         <?php
-        //Check whether Button is Clicked or Not
+        //Kiểm tra nút có được nhấn hay không
         if (isset($_POST['submit'])) {
             //echo "Clicked";
-            //get all the values from form
+            //Lấy các giá trị từ form
             $id = $_POST['id'];
             $gia = $_POST['gia'];
             $so_luong = $_POST['so_luong'];
-
             $tong_tien = $so_luong * $gia;
-
             $trang_thai = $_POST['trang_thai'];
-
             $khach_ten = $_POST['khach_ten'];
             $khach_sdt = $_POST['khach_sdt'];
             $khach_email = $_POST['khach_email'];
             $khach_diachi = $_POST['khach_diachi'];
 
-            //Upadte the values
+            //Cập nhật giá trị
             $sql2 = "UPDATE don_hang SET
                 so_luong = $so_luong,
                 tong_tien = $tong_tien,
@@ -151,24 +146,23 @@
                 WHERE id=$id;
             ";
 
-            //Execute the Query
+            //Chạy SQL
             $res2 = mysqli_query($conn, $sql2);
 
-            //Check whether upadte or not
-            //And redirect to Manager Order with message
-            //Check whether executed or not
+            //Kiểm tra có được cập nhật hay không
+            //Chuyển hướng đến trang quản lí đơn hàng và thông báo
+            //Kiểm tra câu lệnh có chạy hay không
             if ($res2 == true) {
-                //Updated
+                //Cập nhật thành công
                 $_SESSION['update'] = "<div class='success'>Cập nhật đơn hàng thành công.</div>";
                 header('location:' . SITEURL . 'admin/manager-order.php');
             } else {
-                //Failed to update
+                //Cập nhật thất bại
                 $_SESSION['update'] = "<div class='error'>Cập nhật đơn hàng thất bại.</div>";
                 header('location:' . SITEURL . 'admin/manager-order.php');
             }
         }
         ?>
-
     </div>
 </div>
 

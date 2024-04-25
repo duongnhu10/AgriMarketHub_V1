@@ -1,6 +1,6 @@
 <?php include('partials/menu.php') ?>
 
-<!-- Main Content Section Starts -->
+<!-- Bắt đầu nội dung chính -->
 <div class="main-content">
 
     <div class="wrapper">
@@ -9,12 +9,10 @@
         <br><br>
 
         <?php
-
         if (isset($_SESSION['delete'])) {
-            echo $_SESSION['delete'];  //Displaying session message
-            unset($_SESSION['delete']); //Removing session message
+            echo $_SESSION['delete'];
+            unset($_SESSION['delete']);
         }
-
         ?>
 
         <br><br><br>
@@ -30,47 +28,53 @@
             </tr>
 
             <?php
-            //Query to Get all Admin
+            //Lấy thông tin tất cả người dùng
             $sql = "SELECT * FROM khach_hang";
-            //Execute the Query
+            //Chạy SQL
             $res = mysqli_query($conn, $sql);
 
-            //Check whether the Query is Executed or Not
+            //Kiểm tra câu lệnh chạy thành công hay không
             if ($res == TRUE) {
-                //Count Rows to Check whether we have data in database or not
-                $count = mysqli_num_rows($res); //Function to get all the rows in database
+                //Đếm dòng xem có dữ liệu không
+                $count = mysqli_num_rows($res);
 
-                $sn = 1; //Create a Variable and Assign the value
+                $sn = 1; //Tạo STT
 
-                //check the num of rows
+                //Kiểm tra số dòng
                 if ($count > 0) {
-                    //We have data in database
+                    //Có dữ liệu
                     while ($rows = mysqli_fetch_assoc($res)) {
-                        //Using while loop to get all the data form database
-                        //And while loop will run as long as we have data in database
+                        //Dùng vòng lặp để lấy dữ liệu
 
-                        //Get individual Data
+                        //Lấy dữ liệu
                         $id = $rows['id'];
                         $ho_va_ten = $rows['ho_va_ten'];
                         $ten_nguoi_dung = $rows['ten_nguoi_dung'];
                         $gioi_tinh = $rows['gioi_tinh'];
                         $doanh_nghiep = $rows['doanh_nghiep'];
-                        // $password = $rows['password'];
 
-                        //Display the values in our Table
+                        //Hiển thị giá trị trong bảng
             ?>
                         <tr>
                             <td><?php echo  $sn++; ?></td>
                             <td><?php echo  $ho_va_ten; ?></td>
                             <td><?php echo  $ten_nguoi_dung; ?></td>
-                            <td><?php if ($doanh_nghiep == 1)
-                                    echo "Có";
-                                else echo "Không";  ?></td>
 
-                            <td><?php
+                            <td>
+                                <?php
+                                if ($doanh_nghiep == 1)
+                                    echo "Có";
+                                else
+                                    echo "Không"; ?>
+                            </td>
+
+                            <td>
+                                <?php
                                 if ($gioi_tinh == 1)
                                     echo "Nữ";
-                                else echo "Nam"; ?></td>
+                                else echo "Nam";
+                                ?>
+                            </td>
 
                             <td>
                                 <a href="<?php echo SITEURL; ?>admin/delete-user.php?id=<?php echo $id; ?>" class="btn-danger">Xóa người dùng</a>
@@ -79,16 +83,13 @@
             <?php
                     }
                 } else {
-                    //We do not have data in database
-
+                    //Không có dữ liệu
                 }
             }
             ?>
-
         </table>
-
     </div>
 </div>
-<!-- Main Content Section Ends -->
+<!-- Kết thúc nội dung chính -->
 
 <?php include('partials/footer.php') ?>

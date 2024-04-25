@@ -10,12 +10,6 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* .wrapper {
-  padding: 1%;
-  width: 80%;
-  margin: 0 auto;
-} */
-
 .wrapper {
   width: 80%; /* Width of the menu container */
   margin: 0 auto; /* Center align the menu */
@@ -37,16 +31,6 @@
 .tbl-30 {
   width: 30%;
 }
-
-/* table tr th {
-  border-bottom: 1px solid black;
-  padding: 1%;
-  text-align: left;
-}
-
-table tr td {
-  padding: 1%;
-} */
 
 table {
   width: 100%;
@@ -79,18 +63,6 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
   background-color: #eaeaea;
 }
-/* 
-.btn-primary {
-  background-color: #1e90ff;
-  padding: 1%;
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.btn-primary:hover {
-  background-color: #3742fa;
-} */
 
 .btn-primary {
   display: inline-block;
@@ -120,18 +92,6 @@ tbody tr:hover {
   float: left;
 }
 
-/* .btn-secondary {
-  background-color: #7bed9f;
-  padding: 1%;
-  color: black;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.btn-secondary:hover {
-  background-color: #2ed573;
-} */
-
 .btn-secondary {
   display: inline-block;
   background-color: #7bed9f; /* Background color */
@@ -145,18 +105,6 @@ tbody tr:hover {
 .btn-secondary:hover {
   background-color: #2ed573; /* Darker background color on hover */
 }
-
-/* .btn-danger {
-  background-color: #ff6b81;
-  padding: 1%;
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.btn-danger:hover {
-  background-color: #ff4757;
-} */
 
 .btn-danger {
   display: inline-block;
@@ -181,18 +129,11 @@ tbody tr:hover {
 }
 
 /* CSS for menu */
-/* .menu {
-  border-bottom: 1px solid grey;
-} */
 
 .menu {
   background-color: #f8f9fa; /* Background color of the menu */
   padding: 20px 0; /* Padding for top and bottom */
 }
-
-/* .menu ul {
-  list-style-type: none;
-} */
 
 .menu ul {
   list-style-type: none; /* Remove default bullet points */
@@ -204,11 +145,6 @@ tbody tr:hover {
   margin-right: 20px; /* Right margin between menu items */
 }
 
-/* .menu ul li {
-  display: inline;
-  padding: 1%;
-} */
-
 .menu ul li a {
   text-decoration: none; /* Remove underline from links */
   color: #ff6b81; /* Text color of the links */
@@ -219,22 +155,9 @@ tbody tr:hover {
   transition: background-color 0.3s; /* Smooth transition for background color */
 }
 
-/* .menu ul li a {
-  text-decoration: none;
-  text-transform: uppercase;
-  font-weight: bold;
-  color: #ff6b81;
-} */
-
 .menu ul li a:hover {
   color: #ff4757;
 }
-
-/* CSS for footer */
-/* .footer {
-  background-color: #ff4757;
-  color: white;
-} */
 
 .footer {
   background-color: #ff4757; /* Red background color */

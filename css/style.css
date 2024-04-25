@@ -4,14 +4,17 @@
   padding: 0 0;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 .container {
   width: 80%;
   margin: 0 auto;
   padding: 1%;
 }
+
 .img-responsive {
   width: 100%;
 }
+
 .img-curve {
   border-radius: 15px;
 }
@@ -19,12 +22,15 @@
 .text-right {
   text-align: right;
 }
+
 .text-center {
   text-align: center;
 }
+
 .text-left {
   text-align: left;
 }
+
 .text-white {
   color: white;
 }
@@ -44,6 +50,7 @@ a {
   color: #ff6b81;
   text-decoration: none;
 }
+
 a:hover {
   color: #ff4757;
 }
@@ -54,6 +61,7 @@ a:hover {
   font-size: 1rem;
   border-radius: 5px;
 }
+
 .btn-primary {
   background-color: #ff6b81;
   color: white;
@@ -62,6 +70,7 @@ a:hover {
   transition: background-color 0.3s ease; /* Smooth transition */
   padding: 10px 20px; /* Padding */
 }
+
 .btn-search {
   background-color: #ff6b81;
   color: white;
@@ -70,26 +79,32 @@ a:hover {
   transition: background-color 0.3s ease; /* Smooth transition */
   padding: 10px 20px; /* Padding */
 }
+
 .btn-primary:hover {
   color: white;
   background-color: #ff4757;
 }
+
 h2 {
   color: #2f3542;
   font-size: 2rem;
   margin-bottom: 2%;
 }
+
 h3 {
   font-size: 1.5rem;
 }
+
 .float-container {
   position: relative;
 }
+
 .float-text {
   position: absolute;
   bottom: 50px;
   left: 40%;
 }
+
 fieldset {
   border: 1px solid white;
   margin: 5%;
@@ -98,11 +113,11 @@ fieldset {
 }
 
 /* CSSS for navbar section */
-
 .logo {
   width: 10%;
   float: left;
 }
+
 .menu {
   line-height: 60px;
 }
@@ -138,7 +153,6 @@ fieldset {
 }
 
 /* CSS for Food SEarch Section */
-
 .food-search {
   background-image: url(../images/index/banner1.jpg);
   background-size: cover;
@@ -176,6 +190,7 @@ fieldset {
   background-color: #ececec;
   padding: 4% 0;
 }
+
 .food-menu-box {
   width: 43%;
   margin: 1%;
@@ -200,6 +215,7 @@ fieldset {
   font-size: 1.2rem;
   margin: 2% 0;
 }
+
 .food-detail {
   font-size: 1rem;
   color: #747d8c;
@@ -209,6 +225,7 @@ fieldset {
 .social ul {
   list-style-type: none;
 }
+
 .social ul li {
   display: inline;
   padding: 1%;
@@ -219,6 +236,7 @@ fieldset {
   width: 50%;
   margin: 0 auto;
 }
+
 .input-responsive {
   width: 96%;
   padding: 1%;
@@ -227,13 +245,13 @@ fieldset {
   border-radius: 5px;
   font-size: 1rem;
 }
+
 .order-label {
   margin-bottom: 1%;
   font-weight: bold;
 }
 
 /* CSS for Mobile Size or Smaller Screen */
-
 @media only screen and (max-width: 768px) {
   .logo {
     width: 80%;
@@ -263,9 +281,11 @@ fieldset {
   .categories {
     padding: 20% 0;
   }
+
   h2 {
     margin-bottom: 10%;
   }
+
   .box-3 {
     width: 100%;
     margin: 4% auto;
@@ -280,9 +300,11 @@ fieldset {
     padding: 5%;
     margin-bottom: 5%;
   }
+
   .social {
     padding: 5% 0;
   }
+
   .order {
     width: 100%;
   }
@@ -340,6 +362,7 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
   background-color: #eaeaea;
 }
+
 /* Style cho button */
 .dropbtn {
   /* background-color: #3498db; */

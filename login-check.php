@@ -1,11 +1,9 @@
 <?php
-//Authorization - Access control
-//Check whether the user is logged in or not
+//Kiểm tra người dùng đã đăng nhập chưa
 
-if (!isset($_SESSION['user'])) { //If user session is not set
-    //User is not logged in
-    //Redirect to login page with message
+if (!isset($_SESSION['user'])) {
+    //Người dùng chưa đăng nhập chuyển hướng đến trang đăng nhập và thông báo
     $_SESSION['no-login-message'] = "<div class='error text-center'>Vui lòng đăng nhập.</div>";
-    //Redirect to Login page
+    //Chuyển hướng
     header('location:' . SITEURL . 'guest/login.php');
 }

@@ -8,21 +8,22 @@ $id_us = "";
 if (isset($_GET['session_user'])) {
     $session_user = $_GET['session_user']; // Lấy giá trị session_user từ URL nếu tồn tại
 }
+
+//Lấy thông tin người dùng
 $sql_s = "SELECT * FROM khach_hang WHERE ten_nguoi_dung='$session_user'";
 $res_s = mysqli_query($conn, $sql_s);
 if ($res_s == true) {
     $row_s = mysqli_fetch_assoc($res_s);
     $count_s = mysqli_num_rows($res_s);
     if ($count_s == 1) {
-        //Have data
+        //Có
         $id_us = $row_s['id'];
     } else {
-        //No data
+        //Không
     }
 }
 ?>
 
-<!-- fOOD sEARCH Section Starts Here -->
 <section class="food-search text-center">
     <div class="container">
 
@@ -33,8 +34,8 @@ if ($res_s == true) {
 
     </div>
 </section>
-<!-- fOOD sEARCH Section Ends Here -->
 
+<!-- Kiểm tra, hiển thị, hủy bỏ phiên -->
 <?php
 if (isset($_SESSION['Login'])) {
     echo $_SESSION['Login'];
@@ -45,26 +46,25 @@ if (isset($_SESSION['dat_hang'])) {
     echo $_SESSION['dat_hang'];
     unset($_SESSION['dat_hang']);
 }
-
 ?>
 
-<!-- CAtegories Section Starts Here -->
+<!-- Bắt đầu loại sản phẩm -->
 <section class="categories">
     <div class="container">
         <h2 class="text-center">LOẠI SẢN PHẨM</h2>
 
         <?php
-        //Create SQL Query to Display Categories from Database
+        //SQL lấy loại sản phẩm còn hàng giới hạn 3
         $sql = "SELECT * FROM loai_san_pham WHERE trang_thai = 'Còn hàng' LIMIT 3";
-        //Execute the Query
+        //Chạy SQL
         $res = mysqli_query($conn, $sql);
-        //Count rows to check whether the category is available or not 
+        //Đếm số dòng
         $count = mysqli_num_rows($res);
 
         if ($count > 0) {
-            //Categories Available
+            //Có loại
             while ($row = mysqli_fetch_assoc($res)) {
-                //Get the value like id, title, image_name
+                //Lấy thông tin
                 $id = $row['id'];
                 $ten_loai = $row['ten_loai'];
                 $anh = $row['anh'];
@@ -72,12 +72,12 @@ if (isset($_SESSION['dat_hang'])) {
                 <a href="<?php echo SITEURL; ?>category-agricultural.php?loai_id=<?php echo $id; ?>&session_user=<?php echo $_SESSION['user']; ?>">
                     <div class="box-3 float-container">
                         <?php
-                        //Check whether Image is available or not
+                        //Kiểm tra hình ảnh
                         if ($anh == "") {
-                            //Display Message
+                            //Không có
                             echo "<div class='error'>Hình ảnh không tìm thấy.</div>";
                         } else {
-                            //Image Available
+                            //Có ảnh
                         ?>
                             <img height="450px" src="<?php echo SITEURL; ?>images/category/<?php echo $anh; ?>" alt="Pizza" class="img-responsive img-curve">
                         <?php
@@ -90,39 +90,36 @@ if (isset($_SESSION['dat_hang'])) {
         <?php
             }
         } else {
-            //Categories not Available
+            //Không có loại
             echo "<div class='error'>Loại sản phẩm trống.</div>";
         }
-
         ?>
 
         <div class="clearfix"></div>
     </div>
 </section>
-<!-- Categories Section Ends Here -->
+<!-- Kết thúc loại sản phẩm -->
 
-<!-- fOOD MEnu Section Starts Here -->
+<!-- Bắt đầu danh sách sản phẩm -->
 <section class="food-menu">
     <div class="container">
         <h2 class="text-center">SẢN PHẨM</h2>
 
         <?php
-
-        //Getting Foods from Database that are active 
-        //SQL Query
+        //SQL lấy sản phấm
         $sql2 = "SELECT * FROM san_pham WHERE trang_thai = 'Còn hàng' LIMIT 6";
 
-        //Execute the Query
+        //Chạy SQL
         $res2 = mysqli_query($conn, $sql2);
 
-        //COunt Rows
+        //Đếm số dòng
         $count2 = mysqli_num_rows($res2);
 
-        //Check whether food available or not
+        //Kiểm tra sản phẩm
         if ($count2 > 0) {
-            //Food available
+            //Có
             while ($row = mysqli_fetch_assoc($res2)) {
-                //Get all the values
+                //Lấy các giá trị
                 $id = $row['id'];
                 $ten_san_pham = $row['ten_san_pham'];
                 $gia = $row['gia'];
@@ -132,29 +129,27 @@ if (isset($_SESSION['dat_hang'])) {
                 $anh = $row['anh'];
                 $ton_kho = $row['ton_kho'];
         ?>
-
                 <div class="food-menu-box">
                     <div class="food-menu-img">
                         <?php
-                        //Check whether image available or not
+                        //Kiểm tra hình ảnh
                         if ($anh == "") {
-                            //Image not Available
+                            //Không có
                             echo "<div class='error'>Không có hình ảnh.</div>";
                         } else {
-                            //Image Available
+                            //Có ảnh
                         ?>
                             <img height="130px" src="<?php echo SITEURL; ?>images/agricultural/<?php echo $anh; ?>" alt="" class="img-responsive img-curve">
                         <?php
                         }
                         ?>
-
                     </div>
 
                     <div class="food-menu-desc">
                         <h4><?php echo $ten_san_pham; ?></h4>
+                        <!-- Hiển thị giá -->
                         <p class="food-price">
                             <?php
-                            // $doanh_nghiep = 0;
                             $sql_km = "SELECT * FROM khuyen_mai WHERE sanpham_id = $id ORDER BY ngay_batdau DESC LIMIT 1";
                             $res_km = mysqli_query($conn, $sql_km);
 
@@ -199,11 +194,11 @@ if (isset($_SESSION['dat_hang'])) {
                                     echo "<i>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
                                 }
                             }
-
                             ?>
-
                         </p>
                         <br>
+
+                        <!-- Hiển thị tồn kho -->
                         <p class="food-price">
                             <?php
                             if ($ton_kho == 0) {
@@ -212,14 +207,15 @@ if (isset($_SESSION['dat_hang'])) {
                                 echo "<i> <b>Tồn kho: </b>" . $ton_kho . " Kg <br></i>";
                             }
                             ?>
-
                         </p>
 
+                        <!-- Hiển thị mô tả -->
                         <p class="food-detail">
                             <?php echo $mo_ta; ?>
                         </p>
                         <br>
 
+                        <!-- Số chọn trong giỏ hàng -->
                         <?php
                         $so = 1;
                         ?>
@@ -251,14 +247,12 @@ if (isset($_SESSION['dat_hang'])) {
 
                     </div>
                 </div>
-
         <?php
             }
         } else {
-            //Food not available
+            //Không có sản phẩm
             echo "<div class='error'>Không có sản phẩm.</div>";
         }
-
         ?>
 
         <div class="clearfix"></div>
@@ -269,7 +263,9 @@ if (isset($_SESSION['dat_hang'])) {
         <a href="<?php echo SITEURL; ?>agricultural.php?session_user=<?php echo $_SESSION['user']; ?>">Xem thêm sản phẩm.</a>
     </p>
 </section>
-<!-- fOOD Menu Section Ends Here -->
+<!-- Kết thúc danh sách sản phẩm -->
 
-<?php include('partials-font/footer.php');
-ob_end_flush(); ?>
+<?php
+include('partials-font/footer.php');
+ob_end_flush();
+?>

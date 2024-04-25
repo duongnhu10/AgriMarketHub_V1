@@ -1,7 +1,7 @@
-<?php include('partials/menu.php');
-
-
-ob_start(); ?>
+<?php
+include('partials/menu.php');
+ob_start();
+?>
 
 <div class="main-content">
     <div class="wrapper">
@@ -90,21 +90,21 @@ ob_start(); ?>
                     <td>
                         <select name="loai_san_pham">
                             <?php
-                            //Create PHP code to display categories from Database 
-                            //1. Create SQL to get all categories form database
+                            //Hiển thị loại sản phẩm từ database
+                            //1. SQL lấy tất cả loại từ database
                             $sql = "SELECT * FROM loai_san_pham WHERE trang_thai = 'Còn hàng'";
 
-                            //Executing query
+                            //Chạy SQL
                             $res = mysqli_query($conn, $sql);
 
-                            //Count rows to check whether we have categories or not
+                            //Đếm số dòng
                             $count = mysqli_num_rows($res);
 
-                            //IF count is greater than zero, we have categories else we do not have categories
+                            //Kiểm tra có tồn tại loại hay không
                             if ($count > 0) {
-                                //We have categories
+                                //Có loại sản phẩm
                                 while ($row = mysqli_fetch_assoc($res)) {
-                                    //Get the details of categories
+                                    //Lấy chi tiết loại
                                     $id = $row['id'];
                                     $ten_loai = $row['ten_loai'];
 
@@ -115,15 +115,13 @@ ob_start(); ?>
                                 <?php
                                 }
                             } else {
-                                //We do not have category
+                                //Không có loại sản phẩm
                                 ?>
 
                                 <option value="0">Không có loại sản phẩm</option>
 
                             <?php
                             }
-
-                            //2. Display on Dropdown
                             ?>
 
                         </select>
@@ -156,12 +154,12 @@ ob_start(); ?>
         </form>
 
         <?php
-        //Check whether the button is clicked or not
+        //Kiểm tra nút thêm sản phẩm có được nhấn hay không
         if (isset($_POST['submit'])) {
-            //Add products
+            //Thêm sản phẩm
             // echo "Clicked";
 
-            //1. Get the Data from Form
+            //1. Lấy dữ liệu từ form
             $ten_san_pham = $_POST['ten_san_pham'];
             $mo_ta = $_POST['mo_ta'];
             $gia_goc = $_POST['gia_goc']; //Giá nhập
@@ -169,69 +167,65 @@ ob_start(); ?>
             $gia_dn = $_POST['gia_dn'];
             $gia_khuyen_mai = $_POST['gia_khuyen_mai']; //Phần trăm khuyến mãi
 
-
             $ngay_bat_dau = date('Y-m-d', strtotime($_POST['ngay_bat_dau']));
             $ngay_ket_thuc = date('Y-m-d', strtotime($_POST['ngay_ket_thuc']));
 
             $loai_san_pham = $_POST['loai_san_pham'];
             $ton_kho = $_POST['ton_kho'];
 
-
-
-            //Check whether radio button for active is checked or not
+            //Kiểm tra trang_thai có được chọn hay không
             if (isset($_POST['trang_thai'])) {
                 $trang_thai = $_POST['trang_thai'];
             } else {
-                $trang_thai = "Hết hàng"; //Setting the default value
+                $trang_thai = "Hết hàng"; //Đặt giá trị mặc định
             }
 
-            //2. Upload the Image if selected
-            //Check whether the select image is clicked or not
+            //2. Tải hình ảnh nếu được chọn
+            //Kiểm tra hình ảnh có được chọn hay không
             if (isset($_FILES['anh']['name'])) {
-                //Get the details of the selected image 
+                //Lấy chi tiết hình ảnh
                 $ten_anh = $_FILES['anh']['name'];
 
-                //Check whether the Image is Selected or not and upload the Image only if selected 
+                //Kiểm tra hình ảnh có được chọn hay không và tải hình ảnh được chọn
                 if ($ten_anh != "") {
-                    //Image is selected 
-                    //A. Rename the Image
-                    //Get the extension of selected image (jpn, png...)
+                    //Hình ảnh được chọn
+                    //A. Đổi tên ảnh
+                    //Lấy phần mở rộng của ảnh (jpn, png...)
                     $ext = end(explode('.', $ten_anh));
 
-                    //Create New Image for Image
+                    //Tạo hình ảnh mới
                     $ten_anh = "Nong_San_" . rand(0000, 9999) . "." . $ext;
 
-                    //B. Upload the Image
-                    //Get the src path and destination path
-
-                    //Sourse path is the current location of the image
+                    //B. Tải hình ảnh lên
+                    //Lấy đường dẫn nguồn và đích
+                    //Đường dẫn nguồn của hình ảnh
                     $src = $_FILES['anh']['tmp_name'];
 
-                    //Destination path for the image to be uploaded
+                    //Đường dẫn đích của hình ảnh
                     $dst = "../images/agricultural/" . $ten_anh;
 
-                    //Finally upload the food image
+                    //Tải hình ảnh lên
                     $upload = move_uploaded_file($src, $dst);
 
-                    //Check whether image uplaoded or not
+                    //Kiểm tra hình ảnh được tải lên hay không
                     if ($upload == false) {
-                        //Failed to upload the image
-                        //Redirect to Add Food Page with Error Message
+                        //Tải hình ảnh thất bại
+                        //Chuyển hướng trang thêm sản phẩm và thông báo lỗi
                         $_SESSION['upload'] = "<div class='error'>Tải hình ảnh thất bại.</div>";
                         header('location:' . SITEURL . 'admin/add-agricultural.php');
-                        //Stop the process
+                        //Dừng quá trình
                         die();
                     }
                 }
             } else {
-                $ten_anh = ""; //Setting default value as blank 
+                $ten_anh = ""; //Đặt giá trị mặc định là rỗng
             }
 
 
-            //3. Insert Into Database
+            //3. Chèn vào database
 
-            //Create a SQL Query to Save or Add food
-            //For Numberrical we do not need to pass value inside quotes ''. String value add ''
+            //Thêm sản phẩm
+            //Số không cần ''. Chuỗi thì cần ''
             $sql2 = "INSERT INTO san_pham SET
                 ten_san_pham = '$ten_san_pham',
                 mo_ta = '$mo_ta',
@@ -245,7 +239,7 @@ ob_start(); ?>
                 ton_kho = $ton_kho
             ";
 
-            //Execute the Query 
+            //Chạy SQL
             $res2 = mysqli_query($conn, $sql2);
 
             $sql_id = "SELECT * FROM san_pham WHERE ten_san_pham = '$ten_san_pham'";
@@ -260,22 +254,23 @@ ob_start(); ?>
             $res_km = mysqli_query($conn, $sql_km);
 
 
-            //Check whether add inserted or not 
-            //4. Redirect with Message to Manager Food page
+            //Kiểm tra có được thêm hay không
+            //4. Chuyển hướng và thông báo
             if ($res2 == true) {
-                //Query inserted Successfully
+                //Chèn thành công
                 $_SESSION['add'] = "<div class='success'>Thêm sản phẩm thành công.</div>";
                 header('location: ' . SITEURL . 'admin/manager-agricultural.php');
             } else {
-                //Fail to Add agricultural
+                //Chèn thất bại
                 $_SESSION['add'] = "<div class='error'>Thêm sản phẩm thất bại.</div>";
                 header('location: ' . SITEURL . 'admin/add-agricultural.php');
             }
         }
         ?>
-
     </div>
 </div>
 
-<?php include('partials/footer.php');
-ob_end_flush(); ?>
+<?php
+include('partials/footer.php');
+ob_end_flush();
+?>

@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $so_luong_moi = $_POST['so_luong'];
     $session_user = $_POST['session_user'];
 
-
+    //Lấy thông tin các sản phẩm
     $sql_tk = "SELECT * FROM san_pham WHERE id=$sanpham_id";
     $res_tk = mysqli_query($conn, $sql_tk);
     $row_tk = mysqli_fetch_assoc($res_tk);
@@ -20,18 +20,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header('location:' . SITEURL . 'cart.php');
         exit; // Dừng việc thực hiện tiếp các lệnh sau khi chuyển hướng
     } else {
-        //hợp lệ
+        //Hợp lệ
     }
 
+    //Lấy dữ liệu khách hàng đăng nhập
     $sql_s = "SELECT * FROM khach_hang WHERE ten_nguoi_dung='$session_user'";
     $res_s = mysqli_query($conn, $sql_s);
     $row_s = mysqli_fetch_assoc($res_s);
     $count_s = mysqli_num_rows($res_s);
     if ($count_s == 1) {
-        //Have data
-        $id_us = $row_s['id'];
+        //Có
+        $id_us = $row_s['id']; //Lấy id khách hàng đăng nhập
     } else {
-        //No data
+        //Không
     }
 
     // Thực hiện câu lệnh SQL UPDATE để cập nhật số lượng
@@ -40,8 +41,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Kiểm tra kết quả và gửi phản hồi về máy khách nếu cần
     if ($res_update) {
+        //Thành công
         echo "Cập nhật số lượng thành công.";
     } else {
+        //Thất bại
         echo "Cập nhật số lượng không thành công.";
     }
 }

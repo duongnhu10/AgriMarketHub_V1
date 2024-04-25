@@ -1,64 +1,62 @@
-<?php include('partials-font/menu.php');
-ob_start();
+<?php
+include('partials-font/menu.php');
+ob_start(); //Quản lí đầu ra, xử lí lỗi
 $session_user = ""; // Khởi tạo biến session_user
-
-$id_us = "";
+$id_us = ""; //Khởi tạo biến id user
 
 if (isset($_GET['session_user'])) {
     $session_user = $_GET['session_user']; // Lấy giá trị session_user từ URL nếu tồn tại
 }
+
+//Lấy thông tin đăng nhập
 $sql_s = "SELECT * FROM khach_hang WHERE ten_nguoi_dung='$session_user'";
 $res_s = mysqli_query($conn, $sql_s);
 $row_s = mysqli_fetch_assoc($res_s);
 $count_s = mysqli_num_rows($res_s);
 if ($count_s == 1) {
-    //Have data
+    //Có dữ liệu
     $id_us = $row_s['id'];
 } else {
-    //No data
+    //Không có dữ liệu
 }  ?>
 
-<!-- fOOD sEARCH Section Starts Here -->
+<!-- Bắt đầu -->
 <section class="food-search text-center">
     <div class="container">
 
         <?php
-        //Get the Search Keyword
+        //Lấy từ khóa tìm kiếm
         //$search = $_POST['search'];
-        $search = mysqli_real_escape_string($conn, $_POST['search']);
+        $search = mysqli_real_escape_string($conn, $_POST['search']); //SQL injection
         ?>
 
         <h2>CÁC SẢN PHẨM CHO TỪ KHÓA <a href="#" class="text-white">"<?php echo $search; ?>"</a></h2>
 
     </div>
 </section>
-<!-- fOOD sEARCH Section Ends Here -->
+<!-- Kết thúc -->
 
-
-
-<!-- fOOD MEnu Section Starts Here -->
+<!-- Bắt đầu danh sách sản phẩm -->
 <section class="food-menu">
     <div class="container">
         <h2 class="text-center">SẢN PHẨM</h2>
 
         <?php
-
-        //SQL Query to Get foods based on search keyword
+        //SQL lấy các sản phẩm dựa trên từ khóa
         //$search = burger'; DROP database name;
-        //"SELECT * FROM san_pham WHERE ten_san_pham LIKE '%$burger'%' OR mo_ta LIKE '%$burger%'";
         $sql = "SELECT * FROM san_pham WHERE ten_san_pham LIKE '%$search%'";
 
-        //Execute the Query
+        //Chạy SQL
         $res = mysqli_query($conn, $sql);
 
-        //Count Rows
+        //Đếm số dòng
         $count = mysqli_num_rows($res);
 
-        //Check whether food available or not
+        //Kiểm tra sản phẩm có hay không
         if ($count > 0) {
-            //Food Available
+            //Có
             while ($row = mysqli_fetch_assoc($res)) {
-                //Get the details
+                //Lấy chi tiết
                 $id = $row['id'];
                 $ten_san_pham = $row['ten_san_pham'];
                 $gia = $row['gia'];
@@ -71,25 +69,24 @@ if ($count_s == 1) {
                 <div class="food-menu-box">
                     <div class="food-menu-img">
                         <?php
-                        //Check whether image available or not
+                        //Kiểm tra ảnh
                         if ($anh == "") {
-                            //Image not Available
+                            //Không có ảnh
                             echo "<div class='error'>Không có hình ảnh.</div>";
                         } else {
-                            //Image Available
+                            //Tồn tại ảnh
                         ?>
                             <img height="130px" src="<?php echo SITEURL; ?>images/agricultural/<?php echo $anh; ?>" alt="" class="img-responsive img-curve">
                         <?php
                         }
                         ?>
-
                     </div>
 
                     <div class="food-menu-desc">
                         <h4><?php echo $ten_san_pham; ?></h4>
                         <p class="food-price">
                             <?php
-                            // $doanh_nghiep = 0;
+                            // Giá khuyến mãi
                             $sql_km = "SELECT * FROM khuyen_mai WHERE sanpham_id = $id ORDER BY ngay_batdau DESC LIMIT 1";
                             $res_km = mysqli_query($conn, $sql_km);
 
@@ -134,11 +131,11 @@ if ($count_s == 1) {
                                     echo "<i>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
                                 }
                             }
-
                             ?>
-
                         </p>
                         <br>
+
+                        <!-- Hiển thị tồn kho -->
                         <p class="food-price">
                             <?php
                             if ($ton_kho == 0) {
@@ -147,21 +144,22 @@ if ($count_s == 1) {
                                 echo "<i> <b>Tồn kho: </b>" . $ton_kho . " Kg <br></i>";
                             }
                             ?>
-
                         </p>
+
+                        <!-- Hiển thị mô tả -->
                         <p class="food-detail">
                             <?php echo $mo_ta; ?>
                         </p>
-
-
                         <br>
 
+                        <!-- Đặt biến là số người dùng chọn ở giỏ hàng -->
                         <?php
                         $so = 1;
                         ?>
 
                         <a href="<?php echo SITEURL; ?>order.php?spham_id=<?php echo $id; ?>&so=<?php echo $so; ?>&session_user=<?php echo $_SESSION['user']; ?>" class="btn btn-primary">Đặt hàng</a>
 
+                        <!-- Thêm vào giỏ hàng gọi hàm -->
                         <a href="#" onclick="addToCart(<?php echo $id; ?>)" class="btn btn-primary">Thêm vào giỏ hàng</a>
 
                         <script>
@@ -192,15 +190,15 @@ if ($count_s == 1) {
         } else {
             echo "<div class='error'>Không tìm thấy sản phẩm.</div>";
         }
-
         ?>
 
         <div class="clearfix"></div>
 
     </div>
-
 </section>
-<!-- fOOD Menu Section Ends Here -->
+<!-- Kết thúc danh sách sản phẩm -->
 
-<?php include('partials-font/footer.php');
-ob_end_flush(); ?>
+<?php
+include('partials-font/footer.php');
+ob_end_flush();
+?>

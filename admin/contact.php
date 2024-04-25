@@ -1,6 +1,6 @@
 <?php include('partials/menu.php') ?>
 
-<!-- Main Content Section Starts -->
+<!-- Bắt đầu nội dung chính -->
 <div class="main-content">
 
     <div class="wrapper">
@@ -10,12 +10,10 @@
         <br><br>
 
         <?php
-
         if (isset($_SESSION['xoa_lienhe'])) {
-            echo $_SESSION['xoa_lienhe'];  //Displaying session message
-            unset($_SESSION['xoa_lienhe']); //Removing session message
+            echo $_SESSION['xoa_lienhe'];
+            unset($_SESSION['xoa_lienhe']);
         }
-
         ?>
 
         <br><br>
@@ -32,32 +30,28 @@
                 <th>Hành động</th>
             </tr>
 
-
             <?php
-
-            //Get all the orders from database
-            $sql = "SELECT * FROM lien_he ORDER BY id DESC"; //DIsplay the lastest Order at First
-            //Execute Query
+            //Lấy tất cả phản hồi từ database
+            $sql = "SELECT * FROM lien_he ORDER BY id DESC"; //Hiển thị phản hồi gần nhât
+            //Chạy SQL
             $res = mysqli_query($conn, $sql);
-            //Count the rows
+            //Đếm số dòng
             $count = mysqli_num_rows($res);
 
             $sn = 1;
 
             if ($count > 0) {
-                //Order Available
+                //Tồn tại các phản hồi
                 while ($row = mysqli_fetch_assoc($res)) {
-                    //Get all the order details
+                    //Lấy chi tiết phản hồi
                     $id = $row['id'];
                     $noi_dung = $row['noi_dung'];
                     $ngay = $row['ngay'];
-                    // $trang_thai = $row['trang_thai'];
                     $khach_ten = $row['khach_ten'];
                     $khach_sdt = $row['khach_sdt'];
                     $khach_email = $row['khach_email'];
                     $khach_diachi = $row['khach_diachi'];
             ?>
-
                     <tr>
                         <td><?php echo $sn++; ?></td>
                         <td><?php echo $khach_ten; ?></td>
@@ -70,17 +64,14 @@
                             <a href="<?php echo SITEURL; ?>admin/delete-contact.php?id_lienhe=<?php echo $id; ?>" class="btn-danger">Xóa phản hồi</a>
                         </td>
                     </tr>
-
             <?php
                 }
             } else {
-                //Order not available
-                echo "<tr><td colspan='12' class='error'>Không có phản hồi.</td></tr>
-                ";
+                //Không có phản hồi
+                echo "<tr><td colspan='12' class='error'>Không có phản hồi.</td></tr>";
             }
             ?>
         </table>
-
     </div>
 </div>
 

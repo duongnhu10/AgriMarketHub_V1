@@ -1,55 +1,55 @@
 <?php
-//Include constans file
+
 include('../config/constants.php');
 // echo "XÓA LOẠI SẢN PHẨM";
-//Check whether the id and anh value is set or not
+//Kiểm tra có nhận được id và ảnh không
 if (isset($_GET['id']) and isset($_GET['anh'])) {
-    //Get the value and Delete 
+    //Lấy giá trị và xóa
     // echo "Get value and Delete";
     $id = $_GET['id'];
     $anh = $_GET['anh'];
 
-    //Remove the physical image file is available
+    //Gỡ file ảnh nếu tồn tại
     if ($anh != "") {
-        //Image is Available
+        //Tồn tại hình ảnh
         $path = "../images/category/" . $anh;
-        //Remove the Image
+        //Xóa ảnh
         $remove = unlink($path);
 
-        //if failed to remove image then add an error message and stop the process
+        //Nếu xóa thất bại thì thông báo lỗi và dừng
         if ($remove == false) {
-            //Set the Session Message
+            //Đặt phiên thông báo
             $_SESSION['remove'] = "<div class='error'>Xóa hình ảnh loại sản phẩm thất bại</div>";
 
-            //Redirect to Manage Category page
+            //Chuyển hướng đến trang quản lý loại sản phẩm
             header('location:' . SITEURL . 'admin/manager-category.php');
 
-            //Stop the Process
+            //Dừng quá trình
             die();
         }
     }
 
-    //Delete data form Database
-    //SQL Query to Delete Data from Database 
+    //Xóa dữ liệu từ database
+    //SQL để xóa
     $sql = "DELETE FROM loai_san_pham 
             WHERE id = '$id'";
 
-    //Execute the Query
+    //Chạy SQL
     $res = mysqli_query($conn, $sql);
 
-    //Check whether the data is delete from database or not
+    //Kiểm tra dữ liệu đã được xóa hay chưa
     if ($res == true) {
-        //Set success Message and Redirect
+        //Đặt phiên thành công
         $_SESSION['delete'] = "<div class='success'>Xóa loại sản phẩm thành công.</div>";
-        //Redirect to Manager Category Page
+        //Chuyển hướng đến trang quản lý loại sản phẩm
         header('location:' . SITEURL . 'admin/manager-category.php');
     } else {
-        //Set fail message and Redirect
+        //Thông báo thất bại và chuyển hướng
         $_SESSION['delete'] = "<div class='error'>Xóa loại sản phẩm thất bại.</div>";
-        //Redirect to Manager Category Page
+        //Chuyển hướng đến trang quản lý loại sản phẩm
         header('location:' . SITEURL . 'admin/manager-category.php');
     }
 } else {
-    //Redirect to Manager Category Page
+    //Chuyển hướng đến trang quản lý loại sản phẩm
     header('location:' . SITEURL . 'admin/manager-category');
 }

@@ -1,6 +1,6 @@
 <?php
 include('../config/constants.php');
-include('login-check.php')
+include('login-check.php');
 ?>
 
 <html>
@@ -13,7 +13,7 @@ include('login-check.php')
 </head>
 
 <body>
-    <!-- Menu Section Starts -->
+    <!-- Bắt đầu menu -->
     <div class="menu">
         <div class="wrapper">
             <ul class="text-center">
@@ -39,4 +39,4 @@ include('login-check.php')
             </ul>
         </div>
     </div>
-    <!-- Menu Section Ends -->
+    <!-- Kết thúc menu -->

@@ -1,144 +1,55 @@
 # XÂY DỰNG HỆ THỐNG CỦA HÀNG NÔNG SẢN TRỰC TUYẾN
 
-🍅 LANGUAGES: PHP, HTML, CSS
+🍅 NGÔN NGỮ: PHP, HTML, CSS
 <br>
 
-# PROCESS
+# CHỨC NĂNG
 
-✅ Create/Start Project
-<br>
-✅ Import Design Files
-<br>
-✅ Create Database
-<br>
-✅ Design Admin Panel
-<br>
-✅ Create Partials/Repeating Parts (Menu and Footer)
-<br>
-✅ Manage Admin Page Design
-<br>
+1. Khách vãng lai
+   - Đăng ký tài khoản
+   - Tìm kiếm sản phẩm
+     - Tìm kiếm theo tên sản phẩm
+   - Xem thông tin sản phẩm
+   - Xem danh sách theo loại sản phẩm
+   - Xem tất cả sản phẩm
+2. Người tiêu dùng (cá nhân/ doanh nghiệp)
 
-✅ Add Admin to Database
-<br>
-✅ 'constants.php' Configuration File
-<br>
-✅ Admin Module
-<br>
-✅ Delete Admin
-<br>
-✅ Adding Message Color
-<br>
+   - Quản lý tài khoản cá nhân
+     - Chỉnh sửa thông tin
+     - Đổi mật khẩu
+     - Xóa tài khoản
+   - Thêm sản phẩm vào giỏ hàng
 
-✅ Update Admin
-<br>
-✅ Change Password
-<br>
-✅ Login Page Design
-<br>
-✅ Authentication (Login functionality with PHP and MySQL)
-<br>
-✅ Logout
-<br>
-✅ Authorization (User Access Control)
-<br>
-✅ Login to Admin Panel
-<br>
+- Cập nhật giỏ hàng
+  - Xóa sản phẩm
+  - Thay đổi số lượng sản phẩm
+- Quản lý đơn hàng
+  - Theo dõi đơn hàng hiện tại
+- Hủy đơn hàng
+  - Lịch sử mua hàng
+- Chức năng Đặt hàng
+- Chức năng Phản hồi
 
-✅ Design Add Category Page
-<br>
-✅ Adding Category Details to Database
-<br>
-✅ Uploading Category Image
-<br>
-✅ Renaming Image
-<br>
-✅ Displaying Categories from Database
-<br>
+3. Admin
 
-✅ Delete Image File with PHP
-<br>
-✅ Delete Category from Database
-<br>
-✅ Update Category in Database
-<br>
-✅ Update Image with PHP
-<br>
-
-✅ Login to Admin Panel
-<br>
-✅ Food Module Start
-<br>
-✅ Create Add Food Page
-<br>
-✅ Displaying Categories on DropDown box
-<br>
-
-✅ Adding Food in Database
-<br>
-✅ Uploading Image
-<br>
-✅ Displaying Foods in Manage Food Page
-<br>
-
-✅ Delete Image File with PHP
-<br>
-✅ Delete Food from Database
-<br>
-✅ Update Food in Database
-<br>
-✅ Update Image with PHP
-<br>
-
-✅ Converting HTML to PHP
-<br>
-✅ Creating Partials
-<br>
-✅ Adding Constants on 'menu.php'
-<br>
-✅ Displaying Categories on Home Page
-<br>
-✅ Displaying Active Categories on 'categories.php'
-<br>
-✅ Displaying Active and Featured Foods on Home Page
-<br>
-✅ Fixing Bug on 'update-food.php'
-<br>
-✅ Displaying Foods on 'foods.php'
-<br>
-
-✅ Display Foods by Search Keywords
-<br>
-✅ Display Foods by Category Selected
-<br>
-
-✅ Order Food from Admin Panel
-<br>
-✅ Manage Foods from Admin Panel
-<br>
-✅ Track Food Delivery
-<br>
-
-✅ Create Summary Dashboard
-<br>
-✅ Use Aggregate Function to calculate actual Revenue
-<br>
-
-✅ Know the Security Vulnerability (SQL Injection) in our Website
-<br>
-✅ Secure our Website with a single code
-<br>
-
-✅ Tracking order of user
-<br>
-✅ Add to cart
-<br>
-
-✅ Cancel order
-<br>
-✅ Tracking Cancel order of user (role admin)
-
-<br>
-✅  Contact with admin
-<br>
-✅  See and Delete contact
-<br>
+- Quản lý đơn hàng
+  - Xem danh sách đơn hàng
+  - Cập nhật đơn hàng
+- Chức năng Quản lý người dùng
+  - Xem thông tin người dùng
+  - Xóa người dùng
+- Chức năng Quản lý sản phẩm
+  - Xem thông tin sản phẩm
+  - Thêm sản phẩm
+  - Sửa thông tin sản phẩm
+  - Xóa sản phẩm
+- Quản lý thống kê
+  - Thống Kê số lượng đơn hàng
+  - Thống Kê số lượng sản phẩm
+  - Thống Kê số lượng doanh thu
+- Về chức năng Quản lý admin
+  - Đổi mật khẩu
+  - Cập nhật admin
+- Quản lý phản hồi
+  - Xóa phản hồi
+  - Xem phản hồi

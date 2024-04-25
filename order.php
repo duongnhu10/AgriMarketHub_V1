@@ -1,42 +1,45 @@
-<?php include('partials-font/menu.php');
+<?php
+include('partials-font/menu.php');
 ob_start();
 $session_user = ""; // Khởi tạo biến session_user
 
 if (isset($_GET['session_user'])) {
     $session_user = $_GET['session_user']; // Lấy giá trị session_user từ URL nếu tồn tại
 }
+
+//Lấy thông tin khách hàng đăng nhập
 $sql_s = "SELECT * FROM khach_hang WHERE ten_nguoi_dung='$session_user'";
 $res_s = mysqli_query($conn, $sql_s);
 $row_s = mysqli_fetch_assoc($res_s);
 $count_s = mysqli_num_rows($res_s);
 if ($count_s == 1) {
-    //Have data
+    //Có
     $id_us = $row_s['id'];
 } else {
-    //No data
+    //Không
 } ?>
 
 <?php
-//Check whether food id is set or not
+//Kiểm tra lấy id sản phẩm và số lượng khách hàng thêm vào giỏ hàng
 if (isset($_GET['spham_id']) && isset($_GET['so'])) {
     if ($_GET['so'] == 0) {
         $_SESSION['het_hang'] = "<div class='error text-center'>Đã hết hàng.</div>";
         header('location:' . SITEURL . 'cart.php?session_user=' . $_SESSION['user']);
         exit; // Dừng việc thực hiện tiếp các lệnh sau khi chuyển hướng
     }
-    //Get the Food id and details of the selected food
+    //Lấy chi tiết sản phẩm đặt hàng
     $spham_id = $_GET['spham_id'];
     $so = $_GET['so'];
 
-    //Get the details of the selected food
+    //Lấy các thông tin
     $sql = "SELECT * FROM san_pham WHERE id=$spham_id";
-    //Execute the Query
+    //Chạy SQL
     $res = mysqli_query($conn, $sql);
-    //Count the rows
+    //Đếm số dòng
     $count = mysqli_num_rows($res);
-    //Check whether the data is available or not
+    //Kiểm tra dữ liệu 
     if ($count == 1) {
-        //We have data
+        //Có dữ liệu
         $row = mysqli_fetch_assoc($res);
         $ten_san_pham = $row['ten_san_pham'];
         $gia = $row['gia'];
@@ -45,17 +48,16 @@ if (isset($_GET['spham_id']) && isset($_GET['so'])) {
         $anh = $row['anh'];
         $ton_kho = $row['ton_kho'];
     } else {
-        //Food not available
-        //Redirect to Home page
+        //Không có sản phẩm và chuyển hướng
         header('location:' . SITEURL . "?session_user=" . $_SESSION['user']);
     }
 } else {
-    //Redirect to homepage
+    //Chuyển hướng trang chủ
     header('location:' . SITEURL . "?session_user=" . $_SESSION['user']);
 }
 ?>
 
-<!-- fOOD sEARCH Section Starts Here -->
+<!-- Bắt đầu thông tin đặt hàng -->
 <section class="food-menu">
     <div class="container">
 
@@ -67,18 +69,17 @@ if (isset($_GET['spham_id']) && isset($_GET['so'])) {
 
                 <div class="food-menu-img">
                     <?php
-                    //Check whether image available or not
+                    //Kiểm tra ảnh
                     if ($anh == "") {
-                        //Image not Available
+                        //Không có
                         echo "<div class='error'>Không có hình ảnh.</div>";
                     } else {
-                        //Image Available
+                        //Có
                     ?>
                         <img height="130px" src="<?php echo SITEURL; ?>images/agricultural/<?php echo $anh; ?>" alt="" class="img-responsive img-curve">
                     <?php
                     }
                     ?>
-
                 </div>
 
                 <div class="food-menu-desc">
@@ -87,7 +88,6 @@ if (isset($_GET['spham_id']) && isset($_GET['so'])) {
 
                     <p class="food-price">
                         <?php
-                        // $doanh_nghiep = 0;
                         $sql_km = "SELECT * FROM khuyen_mai WHERE sanpham_id = $spham_id ORDER BY ngay_batdau DESC LIMIT 1";
                         $res_km = mysqli_query($conn, $sql_km);
 
@@ -132,10 +132,10 @@ if (isset($_GET['spham_id']) && isset($_GET['so'])) {
                                 echo "<i>" . str_replace(',', ' ', number_format($gia)) . " VND/Kg <br></i>";
                             }
                         }
-
                         ?>
-
                     </p>
+
+                    <!-- Hiển thị giá -->
                     <input type="hidden" name="gia" value="<?php
                                                             if ($doanh_nghiep == 1) {
                                                                 echo $gia_dn;
@@ -153,6 +153,7 @@ if (isset($_GET['spham_id']) && isset($_GET['so'])) {
                     ?>
                     <br>
 
+                    <!-- Hiển thị tồn kho -->
                     <p class="food-price">
                         <?php
                         if ($ton_kho == 0) {
@@ -161,13 +162,9 @@ if (isset($_GET['spham_id']) && isset($_GET['so'])) {
                             echo "<i> <b>Tồn kho: </b>" . $ton_kho . " Kg <br></i>";
                         }
                         ?>
-
                     </p>
 
-
-                    <!-- <div class="order-label">
-
-                    </div> -->
+                    <!-- Lấy số lượng sản phẩm đã thêm vào giỏ hàng -->
                     <?php
                     if ($so > 1) {
                         echo '<input type="number" name="so_luong" class="input-responsive" value="' . $so . '" required>';
@@ -175,8 +172,6 @@ if (isset($_GET['spham_id']) && isset($_GET['so'])) {
                         echo '<input type="number" name="so_luong" class="input-responsive" value="1" required>';
                     }
                     ?>
-
-
                 </div>
 
             </fieldset>
@@ -202,10 +197,9 @@ if (isset($_GET['spham_id']) && isset($_GET['so'])) {
         </form>
 
         <?php
-        //Check whether submit button is clicked or not
+        //Kiểm tra nút đặt hàng
         if (isset($_POST['submit'])) {
-            //Get all the details from the form
-
+            //Lấy thông tin chi tiết
             $san_pham = $_POST['san_pham'];
             $gia = $_POST['gia'];
             $so_luong = $_POST['so_luong'];
@@ -220,22 +214,22 @@ if (isset($_GET['spham_id']) && isset($_GET['so'])) {
                 $ton_kho = $ton_kho - $so_luong;
             }
 
+            // Cập nhật số lượng tồn kho sau khi đặt hàng
             $sql_tk = "UPDATE san_pham SET ton_kho = $ton_kho WHERE ten_san_pham='$ten_san_pham'";
             $res_tk = mysqli_query($conn, $sql_tk);
 
-            $tong_tien = $gia * $so_luong; //total = price x qty
+            $tong_tien = $gia * $so_luong;
 
-            $ngay_dat = date("Y-m-d h:i:sa"); //Order Date
+            $ngay_dat = date("Y-m-d h:i:sa"); //Ngày đặt
 
-            $trang_thai = "Chờ xác nhận"; //Ordered, On delivery, Delivered, ...
+            $trang_thai = "Chờ xác nhận"; //Trạng thái giao hàng
 
             $khach_ten = $_POST['khach_ten'];
             $khach_sdt = $_POST['khach_sdt'];
             $khach_email = $_POST['khach_email'];
             $khach_diachi = $_POST['khach_diachi'];
 
-            //Save the Order in Database
-            //Create SQL to Save the data
+            //Lưu vào database
             $sql2 = "INSERT INTO don_hang SET
                 san_pham = '$san_pham',
                 gia = $gia,
@@ -250,28 +244,26 @@ if (isset($_GET['spham_id']) && isset($_GET['so'])) {
                 user_id = $id_us
             ";
 
-            // echo $sql2; die();
-
-            //Execute the Query
+            //Chạy SQL
             $res2 = mysqli_query($conn, $sql2);
 
-            //Check whether query executed successfully or not
+            //Kiểm tra kết nối
             if ($res2 == true) {
-                //Query Executed and Order Saved
+                //Thành công
                 $_SESSION['dat_hang'] = "<div class='success text-center'>Đặt hàng thành công.</div>";
                 header('location:' . SITEURL . '?session_user=' . $_SESSION['user']);
             } else {
-                //Failed to Save Order
+                //Thất bại
                 $_SESSION['dat_hang'] = "<div class='error  text-center'>Đặt hàng thất bại.</div>";
                 header('location:' . SITEURL . '?session_user=' . $_SESSION['user']);
             }
         }
         ?>
-
     </div>
 </section>
-<!-- fOOD sEARCH Section Ends Here -->
+<!-- Kết thúc đặt hàng -->
 
-<?php include('partials-font/footer.php');
-
-ob_end_flush(); ?>
+<?php
+include('partials-font/footer.php');
+ob_end_flush();
+?>

@@ -9,14 +9,15 @@ if (isset($_GET['session_user'])) {
 }
 ?>
 
-
-<!-- Main Content Section Starts -->
+<!-- Bắt đầu thông tin người dùng -->
 <div class="food-menu">
 
     <div class="container">
 
         <h1>THÔNG TIN NGƯỜI DÙNG</h1>
         <br><br><br>
+
+        <!-- Kiểm tra, hiển thị, hủy bỏ các phiên -->
         <?php if (isset($_SESSION['update'])) {
             echo $_SESSION['update'];
             unset($_SESSION['update']);
@@ -55,9 +56,9 @@ if (isset($_GET['session_user'])) {
             echo $_SESSION['change-pwd'];
             unset($_SESSION['change-pwd']);
         }
-
         ?>
         <br>
+
         <table class="tbl-full">
             <tr>
                 <th>Ảnh đại diện</th>
@@ -71,18 +72,17 @@ if (isset($_GET['session_user'])) {
             </tr>
 
             <?php
-            //Create a SQL Query to Get all the products
+            //SQL để lấy tìm người dùng đăng nhập
             $sql = "SELECT * FROM khach_hang WHERE ten_nguoi_dung = '$session_user'";
 
-            //Execute the query
+            //Chạy SQL
             $res = mysqli_query($conn, $sql);
 
-            //Count Rows to check whether we have products or not
+            //Đếm số dòng
             $count = mysqli_num_rows($res);
 
             if ($count == 1) {
-                //We have user in Database
-                //Get the products from Database and display
+                //Có người dùng và lấy thông tin
                 while ($row = mysqli_fetch_assoc($res)) {
                     $id = $row['id'];
                     $ho_va_ten = $row['ho_va_ten'];
@@ -93,16 +93,15 @@ if (isset($_GET['session_user'])) {
                     $ma_so_thue = $row['ma_so_thue'];
                     $anh = $row['anh'];
             ?>
-
                     <tr>
                         <td>
                             <?php
-                            //Check whether we have image or not
+                            //Kiểm tra ảnh đại diện
                             if ($anh == "") {
-                                //We don not have image, Display Error Message
+                                //Không có ảnh hiển thị thông báo
                                 echo "<div class='error'>Hình ảnh không được thêm.</div>";
                             } else {
-                                //We have Image, Display Image
+                                //Có hình ảnh, hiển thị ảnh
                             ?>
                                 <img src="<?php echo SITEURL; ?>images/avatar/<?php echo $anh; ?>" width="150px;">
                             <?php
@@ -114,7 +113,8 @@ if (isset($_GET['session_user'])) {
 
                         <td><?php if ($doanh_nghiep == 1)
                                 echo "Có";
-                            else echo "Không";  ?></td>
+                            else echo "Không";  ?>
+                        </td>
 
                         <td><?php echo $ten_doanh_nghiep; ?></td>
                         <td><?php echo $ma_so_thue; ?></td>
@@ -122,27 +122,27 @@ if (isset($_GET['session_user'])) {
                         <td><?php
                             if ($gioi_tinh == 1)
                                 echo "Nữ";
-                            else echo "Nam"; ?></td>
+                            else echo "Nam"; ?>
+                        </td>
 
                         <td>
                             <a href="<?php echo SITEURL; ?>update-infor.php?session_user=<?php echo $_SESSION['user']; ?>" class="btn-secondary">Cập nhật thông tin</a>
                             <a href="<?php echo SITEURL; ?>delete-acc.php?session_user=<?php echo $_SESSION['user']; ?>" class="btn-primary">Xóa tài khoản</a>
                         </td>
                     </tr>
-
             <?php
                 }
             } else {
-                //User not in Database
+                //Không có người dùng
                 echo "<tr><td colspan='7' class='error'>Người dùng không tồn tại.</td></tr>";
             }
-
             ?>
-
         </table>
     </div>
 </div>
-<!-- Main Content Section Ends -->
+<!-- Kết thúc thông tin cá nhân -->
 
-<?php include('partials-font/footer.php');
-ob_end_flush(); ?>
+<?php
+include('partials-font/footer.php');
+ob_end_flush();
+?>

@@ -1,22 +1,22 @@
 <?php include('partials-font/menu.php'); ?>
 
-<!-- CAtegories Section Starts Here -->
+<!-- Bắt đầu loại sản phẩm-->
 <section class="categories">
     <div class="container">
         <h2 class="text-center">LOẠI SẢN PHẨM</h2>
 
         <?php
-        //Create SQL Query to Display Categories from Database
+        //SQL lấy thông tin loại sản phẩm
         $sql = "SELECT * FROM loai_san_pham WHERE trang_thai = 'Còn hàng'";
-        //Execute the Query
+        //Chạy SQL
         $res = mysqli_query($conn, $sql);
-        //Count rows to check whether the category is available or not 
+        //Đếm số dòng
         $count = mysqli_num_rows($res);
 
         if ($count > 0) {
-            //Categories Available
+            //Tồn tại loại
             while ($row = mysqli_fetch_assoc($res)) {
-                //Get the value like id, title, image_name
+                //Lấy thông tin
                 $id = $row['id'];
                 $ten_loai = $row['ten_loai'];
                 $anh = $row['anh'];
@@ -24,12 +24,12 @@
                 <a href="<?php echo SITEURL; ?>category-agricultural.php?loai_id=<?php echo $id; ?>&session_user=<?php echo $_SESSION['user']; ?>">
                     <div class="box-3 float-container">
                         <?php
-                        //Check whether Image is available or not
+                        //Kiểm tra hình ảnh
                         if ($anh == "") {
-                            //Display Message
+                            //Không có ảnh
                             echo "<div class='error'>Hình ảnh không tìm thấy.</div>";
                         } else {
-                            //Image Available
+                            //Tồn tại ảnh
                         ?>
                             <img height="450px" src="<?php echo SITEURL; ?>images/category/<?php echo $anh; ?>" alt="Pizza" class="img-responsive img-curve">
                         <?php
@@ -42,16 +42,14 @@
         <?php
             }
         } else {
-            //Categories not Available
+            //Không có loại sản phẩm
             echo "<div class='error'>Loại sản phẩm trống.</div>";
         }
-
         ?>
-
 
         <div class="clearfix"></div>
     </div>
 </section>
-<!-- Categories Section Ends Here -->
+<!-- Kết thúc loại sản phẩm -->
 
 <?php include('partials-font/footer.php'); ?>

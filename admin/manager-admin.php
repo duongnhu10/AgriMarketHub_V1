@@ -1,6 +1,6 @@
 <?php include('partials/menu.php') ?>
 
-<!-- Main Content Section Starts -->
+<!-- Bắt đầu nội dung chính -->
 <div class="main-content">
 
     <div class="wrapper">
@@ -9,47 +9,45 @@
         <br><br>
 
         <?php
-
         if (isset($_SESSION['add'])) {
-            echo $_SESSION['add'];  //Displaying session message
-            unset($_SESSION['add']); //Removing session message
+            echo $_SESSION['add'];
+            unset($_SESSION['add']);
         }
 
         if (isset($_SESSION['delete'])) {
-            echo $_SESSION['delete'];  //Displaying session message
-            unset($_SESSION['delete']); //Removing session message
+            echo $_SESSION['delete'];
+            unset($_SESSION['delete']);
         }
 
         if (isset($_SESSION['update'])) {
-            echo $_SESSION['update']; //Displaying session message
-            unset($_SESSION['update']); //Removing session message
+            echo $_SESSION['update'];
+            unset($_SESSION['update']);
         }
 
         if (isset($_SESSION['update'])) {
-            echo $_SESSION['update']; //Displaying session message
-            unset($_SESSION['update']); //Removing session message
+            echo $_SESSION['update'];
+            unset($_SESSION['update']);
         }
 
         if (isset($_SESSION['user-not-found'])) {
-            echo $_SESSION['user-not-found']; //Displaying session message
-            unset($_SESSION['user-not-found']); //Removing session message
+            echo $_SESSION['user-not-found'];
+            unset($_SESSION['user-not-found']);
         }
 
         if (isset($_SESSION['pwd-not-match'])) {
-            echo $_SESSION['pwd-not-match']; //Displaying session message
-            unset($_SESSION['pwd-not-match']); //Removing session message
+            echo $_SESSION['pwd-not-match'];
+            unset($_SESSION['pwd-not-match']);
         }
 
         if (isset($_SESSION['change-pwd'])) {
-            echo $_SESSION['change-pwd']; //Displaying session message
-            unset($_SESSION['change-pwd']); //Removing session message
+            echo $_SESSION['change-pwd'];
+            unset($_SESSION['change-pwd']);
         }
-
         ?>
 
         <br><br>
 
-        <!-- Button to Add Admin -->
+        <!-- Nút thêm admin -->
         <a href="add-admin.php" class="btn-primary">Thêm quản trị viên</a>
 
         <br><br><br>
@@ -63,32 +61,30 @@
             </tr>
 
             <?php
-            //Query to Get all Admin
+            //Lấy thông tin admin
             $sql = "SELECT * FROM admin";
-            //Execute the Query
+            //Chạy SQL
             $res = mysqli_query($conn, $sql);
 
-            //Check whether the Query is Executed or Not
+            //Kiểm tra câu lệnh được chạy hay không
             if ($res == TRUE) {
-                //Count Rows to Check whether we have data in database or not
-                $count = mysqli_num_rows($res); //Function to get all the rows in database
+                //Đếm số dòng
+                $count = mysqli_num_rows($res);
 
-                $sn = 1; //Create a Variable and Assign the value
+                $sn = 1;
 
-                //check the num of rows
+                //Kiểm tra số dòng
                 if ($count > 0) {
-                    //We have data in database
+                    //Có dữ liệu trong database
                     while ($rows = mysqli_fetch_assoc($res)) {
-                        //Using while loop to get all the data form database
-                        //And while loop will run as long as we have data in database
+                        //Sử dụng vòng lặp để lấy tất cả dữ liệu từ database
 
-                        //Get individual Data
+                        //Lấy dữ liệu
                         $id = $rows['id'];
                         $ho_va_ten = $rows['ho_va_ten'];
                         $ten_nguoi_dung = $rows['ten_nguoi_dung'];
-                        // $password = $rows['password'];
 
-                        //Display the values in our Table
+                        //Hiển thị giá trị trong bảng
             ?>
                         <tr>
                             <td><?php echo  $sn++; ?></td>
@@ -103,15 +99,13 @@
             <?php
                     }
                 } else {
-                    //We do not have data in database
+                    //Không có dữ liệu trong database
                 }
             }
             ?>
-
         </table>
-
     </div>
 </div>
-<!-- Main Content Section Ends -->
+<!-- Kết thúc nội dung chính -->
 
 <?php include('partials/footer.php') ?>

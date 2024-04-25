@@ -20,7 +20,7 @@
 
         <br><br>
 
-        <!-- Add Category Form Starts -->
+        <!-- Bắt đầu form thêm sản phẩm -->
         <form action="" method="POST" enctype="multipart/form-data">
 
             <table class="tbl-30">
@@ -54,92 +54,86 @@
             </table>
 
         </form>
-        <!-- Add Category Form Ends -->
+        <!-- Kết thúc form thêm sản phẩm -->
 
         <?php
-        //Check whether the Submit Button is Clicked or Not
+        //Kiểm tra nút submit được nhấn hay không
         if (isset($_POST['submit'])) {
             // echo "Clicked";
 
-            //1. Get the value form category Form
+            //1. Lấy giá trị tên loại từ form
             $ten_loai = $_POST['ten_loai'];
 
-            //For Radio input, we need to check whether the buuton is selected
+            //Kiểm tra radio button có được click hay không
             if (isset($_POST['trang_thai'])) {
-                //Get the value from form
+                //Lấy giá trị từ form
                 $trang_thai = $_POST['trang_thai'];
             } else {
-                //Set default value
+                //Đặt giá trị mặc định
                 $trang_thai = 'Hết hàng';
             }
 
-            //Check whether the image is selected or not and set the value for image name accordingly
-            //print_r($_FILES['anh']);
-
-            //die(); //Break the code here
-
             if (isset($_FILES['anh']['name'])) {
-                //Upload the image
-                //To upload image we need image image name, source path and destination path
+                //Tải ảnh lên
+                //Cần tên ảnh, đường dẫn nguồn, đường dẫn đích
                 $ten_anh = $_FILES['anh']['name'];
 
-                //Upload the image only if image is selected
+                //Tải ảnh nếu ảnh được chọn
                 if ($ten_anh != "") {
-                    //Auto rename our image
-                    //Get the Extension of our image (png, jpg) EX: haisamabc678.jpg
+                    //Đổi tên ảnh tự dộng
+                    //Lấy phần mở rộng ảnh (png, jpg) EX: haisamabc678.jpg
                     $ext = end(explode('.', $ten_anh));
 
-                    //Rename the image Ex: Loai_NongSan_192.jpg
+                    //Đổi tên ảnh Ex: Loai_NongSan_192.jpg
                     $ten_anh = "Loai_NongSan_" . rand(000, 999) . '.' . $ext;
 
                     $source_path = $_FILES['anh']['tmp_name'];
 
                     $destination_path = "../images/category/" . $ten_anh;
 
-                    //Finally upload the image
+                    //Tải ảnh lên
                     $upload = move_uploaded_file($source_path, $destination_path);
 
-                    //Check whether the image is uploaded or not
-                    //And if the image is not upload then we will stop the process and redirect with error message
+                    //Kiểm tra ảnh đã được tải lên hay chưa
+                    //Nếu ảnh chưa được tải lên sẽ dừng và thông báo lỗi
                     if ($upload == false) {
-                        //Set message
+                        //Đặt thông báo
                         $_SESSION['upload'] = "<div class='error'>Tải hình ảnh thất bại.</div>";
-                        //Redirect to Add category page
+                        //Chuyển hướng đến trang thêm sản phẩm
                         header('location:' . SITEURL . 'admin/add-category.php');
-                        //Stop the Process
+                        //Dừng
                         die();
                     }
                 }
             } else {
-                //Don't upload image and set the image_name value as blank
+                //Nếu không tải ảnh lên, đặt tên ảnh rỗng
                 $ten_anh = "";
             }
 
-            //2. Create SQL Query to Insert category into Database
+            //2. SQL chèn vào database
             $sql = "INSERT INTO loai_san_pham SET
             ten_loai='$ten_loai', 
             anh = '$ten_anh',
             trang_thai='$trang_thai'
             ";
 
-            //3. Execute the Query and Save in Database
+            //3. Chạy SQL
             $res = mysqli_query($conn, $sql);
 
-            //4. Check whether the query executed or not and Data addes or not
+            //4. Kiểm tra đã thêm thành công hay chưa
             if ($res == true) {
-                //Query Executed and Category Added
+                //Thông báo thành công
                 $_SESSION['add'] = "<div class='success'>Thêm loại sản phẩm thành công.</div>";
-                //Redirect to Manage Category page
+                //Chuyển hướng đến trang thêm loại sản phẩm
                 header('location: ' . SITEURL . 'admin/manager-category.php');
             } else {
-                //Fail to Add Category
+                //Thêm thất bại
                 $_SESSION['add'] = "<div class='error'>Thêm loại sản phẩm thất bại.</div>";
-                //Redirect to Manage Category page
+                //Chuyển hướng đến trang thêm loại sản phẩm
                 header('location: ' . SITEURL . 'admin/add-category.php');
             }
         }
         ?>
-
     </div>
 </div>
 

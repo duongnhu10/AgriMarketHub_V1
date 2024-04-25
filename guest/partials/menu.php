@@ -1,23 +1,20 @@
-<?php include('../config/constants.php');
-?>
+<?php include('../config/constants.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <meta charset="UTF-8">
-    <!-- Important to make website responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nông sản</title>
 
-    <!-- Link our CSS file -->
+    <!-- Liên kết file css -->
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body>
-    <!-- Navbar Section Starts Here -->
+    <!-- Bắt đầu Navbar Section -->
     <section class="navbar">
         <div class="container">
             <div class="logo">
@@ -37,7 +34,6 @@
                     <li>
                         <a href="<?php echo SITEURL; ?>guest/agricultural.php">SẢN PHẨM</a>
                     </li>
-
                     <span class="dropdown">
                         <li><a class="dropbtn"><i class="fas fa-user fa-lg "></i></a></li>
 
@@ -48,7 +44,6 @@
 
                         </div>
                     </span>
-
                 </ul>
             </div>
 
@@ -56,4 +51,4 @@
             </div>
         </div>
     </section>
-    <!-- Navbar Section Ends Here -->
+    <!-- Kết thúc Navbar Section -->

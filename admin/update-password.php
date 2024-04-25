@@ -11,7 +11,7 @@
         }
         ?>
 
-        <!-- Create form  -->
+        <!-- Form đổi mật khẩu  -->
         <form action="" method="POST">
 
             <table class="tbl-30">
@@ -42,7 +42,6 @@
                         <input type="submit" name="submit" value="Thay đổi mật khẩu" class="btn-secondary">
                     </td>
                 </tr>
-
             </table>
 
         </form>
@@ -50,72 +49,67 @@
 </div>
 
 <?php
-//Check whether the Submit Button is clicked or Not
+//Kiểm tra nút thay đổi sản phẩm có được nhấn hay không
 if (isset($_POST['submit'])) {
     //echo "Clicked"
 
-    //1. Get the data from form
+    //1. Lấy dữ liệu từ form
     $id = $_POST['id'];
     $current_password = md5($_POST['current_password']);
     $new_password = md5($_POST['new_password']);
     $confirm_password = md5($_POST['confirm_password']);
 
-    //2. Check whether the user with current ID and Current Password Exists or Not
+    //2. Kiểm tra admin có tồn tại với mật khẩu và id hiện tại không
     $sql = "SELECT * FROM admin WHERE id=$id AND mat_khau = '$current_password'";
 
-    //Execute the query
+    //Chạy SQL
     $res = mysqli_query($conn, $sql);
 
 
     if ($res == true) {
-
-        //Check whether data is avaiable
+        //Nếu mật khẩu hiện tại đúng
         $count = mysqli_num_rows($res);
 
         if ($count == 1) {
-            //User exist and password can change
+            //Người dùng tồn tại và có thể đổi mật khẩu
             //echo "User found";
 
-            //Check whether the new password and confirm match ot not
+            //Kiểm tra nhập lại mật khẩu mới lần 2 có đúng lần 1 hay không
             if ($new_password == $confirm_password) {
-                //Update the password
+                //Cập nhật mật khẩu
                 //echo "Password Match";
                 $sql2 = "UPDATE admin SET 
                         mat_khau = '$new_password'
                         WHERE id=$id";
 
-                //Execute the Query
+                //Chạy SQL
                 $res2 = mysqli_query($conn, $sql2);
 
-                //Check whether the Query executed or not
+                //Kiểm tra câu lệnh có được chạy hay không
                 if ($res2 == true) {
-                    //Display successfully message
-                    //Redirect to the manager-admin page with success message
+                    //Thông báo thành công
+                    //Chuyển hướng trang quản lí admin và thông báo
                     $_SESSION['change-pwd'] = "<div class='success'>Mật khẩu thay đổi thành công.</div>";
-                    //Redirect the User
                     header("location:" . SITEURL . "/admin/manager-admin.php");
                 } else {
-                    //Display error message with error message
-                    //Redirect to the manager-admin page with error message
+                    //Hiển thị thông báo lỗi
                     $_SESSION['change-pwd'] = "<div class='error'>Thay đổi mật khẩu thất bại.</div>";
-                    //Redirect the User
+                    //Chuyển hướng trang quản lí admin
                     header("location:" . SITEURL . "/admin/manager-admin.php");
                 }
             } else {
-                //Redirect to the manager-admin page with error message
+                //Chuyển hướng và thông báo lỗi
                 $_SESSION['pwd-not-match'] = "<div class='error'>Mật khẩu mới không trùng khớp.</div>";
-                //Redirect the User
                 header("location:" . SITEURL . "/admin/manager-admin.php");
             }
         } else {
-            //User does not exist set message and redirect 
+            //Không tồn tại người dùng và đặt thông báo
             $_SESSION['user-not-found'] = "<div class='error'>Mật khẩu hiện tại không đúng.</div>";
-            //Redirect the User
+            //Chuyển hướng
             header("location:" . SITEURL . "/admin/manager-admin.php");
         }
     }
 }
-
 ?>
 
 <?php include("./partials/footer.php") ?>

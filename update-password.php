@@ -1,4 +1,5 @@
-<?php include("partials-font/menu.php");
+<?php
+include("partials-font/menu.php");
 ob_start();
 $session_user = ""; // Khởi tạo biến session_user
 
@@ -7,15 +8,17 @@ $id_us = "";
 if (isset($_GET['session_user'])) {
     $session_user = $_GET['session_user']; // Lấy giá trị session_user từ URL nếu tồn tại
 }
+
+// Lấy thông tin
 $sql_s = "SELECT * FROM khach_hang WHERE ten_nguoi_dung='$session_user'";
 $res_s = mysqli_query($conn, $sql_s);
 $row_s = mysqli_fetch_assoc($res_s);
 $count_s = mysqli_num_rows($res_s);
 if ($count_s == 1) {
-    //Have data
+    //Có
     $id_us = $row_s['id'];
 } else {
-    //No data
+    //Không
 }
 ?>
 
@@ -24,7 +27,7 @@ if ($count_s == 1) {
         <h1>ĐỔI MẬT KHẨU</h1>
         <br><br>
 
-        <!-- Create form  -->
+        <!-- Tạo form đổi mật khẩu -->
         <form action="" method="POST">
 
             <table class="tbl-30">
@@ -51,7 +54,7 @@ if ($count_s == 1) {
 
                 <tr>
                     <td colspan="2">
-                        <!-- <input type="hidden" name="id" value="<?php echo $id; ?>"> -->
+                        <input type="hidden" name="id" value="<?php echo $id; ?>">
                         <input type="submit" name="submit" value="Thay đổi mật khẩu" class="btn-secondary">
                     </td>
                 </tr>
@@ -63,73 +66,66 @@ if ($count_s == 1) {
 </div>
 
 <?php
-//Check whether the Submit Button is clicked or Not
+//Kiểm tra nút đổi mật khẩu
 if (isset($_POST['submit'])) {
     //echo "Clicked"
 
-    //1. Get the data from form
-
+    //1. Lấy dữ liệu
     $current_password = md5($_POST['current_password']);
     $new_password = md5($_POST['new_password']);
     $confirm_password = md5($_POST['confirm_password']);
 
-    //2. Check whether the user with current ID and Current Password Exists or Not
+    //2. Kiểm tra mật khẩu hiện tại
     $sql = "SELECT * FROM khach_hang WHERE id=$id_us AND mat_khau = '$current_password'";
 
-    //Execute the query
+    //Chạy SQL
     $res = mysqli_query($conn, $sql);
-
 
     if ($res == true) {
 
-        //Check whether data is avaiable
+        //Kiểm tra số dòng
         $count = mysqli_num_rows($res);
 
         if ($count == 1) {
-            //User exist and password can change
+            //Người dùng tồn tại có thể đổi mật khẩu
             //echo "User found";
 
-            //Check whether the new password and confirm match ot not
+            //Xác nhận mật khẩu mới lần 2
             if ($new_password == $confirm_password) {
-                //Update the password
+                //Cập nhật mật khẩu
                 //echo "Password Match";
                 $sql2 = "UPDATE khach_hang SET 
                         mat_khau = '$new_password'
                         WHERE id=$id_us";
 
-                //Execute the Query
+                //Chạy SQL
                 $res2 = mysqli_query($conn, $sql2);
 
-                //Check whether the Query executed or not
+                //Kiểm tra kết nối
                 if ($res2 == true) {
-                    //Display successfully message
-                    //Redirect to the manager-admin page with success message
+                    //Hiển thị thông báo và chuyển hướng
                     $_SESSION['change-pwd'] = "<div class='success'>Mật khẩu thay đổi thành công.</div>";
-                    //Redirect the User
                     header('location:' . SITEURL . 'infor.php?session_user=' . $_SESSION['user']);
                 } else {
-                    //Display error message with error message
-                    //Redirect to the manager-admin page with error message
+                    //Hiển thị thông báo và chuyển hướng
                     $_SESSION['change-pwd'] = "<div class='error'>Thay đổi mật khẩu thất bại.</div>";
-                    //Redirect the User
                     header('location:' . SITEURL . 'infor.php?session_user=' . $_SESSION['user']);
                 }
             } else {
-                //Redirect to the manager-admin page with error message
+                //Hiển thị thông báo và chuyển hướng
                 $_SESSION['pwd-not-match'] = "<div class='error'>Mật khẩu mới không trùng khớp.</div>";
-                //Redirect the User
                 header('location:' . SITEURL . 'infor.php?session_user=' . $_SESSION['user']);
             }
         } else {
-            //User does not exist set message and redirect 
+            //Hiển thị thông báo và chuyển hướng
             $_SESSION['user-not-found'] = "<div class='error'>Mật khẩu hiện tại không đúng.</div>";
-            //Redirect the User
             header('location:' . SITEURL . 'infor.php?session_user=' . $_SESSION['user']);
         }
     }
 }
-
 ?>
 
-<?php include("partials-font/footer.php");
-ob_end_flush(); ?>
+<?php
+include("partials-font/footer.php");
+ob_end_flush();
+?>

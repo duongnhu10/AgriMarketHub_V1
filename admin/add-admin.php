@@ -7,9 +7,9 @@
         <br><br>
 
         <?php
-        if (isset($_SESSION['add'])) { //Checking whether the session is Set or Not
-            echo $_SESSION['add']; //Displaying session Message
-            unset($_SESSION['add']); //Removing session Message
+        if (isset($_SESSION['add'])) { //Kiểm tra phiên được đặt hay không
+            echo $_SESSION['add']; //Hiển thị thông báo
+            unset($_SESSION['add']); //Hủy bỏ phiên
         }
         ?>
 
@@ -55,41 +55,41 @@
 <?php include('partials/footer.php') ?>
 
 <?php
-//Process the value from Form and Save it Database
-//Check whether the submit button is clicked or not
+//Lấy dữ liệu từ form và lưu vào database
+//Kiểm tra nút submit được nhấn hay không
 if (isset($_POST['submit'])) {
-    // Button Clicked
+    // Nút được nhấn
     // echo "Button Clicked";
 
-    //1. Get the data from Form
+    //1. Lấy dữ liệu từ form
     $ho_va_ten = $_POST['ho_va_ten'];
     $ten_nguoi_dung = $_POST['ten_nguoi_dung'];
-    $mat_khau = md5($_POST['mat_khau']); //Password Encryption with MD5
+    $mat_khau = md5($_POST['mat_khau']); //Mật khẩu sang mã md5
 
-    //2. SQL Query to Save the data into database
+    //2. SQL để lưu vào database
     $sql = "INSERT INTO admin SET 
             ho_va_ten = '$ho_va_ten',
             ten_nguoi_dung = '$ten_nguoi_dung',
             mat_khau = '$mat_khau'
     ";
 
-    //3. Executting Query and Save Data in Database
+    //3. Chạy SQL
     $res = mysqli_query($conn, $sql);
 
-    //4. Check whether the (Query is Excuted) data is inserted
+    //4. Kiểm tra chạy thành công hay không
     if ($res == TRUE) {
-        //Data Inserted
+        //Chèn dữ liệu
         //echo "Data Inserted";
-        //Create a Session Variable to Display Message
+        //Tạo biến phiên để thông báo
         $_SESSION['add'] = "<div class='success'>Thêm quản trị viên thành công.</div>";
-        //Redirect Page to Manager Admin
+        //Chuyển hướng đến trang quản trị viên
         header("location:" . SITEURL . "admin/manager-admin.php");
     } else {
-        //Failed to Insert
+        //Chèn thất bại
         // echo "Faile to Insert Data";
-        //Create a Session Variable to Display Message
+        //Tạo biến phiên và hiển thị thông báo
         $_SESSION['add'] = "<div class='error'>Thêm quản trị viên thất bại.</div>";
-        //Redirect Page to Add Admin
+        //Chuyển hướng đến trang thêm admin
         header("location:" . SITEURL . "admin/add-admin.php");
     }
 }
