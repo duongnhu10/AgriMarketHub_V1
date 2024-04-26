@@ -11,6 +11,10 @@ if (isset($_GET['session_user'])) {
 $sql_s = "SELECT * FROM khach_hang WHERE ten_nguoi_dung='$session_user'";
 $res_s = mysqli_query($conn, $sql_s);
 $row_s = mysqli_fetch_assoc($res_s);
+$khach_ten = $row_s['ho_va_ten'];
+$khach_sdt = $row_s['sdt'];
+$khach_diachi = $row_s['diachi'];
+$khach_email = $row_s['email'];
 $count_s = mysqli_num_rows($res_s);
 if ($count_s == 1) {
     //Có
@@ -179,16 +183,16 @@ if (isset($_GET['spham_id']) && isset($_GET['so'])) {
             <fieldset style="border: 1px solid black;">
                 <legend style="color: black;">THÔNG TIN GIAO HÀNG</legend>
                 <div class="order-label">Họ và tên</div>
-                <input type="text" name="khach_ten" placeholder="VD. Nguyễn Văn A" class="input-responsive" required>
+                <input type="text" name="khach_ten" placeholder="VD. Nguyễn Văn A" class="input-responsive" value="<?php echo $khach_ten; ?>" required>
 
                 <div class="order-label">Số điện thoại</div>
-                <input type="tel" name="khach_sdt" placeholder="VD. 0385673xxx" class="input-responsive" required>
+                <input type="tel" name="khach_sdt" placeholder="VD. 0385673xxx" class="input-responsive" value="<?php echo $khach_sdt; ?>" required>
 
                 <div class="order-label">Email</div>
-                <input type="email" name="khach_email" placeholder="VD. vana@gmail.com" class="input-responsive" required>
+                <input type="email" name="khach_email" placeholder="VD. vana@gmail.com" class="input-responsive" value="<?php echo $khach_email; ?>" required>
 
                 <div class="order-label">Địa chỉ</div>
-                <textarea name="khach_diachi" rows="10" placeholder="VD. Trần Văn Khéo, Cái Khế, Ninh Kiều, Cần Thơ" class="input-responsive" required></textarea>
+                <textarea name="khach_diachi" rows="10" placeholder="VD. Trần Văn Khéo, Cái Khế, Ninh Kiều, Cần Thơ" class="input-responsive" required><?php echo $khach_diachi; ?></textarea>
 
                 <input type="submit" name="submit" value="Đặt hàng" class="btn btn-primary">
 

@@ -14,6 +14,11 @@
             unset($_SESSION['update']);
         }
         ?>
+        <!-- Tìm kiếm loại đơn hàng -->
+        <form action="<?php echo SITEURL ?>admin/order-search.php" method="POST">
+            <input type="search" name="search" placeholder="Tìm kiếm đơn hàng." class="tk" required>
+            <input type="submit" name="submit" value="Tìm kiếm" class="btn btn-primary">
+        </form>
 
         <br><br>
 

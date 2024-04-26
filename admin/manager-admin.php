@@ -46,6 +46,11 @@
         ?>
 
         <br><br>
+        <!-- Tìm kiếm admin -->
+        <form action="<?php echo SITEURL ?>admin/admin-search.php" method="POST">
+            <input type="search" name="search" placeholder="Tìm kiếm admin.." class="tk" required>
+            <input type="submit" name="submit" value="Tìm kiếm" class="btn btn-primary">
+        </form>
 
         <!-- Nút thêm admin -->
         <a href="add-admin.php" class="btn-primary">Thêm quản trị viên</a>

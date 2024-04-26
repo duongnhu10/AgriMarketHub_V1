@@ -474,3 +474,22 @@ input[type="submit"]:hover {
 .blinking-icon {
   animation: blink 2s infinite;
 }
+
+.custom-checkbox {
+  width: 20px; /* Chiều rộng */
+  height: 20px; /* Chiều cao */
+}
+
+.btn-blue {
+  display: inline-block;
+  background-color: #1e90ff; /* Background color */
+  color: #fff; /* Text color */
+  padding: 10px 20px; /* Padding */
+  text-decoration: none; /* Remove underline */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.btn-blue:hover {
+  background-color: #3742fa; /* Darker background color on hover */
+}

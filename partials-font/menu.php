@@ -105,6 +105,7 @@ $count = mysqli_num_rows($res);
                                     echo "<i class='fas fa-user fa-lg'></i>";
                                 }
                                 ?>
+                                <?php echo $session_user; ?>
                             </a>
 
                             <div id="myDropdown" class="dropdown-content">

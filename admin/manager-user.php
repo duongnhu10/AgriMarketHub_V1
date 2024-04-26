@@ -15,6 +15,13 @@
         }
         ?>
 
+        <br>
+        <!-- Tìm kiếm người dùng -->
+        <form action="<?php echo SITEURL ?>admin/user-search.php" method="POST">
+            <input type="search" name="search" placeholder="Tìm kiếm loại người dùng.." class="tk" required>
+            <input type="submit" name="submit" value="Tìm kiếm" class="btn btn-primary">
+        </form>
+
         <br><br><br>
 
         <table class="tbl-full">

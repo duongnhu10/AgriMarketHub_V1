@@ -15,6 +15,11 @@
             unset($_SESSION['xoa_lienhe']);
         }
         ?>
+        <!-- Tìm kiếm phản hồi -->
+        <form action="<?php echo SITEURL ?>admin/search-contact.php" method="POST">
+            <input type="search" name="search" placeholder="Tìm kiếm phản hồi.." class="tk" required>
+            <input type="submit" name="submit" value="Tìm kiếm" class="btn btn-primary">
+        </form>
 
         <br><br>
 

@@ -47,6 +47,11 @@
         ?>
 
         <br><br>
+        <!-- Tìm kiếm loại sản phẩm -->
+        <form action="<?php echo SITEURL ?>admin/category-search.php" method="POST">
+            <input type="search" name="search" placeholder="Tìm kiếm loại sản phẩm.." class="tk" required>
+            <input type="submit" name="submit" value="Tìm kiếm" class="btn btn-primary">
+        </form>
 
         <!-- Nút thêm loại sản phẩm -->
         <a href="<?php echo SITEURL; ?>admin/add-category.php" class="btn-primary">Thêm loại sản phẩm</a>
@@ -59,6 +64,7 @@
                 <th>Tên loại</th>
                 <th>Hình ảnh</th>
                 <th>Trạng thái</th>
+                <th>Số sản phẩm</th>
                 <th>Hành động</th>
             </tr>
 
@@ -107,6 +113,15 @@
                         </td>
 
                         <td><?php echo $trang_thai; ?></td>
+
+                        <td>
+                            <?php
+                            $sql_dem = "SELECT * FROM san_pham WHERE loai_id = $id";
+                            $res_dem = mysqli_query($conn, $sql_dem);
+                            $row_dem = mysqli_num_rows($res_dem);
+                            echo $row_dem;
+                            ?>
+                        </td>
 
                         <td>
                             <a href="<?php echo SITEURL; ?>admin/update-category.php?id=<?php echo $id; ?>" class="btn-secondary">Cập nhật loại sản phẩm</a>

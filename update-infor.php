@@ -36,6 +36,9 @@ $session_user = ""; // Khởi tạo biến session_user
                 $ten_nguoi_dung = $row['ten_nguoi_dung'];
                 $gioi_tinh = $row['gioi_tinh'];
                 $doanh_nghiep = $row['doanh_nghiep'];
+                $sdt = $row['sdt'];
+                $email = $row['email'];
+                $diachi = $row['diachi'];
                 $ten_doanh_nghiep = $row['ten_doanh_nghiep'];
                 $ma_so_thue = $row['ma_so_thue'];
             } else {
@@ -76,6 +79,27 @@ $session_user = ""; // Khởi tạo biến session_user
                         <input <?php if ($gioi_tinh == 0) {
                                     echo "checked";
                                 } ?> type="radio" name="gioi_tinh" value="0">Nam
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>SDT:</td>
+                    <td>
+                        <input type="text" name="sdt" placeholder="Số điện thoại" value="<?php echo $sdt; ?>">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Email:</td>
+                    <td>
+                        <input type="text" name="email" placeholder="Email" value="<?php echo $email; ?>">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Địa chỉ:</td>
+                    <td>
+                        <input type="text" name="diachi" placeholder="Địa chỉ" value="<?php echo $diachi; ?>">
                     </td>
                 </tr>
 
@@ -153,6 +177,9 @@ $session_user = ""; // Khởi tạo biến session_user
             $ten_doanh_nghiep = $_POST['ten_doanh_nghiep'];
             $ma_so_thue = $_POST['ma_so_thue'];
             $gioi_tinh = $_POST['gioi_tinh'];
+            $sdt = $_POST['sdt'];
+            $email = $_POST['email'];
+            $diachi = $_POST['diachi'];
             $current_image = $_POST['current_image'];
 
             //2. Tải hình ảnh được chọn
@@ -206,7 +233,10 @@ $session_user = ""; // Khởi tạo biến session_user
             gioi_tinh = $gioi_tinh,
             ten_doanh_nghiep = '$ten_doanh_nghiep',
             ma_so_thue = '$ma_so_thue',
-            anh = '$ten_anh'
+            anh = '$ten_anh',
+            sdt = '$sdt',
+            email = '$email',
+            diachi = '$diachi'
             WHERE id=$id
         ";
             $res3 = mysqli_query($conn, $sql3);

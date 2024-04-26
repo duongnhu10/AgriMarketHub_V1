@@ -35,6 +35,11 @@
         }
         ?>
         <br><br>
+        <!-- Tìm kiếm sản phẩm -->
+        <form action="<?php echo SITEURL ?>admin/agricultural-search.php" method="POST">
+            <input type="search" name="search" placeholder="Tìm kiếm sản phẩm.." class="tk" required>
+            <input type="submit" name="submit" value="Tìm kiếm" class="btn btn-primary">
+        </form>
 
         <!-- Nút thêm sản phẩm -->
         <a href="<?php echo SITEURL; ?>admin/add-agricultural.php" class="btn-primary">Thêm sản phẩm</a>
