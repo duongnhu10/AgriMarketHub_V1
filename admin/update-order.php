@@ -24,13 +24,13 @@
                 $row = mysqli_fetch_assoc($res);
 
                 $san_pham = $row['san_pham'];
-                $gia = $row['gia'];
-                $so_luong = $row['so_luong'];
+                // $gia = $row['gia'];
+                // $so_luong = $row['so_luong'];
                 $trang_thai = $row['trang_thai'];
-                $khach_ten = $row['khach_ten'];
-                $khach_sdt = $row['khach_sdt'];
-                $khach_email = $row['khach_email'];
-                $khach_diachi = $row['khach_diachi'];
+                // $khach_ten = $row['khach_ten'];
+                // $khach_sdt = $row['khach_sdt'];
+                // $khach_email = $row['khach_email'];
+                // $khach_diachi = $row['khach_diachi'];
             } else {
             }
         } else {
@@ -45,18 +45,6 @@
                 <tr>
                     <td>Tên sản phẩm</td>
                     <td><b><?php echo $san_pham; ?></b></td>
-                </tr>
-
-                <tr>
-                    <td>Giá</td>
-                    <td><b><?php echo $gia; ?>VND</b></td>
-                </tr>
-
-                <tr>
-                    <td>Số lượng</td>
-                    <td>
-                        <input type="number" name="so_luong" value="<?php echo $so_luong; ?>">
-                    </td>
                 </tr>
 
                 <tr>
@@ -80,37 +68,8 @@
                 </tr>
 
                 <tr>
-                    <td>Tên khách hàng: </td>
-                    <td>
-                        <input type="text" name="khach_ten" value="<?php echo $khach_ten; ?>">
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>SDT khách hàng: </td>
-                    <td>
-                        <input type="text" name="khach_sdt" value="<?php echo $khach_sdt; ?>">
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>Email khách hàng: </td>
-                    <td>
-                        <input type="text" name="khach_email" value="<?php echo $khach_email; ?>">
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>Địa chỉ khách hàng: </td>
-                    <td>
-                        <textarea type="text" name="khach_diachi" cols="30" rows="5"><?php echo $khach_diachi; ?></textarea>
-                    </td>
-                </tr>
-
-                <tr>
                     <td colspan="2">
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
-                        <input type="hidden" name="gia" value="<?php echo $gia; ?>">
 
                         <input type="submit" name="submit" value="Cập nhật" class="btn-secondary">
                     </td>
@@ -125,24 +84,18 @@
             //echo "Clicked";
             //Lấy các giá trị từ form
             $id = $_POST['id'];
-            $gia = $_POST['gia'];
-            $so_luong = $_POST['so_luong'];
-            $tong_tien = $so_luong * $gia;
+            // $gia = $_POST['gia'];
+            // $so_luong = $_POST['so_luong'];
+            // $tong_tien = $so_luong * $gia;
             $trang_thai = $_POST['trang_thai'];
-            $khach_ten = $_POST['khach_ten'];
-            $khach_sdt = $_POST['khach_sdt'];
-            $khach_email = $_POST['khach_email'];
-            $khach_diachi = $_POST['khach_diachi'];
+            // $khach_ten = $_POST['khach_ten'];
+            // $khach_sdt = $_POST['khach_sdt'];
+            // $khach_email = $_POST['khach_email'];
+            // $khach_diachi = $_POST['khach_diachi'];
 
             //Cập nhật giá trị
             $sql2 = "UPDATE don_hang SET
-                so_luong = $so_luong,
-                tong_tien = $tong_tien,
-                trang_thai = '$trang_thai',
-                khach_ten = '$khach_ten',
-                khach_sdt = '$khach_sdt',
-                khach_email = '$khach_email',
-                khach_diachi = '$khach_diachi'
+                trang_thai = '$trang_thai'
                 WHERE id=$id;
             ";
 
