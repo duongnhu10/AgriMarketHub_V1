@@ -19,7 +19,6 @@
    - Đổi mật khẩu
    - Xóa tài khoản
 - Thêm sản phẩm vào giỏ hàng
-
 - Cập nhật giỏ hàng
   - Xóa sản phẩm
   - Thay đổi số lượng sản phẩm
@@ -28,12 +27,13 @@
   - Hủy đơn hàng
   - Lịch sử mua hàng
 - Chức năng Đặt hàng
-- Chức năng Phản hồi
+- Chức năng Phản hồi đơn hàng
 
 # 3. Admin
 - Quản lý đơn hàng
   - Xem danh sách đơn hàng
   - Cập nhật đơn hàng
+  - Tìm kiếm đơn hàng
 - Chức năng Quản lý người dùng
   - Xem thông tin người dùng
   - Xóa người dùng
@@ -42,6 +42,7 @@
   - Thêm sản phẩm
   - Sửa thông tin sản phẩm
   - Xóa sản phẩm
+  - Tìm kiếm sản phẩm
 - Quản lý thống kê
   - Thống Kê số lượng đơn hàng
   - Thống Kê số lượng sản phẩm
@@ -49,6 +50,8 @@
 - Về chức năng Quản lý admin
   - Đổi mật khẩu
   - Cập nhật admin
+  - Tìm kiếm admin
 - Quản lý phản hồi
   - Xóa phản hồi
   - Xem phản hồi
+  - Tìm kiếm phản hồi
