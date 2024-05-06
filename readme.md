@@ -1,6 +1,6 @@
 # XÂY DỰNG HỆ THỐNG CỬA HÀNG NÔNG SẢN TRỰC TUYẾN
 
-🍅 NGÔN NGỮ: PHP, HTML, CSS, JAVASCRIPT
+NGÔN NGỮ: PHP, HTML, CSS
 <br>
 
 # CHỨC NĂNG
